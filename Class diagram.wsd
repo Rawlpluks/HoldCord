@@ -1,0 +1,47 @@
+@startuml
+class User{
+    int user_ID
+    String name
+    String username
+    String password
+    String email
+    ArrayList<Integer> team_IDs
+}
+
+class Event{
+    int event_ID
+    int host_ID
+    Date date
+    String name
+    String description
+    ArrayList<participant> participants
+}
+
+class participant{
+    int participant_ID
+    User participant
+    ParticipantStatus participantStatus
+}
+
+enum ParticipantStatus{
+    hasentAnswered
+    maybe
+    going
+    cantGo
+}
+
+class NewsFeedMessage{
+    int NewsFeedMessage_ID
+    Date date
+    Team team
+    User sender
+    String messages
+}
+
+class Team{
+    int team_ID
+    String teamName
+    ArrayList<User> teamMembers
+}
+
+@enduml

@@ -1,0 +1,65 @@
+@startuml
+!define table(x) class x << (T,#FFAAAA) >>
+hide methods
+hide stereotypes
+
+table(users){
+    PK user_ID
+    String name
+    String username
+    String password
+    String email
+}
+
+table(events){
+    PK event_ID
+    FK host_ID
+    String date
+    String name
+    String descreption
+}
+
+table(participants){
+    PK participant_ID
+    FK user_ID
+    String participantStatus
+}
+
+table(newsFeedMessages){
+    PK newsFeedMessages
+    FK team_ID
+    FK user_ID
+    String date
+    String messages
+}
+
+table(teams){
+    PK team_ID
+    FK createrOfTeamID  
+}
+
+'-----------------------------------
+'---------- combi tabeler ----------
+'-----------------------------------
+table(usersAndTeams){
+    FK user_ID
+    FK team_ID
+}
+usersAndTeams "1" *-- "many" users
+usersAndTeams "1" *-- "many" teams
+
+table(usersAndEvents){
+    FK user_ID
+    FK event_ID
+}
+usersAndEvents "1" *-- "many" users
+usersAndEvents "1" *-- "many" events
+
+table(participantsAndEvents){
+    FK participant_ID
+    FK event_ID
+}
+participantsAndEvents "1" *-- "many" participants
+participantsAndEvents "1" *-- "many" events
+
+@enduml
