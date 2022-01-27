@@ -14,16 +14,18 @@ import java.util.*;
 public class NewsFeedMessage {
     private int newsFeedMessage_ID;
     private Date date;
-    private Team team;
+    private ArrayList<Team> teams = new ArrayList<>();
     private User sender;
     private String messages;
+    private ArrayList<NewsFeedMessageComment> comments = new ArrayList<>();
 
-    public NewsFeedMessage(int newsFeedMessage_ID, Date date, Team team, User sender, String messages) {
+    public NewsFeedMessage(int newsFeedMessage_ID, Date date, ArrayList<Team> teams, User sender, String messages, ArrayList<NewsFeedMessageComment> comments) {
         this.newsFeedMessage_ID = newsFeedMessage_ID;
         this.date = date;
-        this.team = team;
+        this.teams = teams;
         this.sender = sender;
         this.messages = messages;
+        this.comments = comments;
     }
 
     public int getNewsFeedMessage_ID() {
@@ -38,12 +40,12 @@ public class NewsFeedMessage {
         this.date = date;
     }
     
-    public Team getTeam() {
-        return team;
+    public ArrayList<Team> getTeams() {
+        return teams;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setTeams(ArrayList<Team> teams) {
+        this.teams = teams;
     }
 
     public User getSender() {
@@ -61,4 +63,12 @@ public class NewsFeedMessage {
     public void setMessages(String messages) {
         this.messages = messages;
     } 
+
+    public ArrayList<NewsFeedMessageComment> getComments() {
+        return comments;
+    }
+
+    public void setComments(ArrayList<NewsFeedMessageComment> comments) {
+        this.comments = comments;
+    }
 }

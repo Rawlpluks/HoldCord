@@ -15,27 +15,36 @@ table(events){
     PK event_ID
     FK host_ID
     String date
-    String name
+    String title
     String descreption
 }
 
 table(participants){
     PK participant_ID
+    FK event_ID
     FK user_ID
     String participantStatus
 }
 
 table(newsFeedMessages){
-    PK newsFeedMessages
+    PK newsFeedMessages_ID
     FK team_ID
-    FK user_ID
+    FK sender_ID
     String date
     String messages
+}
+
+table(newsFeedMessagesComments){
+    PK newsFeedMessagesComments_ID
+    FK newsFeedMessages_ID
+    FK sender_ID
+    String date
 }
 
 table(teams){
     PK team_ID
     FK createrOfTeamID  
+    String teamName
 }
 
 '-----------------------------------
@@ -48,6 +57,15 @@ table(usersAndTeams){
 usersAndTeams "1" *-- "many" users
 usersAndTeams "1" *-- "many" teams
 
+table(newsFeedMessagesAndTeams){
+    FK newsFeedMessages_ID
+    FK team_ID
+}
+
+newsFeedMessagesAndTeams "1" *-- "many" teams
+newsFeedMessagesAndTeams "1" *-- "many" newsFeedMessages
+
+/'
 table(usersAndEvents){
     FK user_ID
     FK event_ID
@@ -61,5 +79,5 @@ table(participantsAndEvents){
 }
 participantsAndEvents "1" *-- "many" participants
 participantsAndEvents "1" *-- "many" events
-
+'/
 @enduml

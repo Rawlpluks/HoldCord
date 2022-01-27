@@ -5,6 +5,8 @@
  */
 package org.openjfx.classes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author chris
@@ -15,15 +17,20 @@ public class User {
     private String password;
     private String name;
     private String email;
+    private ArrayList<Integer> team_IDs = new ArrayList<>();
 
-    public User(int user_ID, String username, String password, String name, String email) {
+    public User(int user_ID, String username, String password, String name, String email, ArrayList<Integer> team_IDs) {
         this.user_ID = user_ID;
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
+        this.team_IDs = team_IDs;
     }
-
+    
+    public User() {
+    }
+    
     public int getUser_ID() {
         return user_ID;
     }
@@ -58,5 +65,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public ArrayList<Integer> getTeam_IDs() {
+        return team_IDs;
+    }
+
+    public void setTeam_IDs(ArrayList<Integer> team_IDs) {
+        this.team_IDs = team_IDs;
     }
 }

@@ -6,14 +6,17 @@
 package org.openjfx.databaseRepository;
 
 import java.sql.*;
+import java.util.ArrayList;
+import org.openjfx.classes.*;
 
 /**
  *
  * @author chris
  */
 public class userDatabaseMethods {
+
     private final String connectionString = "jdbc:sqlite:Database.db";
-    
+
     //---------------------------------------------
     //---------- check for matching user ----------
     //---------------------------------------------
@@ -23,7 +26,7 @@ public class userDatabaseMethods {
 
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
-        
+
         //Skab forbindelse til databasen...
         try {
             conn = DriverManager.getConnection(connectionString);
@@ -36,9 +39,9 @@ public class userDatabaseMethods {
             Statement stat = conn.createStatement();
 
             ResultSet rs = stat.executeQuery("select Username from Users WHERE Username = ('" + _username + "');");
-            
+
             rs.next();
-            
+
             databaseUsername = rs.getString("Username");
 
             rs.close();
@@ -101,9 +104,9 @@ public class userDatabaseMethods {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
         String sql;
-        
+
         _newUser.setUsername(_newUser.getUsername().toLowerCase());
-        
+
         //Skab forbindelse til databasen...
         try {
             conn = DriverManager.getConnection(connectionString);
@@ -111,27 +114,11 @@ public class userDatabaseMethods {
             //Skriver fejlhåndtering her
             System.out.println("\n Database error (create user): " + e.getMessage() + "\n");
         }
-        
-        int school_ID = 0;
-        
-        try {
-            Statement stat = conn.createStatement();
-            ResultSet rs =  stat.executeQuery("SELECT school_ID FROM Schools WHERE school_key =('" + _newUser.getSchoolKey() + "')");
-            
-            rs.next();
-            
-            school_ID = rs.getInt("school_ID");
-            
-            rs.close();
-         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
-            System.out.println("\n Database error (create user): " + e.getMessage() + "\n");
-        }
 
-        sql = "INSERT INTO users(school_ID, UserName, Password, School_key) VALUES('" + school_ID + "','" + _newUser.getUsername() + "','" + _newUser.getPassword() + "', '" + _newUser.getSchoolKey() + "');";
-        
-        
-        
+        sql = "INSERT INTO users(name, username, Password, email) VALUES"
+                + "('" + _newUser.getName() + "','" + _newUser.getUsername() + "',"
+                + "'" + _newUser.getPassword() + "', '" + _newUser.getEmail() + "');";
+
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -156,7 +143,8 @@ public class userDatabaseMethods {
             //Skrive fejlhåndtering her
             System.out.println("\n Database error (get logged ind user): " + e.getMessage() + "\n");
         }
-
+        
+        //get user info
         try {
             Statement stat = conn.createStatement();
 
@@ -164,13 +152,34 @@ public class userDatabaseMethods {
 
             rs.next();
 
-            loggedInUser = new User(rs.getInt("User_ID"), rs.getInt("school_ID"), rs.getString("Username"), rs.getString("Password"), rs.getString("School_key"));
+            loggedInUser = new User(rs.getInt("user_ID"), rs.getString("username"), rs.getString("password"), rs.getString("name"), rs.getString("email"), null);
 
             rs.close();
         } catch (SQLException e) {
             //Skrive fejlhåndtering her
-            System.out.println("\n Database error (get logged ind user): " + e.getMessage() + "\n");
+            System.out.println("\n Database error (get logged ind user (info): " + e.getMessage() + "\n");
         }
+        
+        //get users teams
+        try {
+            Statement stat = conn.createStatement();
+            
+            ResultSet rs = stat.executeQuery("SELECT team_ID FROM usersAndTeams WHERE user_ID = "
+                    + "('" + loggedInUser.getUser_ID() + "');");
+            
+            ArrayList<Integer> team_IDs = new ArrayList<>();
+            
+            while(rs.next()){
+                team_IDs.add(rs.getInt("team_ID"));
+            }
+            
+            loggedInUser.setTeam_IDs(team_IDs);
+            
+        } catch (SQLException e) {
+            System.out.println("\n Database error (get logged ind user (teams): " + e.getMessage() + "\n");
+        }
+        
+        conn.close();
 
         return loggedInUser;
     }

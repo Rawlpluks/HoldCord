@@ -13,30 +13,39 @@ import java.util.*;
  */
 public class Event {
     private int event_ID;
-    private int host_ID;
+    private User host;
     private Date date;
-    private String name;
+    private String title;
     private String descreption;
     private ArrayList<Participant> participants = new ArrayList<>();
 
-    public Event(int event_ID, int host_ID, Date date, String name, String descreption) {
-        this.event_ID = event_ID;
-        this.host_ID = host_ID;
+    public Event(User host, Date date, String title, String descreption, ArrayList<Participant> participants) {
+        this.host = host;
         this.date = date;
-        this.name = name;
+        this.title = title;
         this.descreption = descreption;
+        this.participants = participants;
+    }
+
+    public Event(int event_ID, User host, Date date, String title, String descreption, ArrayList<Participant> participants) {
+        this.event_ID = event_ID;
+        this.host = host;
+        this.date = date;
+        this.title = title;
+        this.descreption = descreption;
+        this.participants = participants;
     }
 
     public int getEvent_ID() {
         return event_ID;
     }
 
-    public int getHost_ID() {
-        return host_ID;
+    public User getHost() {
+        return host;
     }
 
-    public void setHost_ID(int host_ID) {
-        this.host_ID = host_ID;
+    public void setHost(User host) {
+        this.host = host;
     }
 
     public Date getDate() {
@@ -46,13 +55,13 @@ public class Event {
     public void setDate(Date date) {
         this.date = date;
     }
-    
-    public String getName() {
-        return name;
+
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescreption() {
@@ -70,6 +79,4 @@ public class Event {
     public void setParticipants(ArrayList<Participant> participants) {
         this.participants = participants;
     }
-    
-    
 }

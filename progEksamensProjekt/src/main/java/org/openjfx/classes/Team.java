@@ -13,26 +13,40 @@ import java.util.*;
  */
 public class Team {
     private int team_ID;
-    private String teamName;
+    private String name;
+    private User createrOfTeam;
     private ArrayList<User> teamMembers = new ArrayList<>();
 
-    public Team(int team_ID, String teamName) {
+    public Team() {
+    }
+    
+    public Team(int team_ID, String name, User createrOfTeam, ArrayList<User> teamMembers) {
         this.team_ID = team_ID;
-        this.teamName = teamName;
+        this.name = name;
+        this.teamMembers = teamMembers;
+        this.createrOfTeam = createrOfTeam;
     }
 
     public int getTeam_ID() {
         return team_ID;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public String getName() {
+        return name;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
+    public void setName(String teamName) {
+        this.name = teamName;
     }
 
+    public User getCreaterOfTeam() {
+        return createrOfTeam;
+    }
+
+    public void setCreaterOfTeam(User createrOfTeam) {
+        this.createrOfTeam = createrOfTeam;
+    }
+    
     public ArrayList<User> getTeamMembers() {
         return teamMembers;
     }
