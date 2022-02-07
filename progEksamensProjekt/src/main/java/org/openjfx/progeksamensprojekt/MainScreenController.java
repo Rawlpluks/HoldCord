@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-public class PrimaryController implements Initializable{
+public class MainScreenController implements Initializable{
 
     @FXML
     private VBox newfeed;

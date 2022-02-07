@@ -46,15 +46,16 @@ public class SignupController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
+    @FXML
     private void creatUser(ActionEvent event) throws Exception {
-        textErroMessage.setText("");
 
         //Check if all fields is filled
         if (!textFieldUsername.getText().isBlank()
                 && !passwordFieldPassword.getText().isBlank()
                 && !passwordFieldrepeatPassword.getText().isBlank()
-                && !textFieldEmail.getText().isBlank()) {
+                && !textFieldEmail.getText().isBlank()
+                && !textFieldName.getText().isBlank()){
 
             //Check if user already exist
             UserDatabaseMethods userDatabasemethods = new UserDatabaseMethods();
@@ -89,7 +90,7 @@ public class SignupController implements Initializable {
                                         textFieldName.getText(), textFieldEmail.getText()));
 
                                 App.setLoggedInUser(userDatabasemethods.getoggedInUser(textFieldUsername.getText()));
-                                App.setRoot("Sorting");
+                                App.setRoot("mainScreen");
                             } else {
                                 textErroMessage.setText("Password meets requirements, but donsen't match");
                             }
@@ -117,7 +118,7 @@ public class SignupController implements Initializable {
         System.exit(0);
     }
     @FXML
-    private void login() throws IOException {
+    private void goToLogin() throws IOException {
         App.setRoot("login");
     }
 }

@@ -27,12 +27,12 @@
                   <DropShadow radius="4.75" width="0.0" />
                </effect>
             </Pane>
-            <TextField fx:id="textFieldUsername" layoutX="64.0" layoutY="327.0" prefHeight="38.0" prefWidth="396.0" promptText="Brugernavn" styleClass="login-textfield" stylesheets="@styles.css">
+            <TextField fx:id="textFieldUsername" layoutX="64.0" layoutY="327.0" prefHeight="38.0" prefWidth="396.0" promptText="Brugernavn" styleClass="login-textfield" stylesheets="@styles.css" text="Admin1">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordFieldPassword" layoutX="64.0" layoutY="408.0" prefHeight="38.0" prefWidth="396.0" promptText="Kodeord" styleClass="login-textfield" stylesheets="@styles.css">
+            <PasswordField fx:id="passwordFieldPassword" layoutX="64.0" layoutY="408.0" prefHeight="38.0" prefWidth="396.0" promptText="Kodeord" styleClass="login-textfield" stylesheets="@styles.css" text="Admin!12345">
                <font>
                   <Font size="16.0" />
                </font>
@@ -44,8 +44,8 @@
             </Text>
             <Button layoutX="184.0" layoutY="482.0" mnemonicParsing="false" onAction="#login" prefHeight="50.0" prefWidth="156.0" styleClass="login-button" stylesheets="@styles.css" text="Log in" textFill="#9b9b9b" />
             <Text fill="#615e5e" layoutX="147.0" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du ikke en bruger?" />
-            <Button layoutX="263.0" layoutY="550.0" mnemonicParsing="false" onAction="#signup" prefHeight="27.0" prefWidth="105.0" styleClass="signup-button" stylesheets="@styles.css" text="Opret en bruger" textFill="#615e5e" />
-            <Text fx:id="textErrorMessage" fill="RED" layoutX="253.0" layoutY="598.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" />
+            <Button layoutX="263.0" layoutY="550.0" mnemonicParsing="false" onAction="#switchToSignup" prefHeight="27.0" prefWidth="105.0" styleClass="signup-button" stylesheets="@styles.css" text="Opret en bruger" textFill="#615e5e" />
+            <Text fx:id="textErrorMessage" fill="RED" layoutX="184.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="156.0000000000001" />
          </children>
       </Pane>
    </children>

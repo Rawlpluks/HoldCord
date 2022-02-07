@@ -65,11 +65,13 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void exit(ActionEvent event) {
+    private void exit() {
+        System.exit(0);
     }
 
 
     @FXML
-    private void signup(ActionEvent event) {
+    private void switchToSignup(ActionEvent event) throws Exception {
+        App.setRoot("signup");
     }
 }

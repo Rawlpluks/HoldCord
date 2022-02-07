@@ -7,6 +7,7 @@ package org.openjfx.progeksamensprojekt;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import org.openjfx.databaseRepository.GeneralDatabbaseMethods.*;
 
 /**
  * FXML Controller class
@@ -20,7 +21,12 @@ public class NewsfeedController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            //get alle news feedmessages
+            
+            
+        } catch (Exception e) {
+        }
     }    
     
 }

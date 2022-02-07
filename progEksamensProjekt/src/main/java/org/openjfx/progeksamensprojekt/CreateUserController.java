@@ -21,14 +21,20 @@ import org.openjfx.databaseRepository.*;
  * @author chris
  */
 public class CreateUserController {
-
+    @FXML
     private TextField textFieldUsername;
+    @FXML
     private Text textErroMessage;
+    @FXML
     private PasswordField passwordFieldPassword;
+    @FXML
     private PasswordField passwordFieldrepeatPassword;
+    @FXML
     private TextField textFieldEmail;
+    @FXML
     private TextField textFieldName;
-
+    
+    @FXML
     private void creatUser(ActionEvent event) throws Exception {
         textErroMessage.setText("");
 
@@ -93,7 +99,7 @@ public class CreateUserController {
         }
 
     }
-
+    
     private void switchToLoginScreen(ActionEvent event) throws IOException, Exception {
         App.setRoot("login");
     }
