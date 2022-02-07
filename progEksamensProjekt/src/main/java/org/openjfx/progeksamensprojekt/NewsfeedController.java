@@ -4,10 +4,8 @@
  */
 package org.openjfx.progeksamensprojekt;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -15,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author Clara Maj
  */
-public class LoginController implements Initializable {
+public class NewsfeedController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -23,19 +21,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }  
-    
-    @FXML
-    private void exit(){
-        System.exit(0);
-    }
-    @FXML
-    private void signup() throws IOException{
-        App.setRoot("signup");
-    }
-    @FXML 
-    private void openPrimary() throws IOException{
-        App.setRoot("primary");
-    }
+    }    
     
 }
+
