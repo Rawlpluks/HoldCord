@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import org.openjfx.classes.User;
 
 /**
  * JavaFX App
@@ -14,6 +15,7 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static User loggedInUser = new User();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -35,4 +37,11 @@ public class App extends Application {
         launch();
     }
 
+    public static User getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public static void setLoggedInUser(User _loggedInUser) {
+        loggedInUser = _loggedInUser;
+    }
 }
