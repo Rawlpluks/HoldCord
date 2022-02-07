@@ -13,7 +13,7 @@ import org.openjfx.classes.*;
  *
  * @author chris
  */
-public class userDatabaseMethods {
+public class UserDatabaseMethods {
 
     private final String connectionString = "jdbc:sqlite:Database.db";
 

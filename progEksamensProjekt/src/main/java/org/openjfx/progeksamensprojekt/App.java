@@ -7,23 +7,20 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import static javafx.application.Application.launch;
-import javafx.scene.paint.Color;
-import javafx.stage.StageStyle;
+import org.openjfx.classes.User;
 
 /**
+ * JavaFX App
  */
 public class App extends Application {
 
     private static Scene scene;
+    private static User loggedInUser = new User();
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-        scene = new Scene(loadFXML("login"));
-        scene.setFill(Color.TRANSPARENT);
+        scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
     }
 
@@ -38,5 +35,13 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public static User getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public static void setLoggedInUser(User _loggedInUser) {
+        loggedInUser = _loggedInUser;
     }
 }

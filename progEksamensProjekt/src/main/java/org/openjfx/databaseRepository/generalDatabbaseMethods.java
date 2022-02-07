@@ -19,7 +19,7 @@ import org.openjfx.classes.*;
  *
  * @author chris
  */
-public class generalDatabbaseMethods {
+public class GeneralDatabbaseMethods {
 
     private final String connectionString = "jdbc:sqlite:Database.db";
 

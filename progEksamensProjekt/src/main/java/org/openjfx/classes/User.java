@@ -28,6 +28,14 @@ public class User {
         this.team_IDs = team_IDs;
     }
     
+    //create user
+    public User(String username, String password, String name, String email) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+    }
+    
     public User() {
     }
     
