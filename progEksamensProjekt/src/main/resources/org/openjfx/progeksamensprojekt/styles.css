@@ -1,0 +1,119 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 24. jan. 2022, 12.25.32
+    Author     : Clara Maj
+*/
+
+
+/*navigator*/
+
+.menubar{
+    -fx-background-color: #F9B169;
+}
+.menubar-button-main {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-radius: 1px;
+    -fx-background-radius: 1px;
+    -fx-text-fill: #2b2b2b;
+}
+.menubar-button-main:hover {
+    -fx-background-color: #FAB876;
+    -fx-border-color: #D64566;
+    -fx-border-width: 0px 0px 3px 0px
+}
+.menubar-button-teams {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-radius: 1px;
+    -fx-background-radius: 1px;
+    -fx-text-fill: #2b2b2b;
+}
+.menubar-button-teams:hover {
+    -fx-background-color: #FAB876;
+    -fx-border-color: #4A94E1;
+    -fx-border-width: 0px 0px 3px 0px
+}
+.menubar-button-events {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-radius: 1px;
+    -fx-background-radius: 1px;
+    -fx-text-fill: #2b2b2b;
+}
+.menubar-button-events:hover {
+    -fx-background-color: #FAB876;
+    -fx-border-color: #903EFF;
+    -fx-border-width: 0px 0px 3px 0px
+}
+.menubar-button-settings {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-radius: 1px;
+    -fx-background-radius: 1px;
+    -fx-text-fill: #2b2b2b;
+}
+.menubar-button-settings:hover {
+    -fx-background-color: #FAB876;
+    -fx-border-color: #FFDE00;
+    -fx-border-width: 0px 0px 3px 0px
+}
+.menubar-button-logoff {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-radius: 1px;
+    -fx-background-radius: 1px;
+    -fx-text-fill: #2b2b2b;
+}
+.menubar-button-logoff:hover {
+    -fx-background-color: #FAB876;
+    -fx-border-color: #A2A721;
+    -fx-border-width: 0px 0px 3px 0px
+}
+
+
+/*log in*/
+.login-menu-background {
+    -fx-background-color: #E9E9E9;
+}
+.login-textfield {
+    -fx-background-color: transparent;
+    -fx-border-color: #9B9B9B;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-radius: 1px;
+    -fx-background-radius: 1px;
+}
+.login-textfield:hover{
+    -fx-border-color: #F9B169;
+}
+.login-button{
+    -fx-background-color: transparent;
+    -fx-border-color: #9B9B9B;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 1px;
+    -fx-background-radius: 1px;
+}
+.login-button:hover{
+    -fx-border-color:#F9B169;
+    -fx-text-fill: #F9B169
+}
+.signup-button{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.signup-button:hover{
+    -fx-text-fill: #F9B169;
+}
+.exit-button{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #2b2b2b;
+}
+.exit-button:hover{
+    -fx-background-color: #E81123;
+    -fx-border-color: #E81123;
+    -fx-text-fill: #E9E9E9;
+}

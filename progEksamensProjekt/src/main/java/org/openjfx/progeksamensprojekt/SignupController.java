@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
  *
  * @author Clara Maj
  */
-public class LoginController implements Initializable {
+public class SignupController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -23,19 +23,13 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }  
-    
+    }    
     @FXML
     private void exit(){
         System.exit(0);
     }
     @FXML
-    private void signup() throws IOException{
-        App.setRoot("signup");
+    private void login() throws IOException {
+        App.setRoot("login");
     }
-    @FXML 
-    private void openPrimary() throws IOException{
-        App.setRoot("primary");
-    }
-    
 }
