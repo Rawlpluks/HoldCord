@@ -39,6 +39,7 @@ table(newsFeedMessagesComments){
     FK newsFeedMessages_ID
     FK sender_ID
     String date
+    String comment
 }
 
 table(teams){

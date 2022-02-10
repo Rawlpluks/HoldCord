@@ -42,6 +42,7 @@ class NewsFeedMessage{
 class NewsFeedMessageComment{
     User sender
     Date date
+    String comment
 }
 
 class Team{

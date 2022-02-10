@@ -16,7 +16,7 @@
             <Image url="@profilIcon.png" />
          </image>
       </ImageView>
-      <Label layoutX="203.0" layoutY="46.0" text="(..username..)" textFill="#1815bc">
+      <Label fx:id="labelSenderName" layoutX="203.0" layoutY="46.0" text="(..username..)" textAlignment="CENTER" textFill="#1815bc">
          <font>
             <Font size="16.0" />
          </font>
@@ -26,18 +26,28 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="346.0" layoutY="47.0" text="(..teamname..)" textFill="#1815bc">
+      <Label fx:id="labelTeamNameTo" layoutX="346.0" layoutY="47.0" text="(..teamname..)" textAlignment="CENTER" textFill="#1815bc">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField editable="false" layoutX="196.0" layoutY="109.0" prefHeight="41.0" prefWidth="775.0" promptText="Titel" styleClass="login-textfield" stylesheets="@styles.css">
+      <TextField fx:id="textFieldTitelOfMessages" editable="false" layoutX="196.0" layoutY="109.0" prefHeight="41.0" prefWidth="775.0" promptText="Titel" styleClass="login-textfield" stylesheets="@styles.css">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextArea editable="false" layoutX="191.0" layoutY="182.0" prefHeight="231.0" prefWidth="775.0" />
-      <Button layoutX="31.0" layoutY="202.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="107.0" styleClass="login-button" stylesheets="@styles.css" text="Forrige nyhed" textFill="#9b9b9b" />
-      <Button layoutX="1023.0" layoutY="202.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="107.0" styleClass="login-button" stylesheets="@styles.css" text="Næste nyhed" textFill="#9b9b9b" />
+      <TextArea fx:id="textAreaMessage" editable="false" layoutX="191.0" layoutY="182.0" prefHeight="231.0" prefWidth="775.0" />
+      <Button layoutX="31.0" layoutY="202.0" mnemonicParsing="false" onAction="#prevNewsfeedMessages" prefHeight="41.0" prefWidth="107.0" styleClass="login-button" stylesheets="@styles.css" text="Forrige nyhed" textFill="#9b9b9b" />
+      <Button layoutX="1023.0" layoutY="202.0" mnemonicParsing="false" onAction="#nextNewsfeedMessages" prefHeight="41.0" prefWidth="107.0" styleClass="login-button" stylesheets="@styles.css" text="Næste nyhed" textFill="#9b9b9b" />
+      <Label fx:id="labelDateOfMessage" layoutX="562.0" layoutY="46.0" text="(..dato..)" textAlignment="CENTER" textFill="#1815bc">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="461.0" layoutY="47.0" text="slået op den">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

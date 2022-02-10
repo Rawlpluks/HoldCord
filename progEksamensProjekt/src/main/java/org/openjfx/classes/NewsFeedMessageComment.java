@@ -14,10 +14,12 @@ import java.util.Date;
 public class NewsFeedMessageComment {
     User sender;
     Date date;
+    String comment;
 
-    public NewsFeedMessageComment(User sender, Date date) {
+    public NewsFeedMessageComment(User sender, Date date, String comment) {
         this.sender = sender;
         this.date = date;
+        this.comment = comment;
     }
 
     public User getSender() {
@@ -34,5 +36,13 @@ public class NewsFeedMessageComment {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

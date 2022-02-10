@@ -644,7 +644,7 @@ public class GeneralDatabbaseMethods {
                             + "WHERE newsFeedMessages_ID = ('" + rs.getInt("newsFeedMessages_ID") + "');");
 
                     while (rs.next()) {
-                        comments.add(new NewsFeedMessageComment(loadUser(loadComments.getInt("user_ID"), conn), Date.valueOf(loadComments.getString("date"))));
+                        comments.add(new NewsFeedMessageComment(loadUser(loadComments.getInt("user_ID"), conn), Date.valueOf(loadComments.getString("date")), loadComments.getString("comment")));
                     }
                 } catch (SQLException e) {
                     System.out.println("\n Database error (get news feed meassges (get comments): " + e.getMessage() + "\n");
@@ -720,7 +720,8 @@ public class GeneralDatabbaseMethods {
         }
         
         String sql = "INSERT INTO newsFeedMessagesComments(sender_ID, date) "
-                + "VALUES('" + _comment.getSender().getUser_ID() + "', '" + _comment.getDate().toString() +"');";
+                + "VALUES('" + _comment.getSender().getUser_ID() + "', '" + _comment.getDate().toString() +"',"
+                + "'" + _comment.getComment() + "');";
         
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
