@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1350.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.progeksamensprojekt.EventsController">
+   <children>
+      <Pane layoutX="185.0" prefHeight="531.0" prefWidth="980.0" styleClass="login-menu-background" stylesheets="@styles.css">
+         <children>
+            <Pane prefHeight="147.0" prefWidth="980.0" style="-fx-background-color: #F68A1F;">
+               <children>
+                  <Label layoutX="366.0" layoutY="27.0" text="HoldCord" textFill="WHITE">
+                     <font>
+                        <Font name="Britannic Bold" size="61.0" />
+                     </font>
+                  </Label>
+                  <HBox layoutY="109.0" prefHeight="38.0" prefWidth="980.0" styleClass="menubar" stylesheets="@styles.css">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#main" prefHeight="54.0" prefWidth="196.0" styleClass="menubar-button-main" stylesheets="@styles.css" text="Forside">
+                           <font>
+                              <Font name="Britannic Bold" size="12.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#teams" prefHeight="54.0" prefWidth="196.0" styleClass="menubar-button-events" stylesheets="@styles.css" text="Hold">
+                           <font>
+                              <Font name="Britannic Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#events" prefHeight="54.0" prefWidth="196.0" styleClass="menubar-button-teams" stylesheets="@styles.css" text="Begivenheder">
+                           <font>
+                              <Font name="Britannic Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#settings" prefHeight="54.0" prefWidth="196.0" styleClass="menubar-button-settings" stylesheets="@styles.css" text="Indstillinger">
+                           <font>
+                              <Font name="Britannic Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#logout" prefHeight="54.0" prefWidth="196.0" styleClass="menubar-button-logoff" stylesheets="@styles.css" text="Log ud">
+                           <font>
+                              <Font name="Britannic Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Button layoutX="958.0" mnemonicParsing="false" onAction="#exit" styleClass="exit-button" stylesheets="@styles.css" text="X" />
+               </children>
+            </Pane>
+            <Label layoutX="32.0" layoutY="190.0" text="Kommende begivenheder:" textFill="#565454">
+               <font>
+                  <Font name="Britannic Bold" size="28.0" />
+               </font>
+            </Label>
+            <Button layoutX="582.0" layoutY="442.0" mnemonicParsing="false" onAction="#eventCreate" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Opret begivenhed" textFill="#9b9b9b" />
+            <Button layoutX="741.0" layoutY="442.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Aflys begivenhed" textFill="#9b9b9b" />
+            <Label layoutX="514.0" layoutY="184.0" text="Dine begivenheder:" textFill="#565454">
+               <font>
+                  <Font name="Britannic Bold" size="28.0" />
+               </font>
+            </Label>
+            <TableView layoutX="32.0" layoutY="229.0" prefHeight="200.0" prefWidth="441.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Hold" />
+                <TableColumn prefWidth="272.5" text="Navn på begivenhed" />
+                  <TableColumn prefWidth="92.5" text="Dato" />
+              </columns>
+            </TableView>
+            <TableView layoutX="514.0" layoutY="229.0" prefHeight="200.0" prefWidth="441.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="Hold" />
+                  <TableColumn prefWidth="272.5" text="Navn på begivenhed" />
+                  <TableColumn prefWidth="92.5" text="Dato" />
+               </columns>
+            </TableView>
+            <Button layoutX="189.0" layoutY="442.0" mnemonicParsing="false" onAction="#eventInfo" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Se begivenhed" textFill="#9b9b9b" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
