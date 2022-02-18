@@ -15,6 +15,7 @@ class Event{
     String title
     String description
     ArrayList<participant> participants
+    Arraylist<Teams> teams
 }
 
 class participant{

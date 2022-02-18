@@ -52,13 +52,13 @@ public class NewsfeedController implements Initializable {
         } catch (Exception e) {
         }
     }
-
-    private void displayNewsfeedMessages(NewsFeedMessage _newsFeedMessage) throws Exception {
+    
+        private void displayNewsfeedMessages(NewsFeedMessage _newsFeedMessage) throws Exception {
         //display messages
         //String messages = _newsFeedMessage.getMessages();
-
+        
         labelSenderName.setText(_newsFeedMessage.getSender().getName());
-
+        
         //set up teams
         String teams = "";
         for (Team team : _newsFeedMessage.getTeams()) {
@@ -68,8 +68,8 @@ public class NewsfeedController implements Initializable {
                 teams += ", " + team.getName();
             }
         }
-
         labelTeamNameTo.setText(teams);
+        
         labelDateOfMessage.setText(_newsFeedMessage.getDate().toString());
         textAreaMessage.setText(_newsFeedMessage.getMessages());
 

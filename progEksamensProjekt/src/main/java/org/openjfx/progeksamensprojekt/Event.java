@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.openjfx.classes;
+package org.openjfx.progeksamensprojekt;
 
 import java.util.*;
+import javafx.beans.property.*;
+import org.openjfx.classes.Participant;
+import org.openjfx.classes.Team;
+import org.openjfx.classes.User;
 
 /**
  *
@@ -14,26 +18,32 @@ import java.util.*;
 public class Event {
     private int event_ID;
     private User host;
-    private Date date;
+    private SimpleStringProperty date;
     private String title;
     private String descreption;
     private ArrayList<Participant> participants = new ArrayList<>();
-
-    public Event(User host, Date date, String title, String descreption, ArrayList<Participant> participants) {
+    private ArrayList<Team> teams = new ArrayList<>();
+    
+    //create event
+    public Event(User host, String date, String title, String descreption, ArrayList<Team> teams) {
         this.host = host;
-        this.date = date;
+        this.date = new SimpleStringProperty(date);
         this.title = title;
         this.descreption = descreption;
-        this.participants = participants;
+        this.teams = teams;
     }
 
-    public Event(int event_ID, User host, Date date, String title, String descreption, ArrayList<Participant> participants) {
+    public Event(int event_ID, User host, String date, String title, String descreption, ArrayList<Participant> participants, ArrayList<Team> teams) {
         this.event_ID = event_ID;
         this.host = host;
-        this.date = date;
+        this.date = new SimpleStringProperty(date);
         this.title = title;
         this.descreption = descreption;
         this.participants = participants;
+        this.teams = teams;
+    }
+
+    public Event() {
     }
 
     public int getEvent_ID() {
@@ -48,12 +58,12 @@ public class Event {
         this.host = host;
     }
 
-    public Date getDate() {
-        return date;
+    public String getDate() {
+        return date.get();
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(String date) {
+        this.date.set(date);
     }
 
     public String getTitle() {
@@ -78,5 +88,13 @@ public class Event {
 
     public void setParticipants(ArrayList<Participant> participants) {
         this.participants = participants;
+    }
+
+    public ArrayList<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(ArrayList<Team> teams) {
+        this.teams = teams;
     }
 }

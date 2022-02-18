@@ -6,6 +6,7 @@
 package org.openjfx.classes;
 
 import java.util.*;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.util.*;
  */
 public class Team {
     private int team_ID;
-    private String name;
+    private SimpleStringProperty name;
     private User createrOfTeam;
     private ArrayList<User> teamMembers = new ArrayList<>();
 
@@ -22,7 +23,7 @@ public class Team {
     
     public Team(int team_ID, String name, User createrOfTeam, ArrayList<User> teamMembers) {
         this.team_ID = team_ID;
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
         this.teamMembers = teamMembers;
         this.createrOfTeam = createrOfTeam;
     }
@@ -32,11 +33,11 @@ public class Team {
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String teamName) {
-        this.name = teamName;
+        this.name.set(teamName);
     }
 
     public User getCreaterOfTeam() {

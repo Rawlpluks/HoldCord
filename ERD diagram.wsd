@@ -66,6 +66,14 @@ table(newsFeedMessagesAndTeams){
 newsFeedMessagesAndTeams "1" *-- "many" teams
 newsFeedMessagesAndTeams "1" *-- "many" newsFeedMessages
 
+table(teamsAndEvents){
+    FK team_ID
+    FK event_ID
+}
+
+teamsAndEvents "1" *-- "many" teams
+teamsAndEvents "1" *-- "many" events
+
 /'
 table(usersAndEvents){
     FK user_ID

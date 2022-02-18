@@ -58,7 +58,7 @@
                   <Button layoutX="958.0" mnemonicParsing="false" onAction="#exit" styleClass="exit-button" stylesheets="@styles.css" text="X" />
                </children>
             </Pane>
-            <Label layoutX="400.0" layoutY="175.0" text="Opret begivenhed" textFill="#565454" underline="true">
+            <Label layoutX="328.0" layoutY="173.0" text="Opret/rediger begivenhed" textFill="#565454" underline="true">
                <font>
                   <Font name="Britannic Bold" size="28.0" />
                </font>
@@ -68,30 +68,30 @@
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <ListView layoutX="141.0" layoutY="483.0" prefHeight="175.0" prefWidth="338.0" />
+            <ListView fx:id="listViewTeamsNotAdded" layoutX="141.0" layoutY="483.0" prefHeight="175.0" prefWidth="338.0" />
             <Label layoutX="87.0" layoutY="289.0" text="Beskrivelse:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <ListView layoutX="600.0" layoutY="483.0" prefHeight="175.0" prefWidth="313.0" />
+            <ListView fx:id="listViewTeamsAdded" layoutX="600.0" layoutY="483.0" prefHeight="175.0" prefWidth="313.0" />
             <Label layoutX="614.0" layoutY="231.0" text="Dato:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
             <Button layoutX="376.0" layoutY="679.0" mnemonicParsing="false" onAction="#events" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
-            <Button layoutX="554.0" layoutY="679.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret begivenhed" textFill="#9b9b9b" />
-            <TextField layoutX="203.0" layoutY="223.0" prefHeight="38.0" prefWidth="346.0" promptText="Begivenhedens navn" styleClass="login-textfield" stylesheets="@styles.css" />
-            <TextArea layoutX="208.0" layoutY="289.0" prefHeight="111.0" prefWidth="724.0" promptText="Beskrivelse af begivenheden" />
+            <Button layoutX="554.0" layoutY="679.0" mnemonicParsing="false" onAction="#createOrUpdateEvent" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret/gem begivenhed" textFill="#9b9b9b" />
+            <TextField fx:id="textFieldNameOfEvent" layoutX="203.0" layoutY="223.0" prefHeight="38.0" prefWidth="346.0" promptText="Begivenhedens navn" styleClass="login-textfield" stylesheets="@styles.css" />
+            <TextArea fx:id="textAreaDescreptionOfEvent" layoutX="208.0" layoutY="289.0" prefHeight="111.0" prefWidth="724.0" promptText="Beskrivelse af begivenheden" />
             <Label layoutX="40.0" layoutY="454.0" text="Tilføj/fjern hold:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="510.0" layoutY="517.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Tilføj" textFill="#9b9b9b" />
-            <Button layoutX="510.0" layoutY="586.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Fjern" textFill="#9b9b9b" />
-            <DatePicker layoutX="671.0" layoutY="231.0" />
+            <Button layoutX="510.0" layoutY="517.0" mnemonicParsing="false" onAction="#addSelectedTeamToEvent" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Tilføj" textFill="#9b9b9b" />
+            <Button layoutX="510.0" layoutY="586.0" mnemonicParsing="false" onAction="#removeSelectedTeamFromEvent" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Fjern" textFill="#9b9b9b" />
+            <DatePicker fx:id="datePickerDate" layoutX="671.0" layoutY="231.0" />
          </children>
       </Pane>
    </children>

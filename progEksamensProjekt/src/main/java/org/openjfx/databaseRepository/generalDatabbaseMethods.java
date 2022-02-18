@@ -5,6 +5,7 @@
  */
 package org.openjfx.databaseRepository;
 
+import org.openjfx.progeksamensprojekt.Event;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -109,10 +110,24 @@ public class GeneralDatabbaseMethods {
         //get event info
         try {
             while (rs.next()) {
-                events.add(new Event(rs.getInt("event_ID"), loadUser(rs.getInt("host_ID"), conn), Date.valueOf(rs.getString("date")), rs.getString("title"), rs.getString("descreption"), null));
+               // events.add(new Event(rs.getInt("event_ID"), loadUser(rs.getInt("host_ID"), conn), Date.valueOf(rs.getString("date")), rs.getString("title"), rs.getString("descreption"), null, null));
             }
         } catch (SQLException e) {
             System.out.println("\n Database error (load events (get events info): " + e.getMessage() + "\n");
+        }
+
+        //get events teams
+        for (Event event : events) {
+            try {
+                Statement stat = conn.createStatement();
+
+                rs = stat.executeQuery("SELECT * FROM Teams WHERE team_ID IN"
+                        + "(SELECT team_ID FROM teamsAndEvnets WHERE event_ID = ('" + event.getEvent_ID() + "'));");
+
+                event.setTeams(loadTeams(rs, conn));
+            } catch (SQLException e) {
+                System.out.println("\n Database error (load events (get teams): " + e.getMessage() + "\n");
+            }
         }
 
         //get events participants
@@ -210,7 +225,30 @@ public class GeneralDatabbaseMethods {
             System.out.println("\n Database error (create event (get new event ID): " + e.getMessage() + "\n");
         }
 
-        for (Participant participant : _event.getParticipants()) {
+        //insert for teams and get participants
+        ArrayList<Participant> eventsParticipants = new ArrayList<>();
+        for (Team team : _event.getTeams()) {
+            sql = "INSERT INTO teamsAndEvents(team_ID, event_ID) "
+                    + "VALUES('" + team.getTeam_ID() + "', '" + _event.getEvent_ID() + "');";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("\n Database error (create event (insert participants): " + e.getMessage() + "\n");
+            }
+
+            for (User user : team.getTeamMembers()) {
+                Participant teamsParticipant = new Participant(_event.getEvent_ID(), user, ParticipantStatus.hasentAnswered);
+
+                //if already counted from another team dont add else do
+                if (!eventsParticipants.contains(teamsParticipant)) {
+                    eventsParticipants.add(teamsParticipant);
+                }
+            }
+        }
+        
+        //add the participants
+        for (Participant participant : eventsParticipants) {
             sql = "INSERT INTO participants(event_ID, user_ID, participantStatus) "
                     + "VALUES('" + event_ID + "', '" + participant.getParticipant().getUser_ID() + "', "
                     + "'" + participant.getStatus().toString() + "');";
@@ -287,7 +325,7 @@ public class GeneralDatabbaseMethods {
     }
 
     //--------------------------------
-    //---------- Edit event ----------
+    //---------- Edit event ---------- this need work, needs to not delete existing participent
     //--------------------------------
     public void editEvent(Event _event) throws SQLException, Exception {
         Connection conn = null;
@@ -309,6 +347,14 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (edit event (insert info): " + e.getMessage() + "\n");
         }
+        
+        //needs to first get the already existing particpants and check if they are stil invited
+        //if not delete the from the database
+        
+        
+        
+        
+        //the needs to check if the new ones to be adde already is adde, and if they are they shouldnt be added
 
         //delete existing participants
         sql = "DELETE FROM participants WHERE event_ID = ('" + _event.getEvent_ID() + "');";
@@ -618,7 +664,7 @@ public class GeneralDatabbaseMethods {
             Statement stat = conn.createStatement();
 
             ResultSet rs = stat.executeQuery("SELECT * FROM newsFeedMessages WHERE team_ID IN "
-                    + "(SELECT team_ID FROM teams WHERE createrOfTeam_ID = ('" + _user_ID + "')) OR IN"
+                    + "(SELECT team_ID FROM teams WHERE createrOfTeam_ID = ('" + _user_ID + "')) OR WHERE team_ID IN"
                     + "(SELECT team_ID FROM userAndTeams WHERE user_ID = ('" + _user_ID + "'));");
 
             while (rs.next()) {
@@ -718,11 +764,11 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (delete news feed meassges (connection): " + e.getMessage() + "\n");
         }
-        
+
         String sql = "INSERT INTO newsFeedMessagesComments(sender_ID, date) "
-                + "VALUES('" + _comment.getSender().getUser_ID() + "', '" + _comment.getDate().toString() +"',"
+                + "VALUES('" + _comment.getSender().getUser_ID() + "', '" + _comment.getDate().toString() + "',"
                 + "'" + _comment.getComment() + "');";
-        
+
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
         } catch (SQLException e) {

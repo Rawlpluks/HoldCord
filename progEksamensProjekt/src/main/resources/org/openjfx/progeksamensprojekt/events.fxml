@@ -68,18 +68,18 @@
                   <Font name="Britannic Bold" size="28.0" />
                </font>
             </Label>
-            <TableView layoutX="32.0" layoutY="229.0" prefHeight="200.0" prefWidth="441.0">
+            <TableView fx:id="tableViewInvitedEvents" layoutX="32.0" layoutY="229.0" prefHeight="200.0" prefWidth="441.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Hold" />
-                <TableColumn prefWidth="272.5" text="Navn på begivenhed" />
-                  <TableColumn prefWidth="92.5" text="Dato" />
+                <TableColumn fx:id="tableColumnTeamsInvited" prefWidth="75.0" text="Hold" />
+                <TableColumn fx:id="tableColumnNameOfEventInvited" prefWidth="272.5" text="Navn på begivenhed" />
+                  <TableColumn fx:id="tableColumnDateInvited" prefWidth="92.5" text="Dato" />
               </columns>
             </TableView>
-            <TableView layoutX="514.0" layoutY="229.0" prefHeight="200.0" prefWidth="441.0">
+            <TableView fx:id="tableViewHostingEvents" layoutX="514.0" layoutY="229.0" prefHeight="200.0" prefWidth="441.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Hold" />
-                  <TableColumn prefWidth="272.5" text="Navn på begivenhed" />
-                  <TableColumn prefWidth="92.5" text="Dato" />
+                  <TableColumn fx:id="tableColumnTeamsHost" prefWidth="75.0" text="Hold" />
+                  <TableColumn fx:id="tableColumnNameOfEventHost" prefWidth="272.5" text="Navn på begivenhed" />
+                  <TableColumn fx:id="tableColumnDateHost" prefWidth="92.5" text="Dato" />
                </columns>
             </TableView>
             <Button layoutX="189.0" layoutY="442.0" mnemonicParsing="false" onAction="#eventInfo" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Se begivenhed" textFill="#9b9b9b" />

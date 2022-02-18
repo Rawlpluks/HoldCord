@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.scene.paint.Color;
 import javafx.stage.StageStyle;
-import org.openjfx.classes.User;
+import org.openjfx.classes.*;
 
 /**
  * JavaFX App
@@ -18,6 +18,7 @@ public class App extends Application {
 
     private static Scene scene;
     private static User loggedInUser = new User();
+    private static Event event = new Event();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -47,6 +48,14 @@ public class App extends Application {
     }
 
     public static void setLoggedInUser(User _loggedInUser) {
-        loggedInUser = _loggedInUser;
+        App.loggedInUser = _loggedInUser;
+    }
+
+    public static Event getEvent() {
+        return event;
+    }
+
+    public static void setEvent(Event editingEvent) {
+        App.event = editingEvent;
     }
 }

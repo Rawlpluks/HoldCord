@@ -56,12 +56,12 @@
                   <Button layoutX="958.0" mnemonicParsing="false" onAction="#exit" styleClass="exit-button" stylesheets="@styles.css" text="X" />
                </children>
             </Pane>
-            <Label layoutX="33.0" layoutY="171.0" text="(..eventname..)" textFill="#565454">
+            <Label fx:id="labelEventName" layoutX="33.0" layoutY="171.0" text="(..eventname..)" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="28.0" />
                </font>
             </Label>
-            <ListView layoutX="32.0" layoutY="257.0" prefHeight="407.0" prefWidth="211.0" />
+            <ListView fx:id="listViewParticipants" layoutX="32.0" layoutY="257.0" prefHeight="407.0" prefWidth="211.0" />
             <Label layoutX="34.0" layoutY="231.0" text="Medlemsliste:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
@@ -72,14 +72,14 @@
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <ListView layoutX="393.0" layoutY="487.0" prefHeight="175.0" prefWidth="512.0" />
+            <ListView fx:id="listViewAssignedTeams" layoutX="393.0" layoutY="487.0" prefHeight="175.0" prefWidth="512.0" />
             <Label layoutX="393.0" layoutY="461.0" text="Tilmeldte hold:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
             <Button layoutX="416.0" layoutY="678.0" mnemonicParsing="false" onAction="#events" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
-            <TextArea layoutX="391.0" layoutY="257.0" prefHeight="175.0" prefWidth="512.0" />
+            <TextArea fx:id="textAreaDescreption" layoutX="391.0" layoutY="257.0" prefHeight="175.0" prefWidth="512.0" />
          </children>
       </Pane>
    </children>
