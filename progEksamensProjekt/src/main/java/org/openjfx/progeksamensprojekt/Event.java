@@ -18,16 +18,17 @@ import org.openjfx.classes.User;
 public class Event {
     private int event_ID;
     private User host;
-    private SimpleStringProperty date;
+    private String date;
     private String title;
     private String descreption;
     private ArrayList<Participant> participants = new ArrayList<>();
     private ArrayList<Team> teams = new ArrayList<>();
+    private String teamNames = ""; //for table view
     
     //create event
     public Event(User host, String date, String title, String descreption, ArrayList<Team> teams) {
         this.host = host;
-        this.date = new SimpleStringProperty(date);
+        this.date = date;
         this.title = title;
         this.descreption = descreption;
         this.teams = teams;
@@ -36,7 +37,7 @@ public class Event {
     public Event(int event_ID, User host, String date, String title, String descreption, ArrayList<Participant> participants, ArrayList<Team> teams) {
         this.event_ID = event_ID;
         this.host = host;
-        this.date = new SimpleStringProperty(date);
+        this.date = date;
         this.title = title;
         this.descreption = descreption;
         this.participants = participants;
@@ -59,11 +60,11 @@ public class Event {
     }
 
     public String getDate() {
-        return date.get();
+        return this.date;
     }
 
     public void setDate(String date) {
-        this.date.set(date);
+        this.date = date;
     }
 
     public String getTitle() {
@@ -96,5 +97,21 @@ public class Event {
 
     public void setTeams(ArrayList<Team> teams) {
         this.teams = teams;
+    }
+
+    public String getTeamNames() {
+        String teamNames = "";
+        
+        for(int i = 0; i < teams.size(); i++) {
+            if(i == 0) {
+                teamNames += teams.get(i).getName();
+            } else {
+                teamNames += "\n" + teams.get(i).getName();
+                System.out.println("\n" + teams.get(i).getName());
+                System.out.println(i);
+            }
+        }
+        
+        return teamNames;
     }
 }

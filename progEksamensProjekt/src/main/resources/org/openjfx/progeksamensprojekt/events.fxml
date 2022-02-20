@@ -61,8 +61,8 @@
                   <Font name="Britannic Bold" size="28.0" />
                </font>
             </Label>
-            <Button layoutX="582.0" layoutY="442.0" mnemonicParsing="false" onAction="#eventCreate" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Opret begivenhed" textFill="#9b9b9b" />
-            <Button layoutX="741.0" layoutY="442.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Aflys begivenhed" textFill="#9b9b9b" />
+            <Button layoutX="616.0" layoutY="442.0" mnemonicParsing="false" onAction="#cancelEvent" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Aflys begivenhed" textFill="#9b9b9b" />
+            <Button layoutX="426.0" layoutY="442.0" mnemonicParsing="false" onAction="#eventCreate" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Opret begivenhed" textFill="#9b9b9b" />
             <Label layoutX="514.0" layoutY="184.0" text="Dine begivenheder:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="28.0" />
@@ -83,6 +83,7 @@
                </columns>
             </TableView>
             <Button layoutX="189.0" layoutY="442.0" mnemonicParsing="false" onAction="#eventInfo" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Se begivenhed" textFill="#9b9b9b" />
+            <Button layoutX="778.0" layoutY="442.0" mnemonicParsing="false" onAction="#editEvent" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Rediger begivenhed" textFill="#9b9b9b" />
          </children>
       </Pane>
    </children>

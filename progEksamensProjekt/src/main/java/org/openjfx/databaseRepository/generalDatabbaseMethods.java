@@ -297,7 +297,7 @@ public class GeneralDatabbaseMethods {
     //-------------------------------------------
     //---------- get users host events ----------
     //-------------------------------------------
-    public ArrayList<Event> userHostEvents(int _user_ID) throws SQLException, Exception {
+    public ArrayList<Event> getUserHostEvents(int _user_ID) throws SQLException, Exception {
         ArrayList<Event> events = new ArrayList<>();
 
         Connection conn = null;
@@ -618,9 +618,9 @@ public class GeneralDatabbaseMethods {
         }
 
         //insert info
-        String sql = "INSERT INTO newsFeedMessages(sender_ID, date, messages) "
-                + "VALUES('" + _NewsFeedMessage.getSender().getUser_ID() + "','" + _NewsFeedMessage.getDate().toString() + "',"
-                + " '" + _NewsFeedMessage.getMessages() + "');";
+        String sql = "INSERT INTO newsFeedMessages(sender_ID, titel, date, messages) "
+                + "VALUES('" + _NewsFeedMessage.getSender().getUser_ID() + "','" + _NewsFeedMessage.getTitel() + "',"
+                + "'" + _NewsFeedMessage.getDate().toString() + "', '" + _NewsFeedMessage.getMessages() + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
@@ -697,7 +697,7 @@ public class GeneralDatabbaseMethods {
                 }
 
                 //get info
-                newsFeedMessages.add(new NewsFeedMessage(rs.getInt("newsFeedMessages_ID"), Date.valueOf(rs.getString("date")), teams, sender, rs.getString("messages"), comments));
+                newsFeedMessages.add(new NewsFeedMessage(rs.getInt("newsFeedMessages_ID"), rs.getString("titel"), rs.getString("date"), teams, sender, rs.getString("messages"), comments));
             }
 
         } catch (SQLException e) {

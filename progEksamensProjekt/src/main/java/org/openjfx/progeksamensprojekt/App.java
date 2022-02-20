@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import javafx.scene.paint.Color;
 import javafx.stage.StageStyle;
 import org.openjfx.classes.*;
@@ -19,6 +20,7 @@ public class App extends Application {
     private static Scene scene;
     private static User loggedInUser = new User();
     private static Event event = new Event();
+    private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy/ HH:mm:ss");
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -57,5 +59,9 @@ public class App extends Application {
 
     public static void setEvent(Event editingEvent) {
         App.event = editingEvent;
+    }
+
+    public static DateTimeFormatter getDtf() {
+        return dtf;
     }
 }

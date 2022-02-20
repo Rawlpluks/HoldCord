@@ -14,7 +14,7 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class Team {
     private int team_ID;
-    private SimpleStringProperty name;
+    private String name;
     private User createrOfTeam;
     private ArrayList<User> teamMembers = new ArrayList<>();
 
@@ -23,7 +23,7 @@ public class Team {
     
     public Team(int team_ID, String name, User createrOfTeam, ArrayList<User> teamMembers) {
         this.team_ID = team_ID;
-        this.name = new SimpleStringProperty(name);
+        this.name = name;
         this.teamMembers = teamMembers;
         this.createrOfTeam = createrOfTeam;
     }
@@ -33,11 +33,11 @@ public class Team {
     }
 
     public String getName() {
-        return name.get();
+        return this.name;
     }
 
-    public void setName(String teamName) {
-        this.name.set(teamName);
+    public void setName(String Name) {
+        this.name = name;
     }
 
     public User getCreaterOfTeam() {

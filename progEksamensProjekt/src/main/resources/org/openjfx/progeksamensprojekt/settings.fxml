@@ -76,9 +76,9 @@
                   <Font name="Britannic Bold" size="17.0" />
                </font>
             </Label>
-            <TextField layoutX="410.0" layoutY="247.0" prefHeight="27.0" prefWidth="233.0" styleClass="login-textfield" stylesheets="@styles.css" />
-            <TextField layoutX="410.0" layoutY="292.0" prefHeight="27.0" prefWidth="233.0" styleClass="login-textfield" stylesheets="@styles.css" />
-            <TextField layoutX="410.0" layoutY="336.0" prefHeight="27.0" prefWidth="233.0" styleClass="login-textfield" stylesheets="@styles.css" />
+            <TextField fx:id="textFieldEmail" layoutX="410.0" layoutY="247.0" prefHeight="27.0" prefWidth="233.0" styleClass="login-textfield" stylesheets="@styles.css" />
+            <TextField fx:id="textFieldName" layoutX="410.0" layoutY="292.0" prefHeight="27.0" prefWidth="233.0" styleClass="login-textfield" stylesheets="@styles.css" />
+            <TextField fx:id="textFieldPassword" layoutX="410.0" layoutY="336.0" prefHeight="27.0" prefWidth="233.0" styleClass="login-textfield" stylesheets="@styles.css" />
             <Button layoutX="657.0" layoutY="241.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" styleClass="login-button" stylesheets="@styles.css" text="Change?" />
             <Button layoutX="657.0" layoutY="291.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" styleClass="login-button" stylesheets="@styles.css" text="Change?" />
             <Button layoutX="657.0" layoutY="335.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" styleClass="login-button" stylesheets="@styles.css" text="Change?" />
