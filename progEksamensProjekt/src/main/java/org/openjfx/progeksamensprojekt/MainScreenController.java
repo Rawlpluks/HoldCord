@@ -61,4 +61,8 @@ public class MainScreenController implements Initializable{
     private void main () throws IOException {
         App.setRoot("mainScreen");
     }
+    @FXML
+    private void comments () throws IOException {
+        App.setRoot("comments");
+    }
 }
