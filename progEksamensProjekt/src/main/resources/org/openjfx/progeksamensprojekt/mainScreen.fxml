@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.progeksamensprojekt.MainScreenController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.progeksamensprojekt.MainScreenController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
@@ -71,8 +71,8 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1164.0" prefWidth="1329.0">
                      <children>
-                        <VBox fx:id="newfeed" layoutX="97.0" layoutY="166.0" prefHeight="428.0" prefWidth="1158.0" style="-fx-border-color: #FA871C;" />
-                        <Line endX="1088.421875" layoutX="165.0" layoutY="612.0" startX="-67.078125" stroke="#c3710d" strokeWidth="2.0" />
+                        <VBox fx:id="newfeed" layoutX="104.0" layoutY="166.0" prefHeight="394.0" prefWidth="1158.0" style="-fx-border-color: #FA871C;" />
+                        <Line endX="1088.421875" layoutX="165.0" layoutY="641.0" startX="-67.078125" stroke="#c3710d" strokeWidth="2.0" />
                         <Label layoutX="166.0" layoutY="34.0" text="Velkommen tilbage" textFill="#565454">
                            <font>
                               <Font name="Britannic Bold" size="28.0" />
@@ -124,6 +124,7 @@
                               <Font name="Britannic Bold" size="51.0" />
                            </font>
                         </Label>
+                        <Button layoutX="598.0" layoutY="597.0" mnemonicParsing="false" onAction="#comments" styleClass="login-button" stylesheets="@styles.css" text="Se mere om nyheden" textFill="#9b9b9b" />
                      </children>
                   </AnchorPane>
               </content>
