@@ -60,10 +60,9 @@
                   <Font name="Britannic Bold" size="28.0" />
                </font>
             </Label>
-            <ListView layoutX="32.0" layoutY="213.0" prefHeight="312.0" prefWidth="611.0" />
-            <Button layoutX="750.0" layoutY="286.0" mnemonicParsing="false" onAction="#teamCreate" prefHeight="44.0" prefWidth="115.0" styleClass="login-button" stylesheets="@styles.css" text="Opret hold" textFill="#9b9b9b" />
-            <Button layoutX="750.0" layoutY="347.0" mnemonicParsing="false" onAction="#teamInfo" prefHeight="44.0" prefWidth="115.0" styleClass="login-button" stylesheets="@styles.css" text="Se valgte hold" textFill="#9b9b9b" />
-            <Button layoutX="750.0" layoutY="409.0" mnemonicParsing="false" onAction="#teamEdit" prefHeight="44.0" prefWidth="115.0" styleClass="login-button" stylesheets="@styles.css" text="Rediger dit hold" textFill="#9b9b9b" />
+            <ListView fx:id="listViewTeams" layoutX="32.0" layoutY="213.0" prefHeight="312.0" prefWidth="611.0" />
+            <Button layoutX="750.0" layoutY="237.0" mnemonicParsing="false" onAction="#teamCreate" prefHeight="44.0" prefWidth="115.0" styleClass="login-button" stylesheets="@styles.css" text="Opret hold" textFill="#9b9b9b" />
+            <Button layoutX="750.0" layoutY="306.0" mnemonicParsing="false" onAction="#teamInfo" prefHeight="44.0" prefWidth="115.0" styleClass="login-button" stylesheets="@styles.css" text="Se valgte hold" textFill="#9b9b9b" />
          </children>
       </Pane>
    </children>

@@ -161,7 +161,7 @@ public class GeneralDatabbaseMethods {
 
         //load team info
         while (rs.next()) {
-            teams.add(new Team(rs.getInt("team_ID"), rs.getString("name"), loadUser(rs.getInt("createrOfTeam_ID"), conn), null));
+            teams.add(new Team(rs.getInt("team_ID"), rs.getString("name"), rs.getString("descreption") , loadUser(rs.getInt("createrOfTeam_ID"), conn), null));
         }
 
         //load team members
@@ -186,6 +186,33 @@ public class GeneralDatabbaseMethods {
     //------------------------------ public ------------------------------
     //--------------------------------------------------------------------
     //--------------------------------------------------------------------
+    //-----------------------------------------
+    //---------- get all other users ----------
+    //-----------------------------------------
+    public ArrayList<User> getAllOtherUsers(int _user_ID) throws SQLException, Exception {
+        ArrayList<User> users = new ArrayList<>();
+        
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (get alle other users (connection): " + e.getMessage() + "\n");
+        }
+        
+        try {
+            Statement stat = conn.createStatement();
+            
+            ResultSet rs = stat.executeQuery("SELECT * FROM users WHERE NOT user_ID = ('" + _user_ID + "');");
+            
+            users = loadUsers(rs, conn);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (get alle other users (get users): " + e.getMessage() + "\n");
+        }
+        
+        return users;
+    }
     //----------------------------------
     //---------- Create event ----------
     //----------------------------------
@@ -427,8 +454,9 @@ public class GeneralDatabbaseMethods {
         }
 
         //insert team info
-        String sql = "INSERT INTO teams(createrOfTeam_ID, name) "
-                + "VALUES('" + _team.getCreaterOfTeam().getUser_ID() + "', '" + _team.getName() + "');";
+        String sql = "INSERT INTO teams(createrOfTeam_ID, name, description) "
+                + "VALUES('" + _team.getCreaterOfTeam().getUser_ID() + "', '" + _team.getName() + "', "
+                + "'" + _team.getDescription() +  "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
@@ -483,7 +511,7 @@ public class GeneralDatabbaseMethods {
             Statement stat = conn.createStatement();
 
             ResultSet rs = stat.executeQuery("SELECT * FROM teams WHERE team_ID IN"
-                    + "(SELECT team_ID FROM userAndTeams WHERE user_ID = ('" + _user_ID + "'));");
+                    + "(SELECT team_ID FROM usersAndTeams WHERE user_ID = ('" + _user_ID + "'));");
 
             teams = loadTeams(rs, conn);
 
@@ -659,13 +687,13 @@ public class GeneralDatabbaseMethods {
         }
 
         //get messages
-        ArrayList<Integer> team_IDs = new ArrayList<>();
         try {
             Statement stat = conn.createStatement();
 
-            ResultSet rs = stat.executeQuery("SELECT * FROM newsFeedMessages WHERE team_ID IN "
-                    + "(SELECT team_ID FROM teams WHERE createrOfTeam_ID = ('" + _user_ID + "')) OR WHERE team_ID IN"
-                    + "(SELECT team_ID FROM userAndTeams WHERE user_ID = ('" + _user_ID + "'));");
+            ResultSet rs = stat.executeQuery("SELECT * FROM newsFeedMessages WHERE newsFeedMessages_ID IN "
+                    + "(SELECT newsFeedMessages_ID FROM newsFeedMessagesAndTeams WHERE team_ID IN"
+                    + "(SELECT team_ID FROM teams WHERE createrOfTeam_ID = ('" + _user_ID + "')) OR "
+                    + "(SELECT team_ID FROM usersAndTeams WHERE user_ID = ('" + _user_ID + "')));");
 
             while (rs.next()) {
                 //get sender
@@ -705,7 +733,10 @@ public class GeneralDatabbaseMethods {
         }
 
         conn.close();
-
+        
+        //reverse so the newst news is first
+        Collections.reverse(newsFeedMessages);
+        
         return newsFeedMessages;
     }
 

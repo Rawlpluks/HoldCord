@@ -21,6 +21,7 @@ public class App extends Application {
     private static User loggedInUser = new User();
     private static Event event = new Event();
     private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy/ HH:mm:ss");
+    private static Team team = new Team();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -63,5 +64,13 @@ public class App extends Application {
 
     public static DateTimeFormatter getDtf() {
         return dtf;
+    }
+
+    public static Team getTeam() {
+        return team;
+    }
+
+    public static void setTeam(Team team) {
+        App.team = team;
     }
 }

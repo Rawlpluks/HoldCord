@@ -9,6 +9,8 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,13 +45,23 @@ public class NewsCreateController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            notAddedTeams = gdm.getTeamsUserCreaterOf(App.getLoggedInUser().getUser_ID());
+            
+            updateListViews();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void updateListViews() {
         listViewNotAddedTeams.getItems().clear();
         listViewAddedTeams.getItems().clear();
-
+        
+        //--------------
+        //sort alpabetic
+        //--------------
+        
         for (Team team : notAddedTeams) {
             listViewNotAddedTeams.getItems().add(team.getName());
         }
@@ -110,13 +122,8 @@ public class NewsCreateController implements Initializable {
                 listViewNotAddedTeams.getItems().clear();
 
                 notAddedTeams.addAll(addedTeams);
-
-                //---------
-                //sort here
-                //---------
-                for (Team team : notAddedTeams) {
-                    listViewNotAddedTeams.getItems().add(team.getName());
-                }
+                
+                updateListViews();
 
                 textAreaNewsfeedMessagesDescription.setText("");
                 textFieldNewsfeedMessagesTitle.setText("");

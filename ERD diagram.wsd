@@ -46,6 +46,7 @@ table(teams){
     PK team_ID
     FK createrOfTeamID  
     String teamName
+    String description
 }
 
 '-----------------------------------

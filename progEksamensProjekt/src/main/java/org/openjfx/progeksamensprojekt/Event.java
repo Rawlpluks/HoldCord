@@ -6,7 +6,6 @@
 package org.openjfx.progeksamensprojekt;
 
 import java.util.*;
-import javafx.beans.property.*;
 import org.openjfx.classes.Participant;
 import org.openjfx.classes.Team;
 import org.openjfx.classes.User;
@@ -23,9 +22,8 @@ public class Event {
     private String descreption;
     private ArrayList<Participant> participants = new ArrayList<>();
     private ArrayList<Team> teams = new ArrayList<>();
-    private String teamNames = ""; //for table view
     
-    //create event
+    //create
     public Event(User host, String date, String title, String descreption, ArrayList<Team> teams) {
         this.host = host;
         this.date = date;
@@ -33,7 +31,8 @@ public class Event {
         this.descreption = descreption;
         this.teams = teams;
     }
-
+    
+    //load
     public Event(int event_ID, User host, String date, String title, String descreption, ArrayList<Participant> participants, ArrayList<Team> teams) {
         this.event_ID = event_ID;
         this.host = host;
@@ -43,7 +42,8 @@ public class Event {
         this.participants = participants;
         this.teams = teams;
     }
-
+    
+    //app
     public Event() {
     }
 
@@ -98,7 +98,8 @@ public class Event {
     public void setTeams(ArrayList<Team> teams) {
         this.teams = teams;
     }
-
+    
+    //for table view
     public String getTeamNames() {
         String teamNames = "";
         
@@ -111,7 +112,6 @@ public class Event {
                 System.out.println(i);
             }
         }
-        
         return teamNames;
     }
 }
