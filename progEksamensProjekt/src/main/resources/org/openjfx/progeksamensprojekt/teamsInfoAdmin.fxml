@@ -79,10 +79,8 @@
                </font>
             </Label>
             <Button layoutX="416.0" layoutY="678.0" mnemonicParsing="false" onAction="#teams" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
-            <Button layoutX="817.0" layoutY="291.0" mnemonicParsing="false" onAction="#newsCreate" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret ny nyhed" textFill="#9b9b9b" />
-            <Button layoutX="816.0" layoutY="351.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Fjern nyhed" textFill="#9b9b9b" />
-            <Button layoutX="817.0" layoutY="521.0" mnemonicParsing="false" onAction="#eventCreate" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret ny begivenhed" textFill="#9b9b9b" />
-            <Button layoutX="816.0" layoutY="581.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Fjern begivenhed" textFill="#9b9b9b" />
+            <Button layoutX="817.0" layoutY="321.0" mnemonicParsing="false" onAction="#newsCreate" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret ny nyhed" textFill="#9b9b9b" />
+            <Button layoutX="817.0" layoutY="551.0" mnemonicParsing="false" onAction="#eventCreate" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret ny begivenhed" textFill="#9b9b9b" />
          </children>
       </Pane>
    </children>
