@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -45,21 +46,13 @@ public class TeamsInfoAdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            //---------- users alphabetic ascending ----------
-            Comparator<User> sortUserNameAlphabeticAscending = new Comparator<User>() {
-                @Override
-                public int compare(User u1, User u2) {
-                    return u1.getName().compareTo(u2.getName());
-                }
-            };
-            //---------- events city alphabetic ascending ----------
             Comparator<Event> sortEventTitelAlphabeticAscending = new Comparator<Event>() {
                 @Override
                 public int compare(Event e1, Event e2) {
                     return e1.getTitle().compareTo(e2.getTitle());
                 }
             };
-            //---------- news feed messages city alphabetic ascending ----------
+            
             Comparator<NewsFeedMessage> sortNewsFeedMessageTitelAlphabeticAscending = new Comparator<NewsFeedMessage>() {
                 @Override
                 public int compare(NewsFeedMessage nfm1, NewsFeedMessage nfm2) {
@@ -69,19 +62,13 @@ public class TeamsInfoAdminController implements Initializable {
 
             labelTeamName.setText(loadeTeam.getName());
 
-            listViewTeamMembers.getItems().clear();
-            
-            Collections.sort(loadeTeam.getTeamMembers(), sortUserNameAlphabeticAscending);
-            
-            for (User user : loadeTeam.getTeamMembers()) {
-                listViewTeamMembers.getItems().add(user.getName());
-            }
-
             listViewTeamsEvents.getItems().clear();
-
+            
+            updateTeamMembersView();
+            
             teamsEvents = gdm.getTeamsEvents(loadeTeam.getTeam_ID());
             Collections.sort(teamsEvents, sortEventTitelAlphabeticAscending);
-            
+
             for (Event event : teamsEvents) {
                 listViewTeamsEvents.getItems().add(event.getTitle());
             }
@@ -90,13 +77,30 @@ public class TeamsInfoAdminController implements Initializable {
 
             teamsNewsFeedMessages = gdm.getTeamsNewsFeedMessages(loadeTeam.getTeam_ID());
             Collections.sort(teamsNewsFeedMessages, sortNewsFeedMessageTitelAlphabeticAscending);
-            
+
             for (NewsFeedMessage newsFeedMessage : teamsNewsFeedMessages) {
                 listViewTeamsNewsfeed.getItems().add(newsFeedMessage.getTitel());
             }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void updateTeamMembersView() {
+        Comparator<User> sortUserNameAlphabeticAscending = new Comparator<User>() {
+            @Override
+            public int compare(User u1, User u2) {
+                return u1.getName().compareTo(u2.getName());
+            }
+        };
+        
+        listViewTeamMembers.getItems().clear();
+        
+        Collections.sort(loadeTeam.getTeamMembers(), sortUserNameAlphabeticAscending);
+        
+        for (User user : loadeTeam.getTeamMembers()){
+            listViewTeamMembers.getItems().add(user.getName());
         }
     }
 
@@ -138,5 +142,15 @@ public class TeamsInfoAdminController implements Initializable {
     @FXML
     private void newsCreate() throws IOException {
         App.setRoot("newsCreate");
+    }
+
+    @FXML
+    private void removeTeamMember(ActionEvent event) {
+        int index = listViewTeamMembers.getSelectionModel().getSelectedIndex();
+        if (index >= 0) {
+            updateTeamMembersView();
+        } else {
+            //non selected
+        }
     }
 }

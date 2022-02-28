@@ -6,7 +6,13 @@ package org.openjfx.progeksamensprojekt;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import javafx.event.ActionEvent;
@@ -18,6 +24,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.openjfx.classes.*;
+import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
 
 /**
  * FXML Controller class
@@ -29,7 +36,7 @@ public class EventCreateController implements Initializable {
     @FXML
     private ListView listViewTeamsNotAdded;
     @FXML
-    private ListView<String> listViewTeamsAdded;
+    private ListView listViewTeamsAdded;
     @FXML
     private TextField textFieldNameOfEvent;
     @FXML
@@ -39,22 +46,73 @@ public class EventCreateController implements Initializable {
     @FXML
     private Text textErrorMessage;
 
+    private boolean edittingEvent;
+    private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
+    private ArrayList<Team> teamsAdded = new ArrayList<>();
+    private ArrayList<Team> teamsNotAdded = new ArrayList<>();
+
+    Comparator<Team> sortTeamNameAlphabeticAscending = new Comparator<Team>() {
+        @Override
+        public int compare(Team t1, Team t2) {
+            return t1.getName().compareTo(t2.getName());
+        }
+    };
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+
+            Event eventToBeEdited = App.getEvent();
+            teamsNotAdded = gdm.getTeamsUserCreaterOf(App.getLoggedInUser().getUser_ID());
+            teamsNotAdded.addAll(gdm.getTeamsUserCreaterOf(App.getLoggedInUser().getUser_ID()));
+
             //if editing an event load the info and dispaly it
-            Event edittingEvent = App.getEvent();
-            if (!edittingEvent.equals(new Event())) {
-                listViewTeamsAdded.getItems().clear();
-                //listViewTeamsAdded.getItems().addAll(edittingEvent.getTeams());
+            if (!eventToBeEdited.equals(new Event())) {
+                edittingEvent = true;
+
+                teamsAdded.addAll(eventToBeEdited.getTeams());
+                teamsNotAdded.removeAll(teamsAdded);
+
+                updateListViews();
+
+                textFieldNameOfEvent.setText(eventToBeEdited.getTitle());
+                textAreaDescreptionOfEvent.setText(eventToBeEdited.getDescreption());
+
+                //format event date to date picker format
+                String[] eventDate = eventToBeEdited.getDate().split("/");
+
+                String dateToFormat = eventDate[2] + "-" + eventDate[1] + "-" + eventDate[0];
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate dateToBeSet = LocalDate.parse(dateToFormat, formatter);
+
+                datePickerDate.setValue(dateToBeSet);
             } else {
                 //if no event is to be edited, load teams
+                edittingEvent = false;
 
+                updateListViews();
             }
         } catch (Exception e) {
+
+        }
+    }
+
+    private void updateListViews() {
+        listViewTeamsAdded.getItems().clear();
+        listViewTeamsNotAdded.getItems().clear();
+
+        Collections.sort(teamsAdded, sortTeamNameAlphabeticAscending);
+        Collections.sort(teamsNotAdded, sortTeamNameAlphabeticAscending);
+
+        for (Team team : teamsAdded) {
+            listViewTeamsAdded.getItems().add(team.getName());
+        }
+        for (Team team : teamsNotAdded) {
+            listViewTeamsNotAdded.getItems().add(team.getName());
         }
     }
 
@@ -90,23 +148,84 @@ public class EventCreateController implements Initializable {
 
     @FXML
     private void addSelectedTeamToEvent(ActionEvent event) {
+        int index = listViewTeamsNotAdded.getSelectionModel().getSelectedIndex();
+
+        teamsAdded.add(teamsNotAdded.get(index));
+        teamsNotAdded.remove(index);
+
+        updateListViews();
     }
 
     @FXML
     private void removeSelectedTeamFromEvent(ActionEvent event) {
+        int index = listViewTeamsAdded.getSelectionModel().getSelectedIndex();
+
+        teamsNotAdded.add(teamsAdded.get(index));
+        teamsAdded.remove(index);
+
+        updateListViews();
+    }
+
+    private boolean checkIfDateIsValid(LocalDate selectedDate) {
+        String currnetDate = App.getDtf().format(LocalDateTime.now());
+
+        //split dates
+        String[] currentDateElements = currnetDate.split("/");
+        String[] selectedDateElemets = selectedDate.toString().split("-");
+
+        //format for comparisen
+        String formatedCurrentDate = currentDateElements[2] + currentDateElements[1] + currentDateElements[0];
+        String formatedSelectedDate = selectedDateElemets[0] + selectedDateElemets[1] + selectedDateElemets[2];
+
+        //compare
+        if (formatedCurrentDate.equals(formatedSelectedDate)) {
+            return true;
+        } else {
+            ArrayList<String> sortedDates = new ArrayList<>();
+            sortedDates.add(formatedCurrentDate);
+            sortedDates.add(formatedSelectedDate);
+
+            Collections.sort(sortedDates);
+
+            if (sortedDates.get(1).equals(formatedSelectedDate)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     @FXML
-    private void createOrUpdateEvent(ActionEvent event) {
+    private void createOrUpdateEvent(ActionEvent event) throws Exception {
+        if (!textFieldNameOfEvent.getText().isBlank()
+                && !textAreaDescreptionOfEvent.getText().isBlank()) {
+            if (checkIfDateIsValid(datePickerDate.getValue())) {
+                if (listViewTeamsAdded.getItems().size() > 0) {
+                    String[] selectedDate = datePickerDate.getValue().toString().split("-");
 
-        /*//create list of participants from list of teams
-        ArrayList<String> teamsNames = new ArrayList<>();
-        teamsNames.addAll(listViewTeamsAdded.getItems());
-        
-        Predicate<Team> findTeamsFromNames = team -> team.getName() !=;
-        
-        ArrayList<Team> teams = new ArrayList<>();
-        
-        teams.re*/
+                    String date = selectedDate[2] + "/" + selectedDate[1] + "/" + selectedDate[0];
+
+                    if (edittingEvent) {
+                        gdm.editEvent(new Event(App.getLoggedInUser(),
+                                date, textFieldNameOfEvent.getText(),
+                                textAreaDescreptionOfEvent.getText(), teamsAdded));
+                    } else {
+                        gdm.createEvent(new Event(App.getLoggedInUser(),
+                                date, textFieldNameOfEvent.getText(),
+                                textAreaDescreptionOfEvent.getText(), teamsAdded));
+                    }
+                    edittingEvent = false;
+                    
+                    App.setRoot("events");
+                    
+                } else {
+                    //invite at least one team
+                }
+            } else {
+                //pick a valid date
+            }
+        } else {
+            //fill alle fields
+        }
     }
 }

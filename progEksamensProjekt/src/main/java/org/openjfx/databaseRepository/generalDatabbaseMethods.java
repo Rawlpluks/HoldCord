@@ -734,7 +734,7 @@ public class GeneralDatabbaseMethods {
 
         conn.close();
     }
-
+    
     //---------------------------------
     //---------- Delete team ----------
     //---------------------------------
