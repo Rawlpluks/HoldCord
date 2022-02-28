@@ -110,7 +110,7 @@ public class GeneralDatabbaseMethods {
         //get event info
         try {
             while (rs.next()) {
-                // events.add(new Event(rs.getInt("event_ID"), loadUser(rs.getInt("host_ID"), conn), Date.valueOf(rs.getString("date")), rs.getString("title"), rs.getString("descreption"), null, null));
+                events.add(new Event(rs.getInt("event_ID"), loadUser(rs.getInt("host_ID"), conn), rs.getString("date"), rs.getString("title"), rs.getString("descreption"), null, null));
             }
         } catch (SQLException e) {
             System.out.println("\n Database error (load events (get events info): " + e.getMessage() + "\n");
@@ -480,26 +480,48 @@ public class GeneralDatabbaseMethods {
         //get current participants
         try {
             Statement stat = conn.createStatement();
-            
+
             ResultSet rs = stat.executeQuery("SELECT * FROM participants WHERE event_ID = ('" + _event.getEvent_ID() + "');");
-            
+
             existingParticipants = loadParticipants(rs, conn);
-            
+
         } catch (SQLException e) {
             System.out.println("\n Database error (edit event (get existing participants): " + e.getMessage() + "\n");
         }
-        
+
         //see whic participants isent invited anymore
-        ArrayList<Participant> participantsToRemove = (ArrayList<Participant>) currrentParticipants.clone() ;
-        
+        ArrayList<Participant> participantsToRemove = (ArrayList<Participant>) existingParticipants.clone();
+        participantsToRemove.removeAll(currrentParticipants);
+
         //delte participants who isent invited anymore
-        
+        for (Participant participant : participantsToRemove) {
+            sql = "DELETE FROM participants WHERE participant_ID = ('" + participant.getParticipant_ID() + "');";
+            
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("\n Database error (edit event (delete participants who is not invited anymore): " + e.getMessage() + "\n");
+            }
+        }
+
         //see whic participants needs to be added
-        
+        ArrayList<Participant> participantsToAdd = (ArrayList<Participant>) currrentParticipants.clone();
+        participantsToAdd.removeAll(existingParticipants);
+
         //add new participants
-        
+        for (Participant participant : participantsToAdd) {
+            sql = "INSERT INTO participants(event_ID, user_ID, participantStatus) "
+                    + "VALUES('" + _event.getEvent_ID() + "', '" + participant.getParticipant().getUser_ID() + "', "
+                    + "'" + participant.getStatus().toString() + "');";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("\n Database error (edit event (insert new participants): " + e.getMessage() + "\n");
+            }
+        }
         //------------------------------------------
-        sql = "DELETE FROM participants WHERE event_ID = ('" + _event.getEvent_ID() + "');";
+        /*sql = "DELETE FROM participants WHERE event_ID = ('" + _event.getEvent_ID() + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
@@ -518,7 +540,7 @@ public class GeneralDatabbaseMethods {
             } catch (SQLException e) {
                 System.out.println("\n Database error (edit event (insert new participants): " + e.getMessage() + "\n");
             }
-        }
+        }*/
 
         conn.close();
     }
