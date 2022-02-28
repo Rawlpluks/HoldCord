@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
@@ -61,25 +62,32 @@
                   <Font name="Britannic Bold" size="28.0" />
                </font>
             </Label>
-            <ListView fx:id="listViewParticipants" layoutX="32.0" layoutY="257.0" prefHeight="407.0" prefWidth="211.0" />
+            <ListView fx:id="listViewParticipants" layoutX="32.0" layoutY="257.0" prefHeight="394.0" prefWidth="211.0" />
             <Label layoutX="34.0" layoutY="231.0" text="Medlemsliste:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="393.0" layoutY="231.0" text="Beskrivelse af begivenhed:" textFill="#565454">
+            <Label layoutX="395.0" layoutY="305.0" text="Beskrivelse af begivenhed:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <ListView fx:id="listViewAssignedTeams" layoutX="393.0" layoutY="487.0" prefHeight="175.0" prefWidth="512.0" />
-            <Label layoutX="393.0" layoutY="461.0" text="Tilmeldte hold:" textFill="#565454">
+            <ListView fx:id="listViewAssignedTeams" layoutX="393.0" layoutY="519.0" prefHeight="130.0" prefWidth="512.0" />
+            <Label layoutX="393.0" layoutY="488.0" text="Tilmeldte hold:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
             <Button layoutX="416.0" layoutY="678.0" mnemonicParsing="false" onAction="#events" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
-            <TextArea fx:id="textAreaDescreption" layoutX="391.0" layoutY="257.0" prefHeight="175.0" prefWidth="512.0" />
+            <TextArea fx:id="textAreaDescreption" layoutX="393.0" layoutY="331.0" prefHeight="130.0" prefWidth="512.0" />
+            <Label layoutX="395.0" layoutY="200.0" text="Deltag i begivenheden?:" textFill="#565454">
+               <font>
+                  <Font name="Britannic Bold" size="20.0" />
+               </font>
+            </Label>
+            <ChoiceBox layoutX="615.0" layoutY="200.0" prefWidth="150.0" />
+            <Button layoutX="785.0" layoutY="188.0" mnemonicParsing="false" onAction="#events" prefHeight="48.0" prefWidth="120.0" styleClass="login-button" stylesheets="@styles.css" text="Updater din status" textFill="#9b9b9b" />
          </children>
       </Pane>
    </children>

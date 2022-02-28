@@ -28,7 +28,6 @@ public class MainScreenController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try{
-            System.out.println("jeg prøver");
             fxml = FXMLLoader.load(getClass().getResource("newsfeed.fxml"));
             newfeed.getChildren().removeAll();
             newfeed.getChildren().setAll(fxml);
