@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import org.openjfx.classes.*;
 import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
 
@@ -46,6 +47,8 @@ public class EventsController implements Initializable {
     private TableColumn tableColumnNameOfEventHost;
     @FXML
     private TableColumn tableColumnDateHost;
+    @FXML
+    private Text textErrorMessage;
     
     private ArrayList<Event> invitedEvents = new ArrayList<>();
     private ArrayList<Event> hostedEvents = new ArrayList<>();
@@ -144,7 +147,7 @@ public class EventsController implements Initializable {
             
             App.setRoot("eventView");
         } else {
-            //nothing selected
+           textErrorMessage.setText("Nothing selected"); //nothing selected
         }
     }
     @FXML

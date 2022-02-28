@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.text.Text;
 import org.openjfx.classes.Team;
 import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
 
@@ -23,6 +24,8 @@ public class TeamsController implements Initializable {
 
     @FXML
     private ListView listViewTeams;
+    @FXML
+    private Text textErroMessage;
 
     private ArrayList<Team> teams = new ArrayList<>();
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
@@ -97,7 +100,7 @@ public class TeamsController implements Initializable {
                 App.setRoot("teamsInfoMember");
             }
         } else {
-            //please select af team to view
+            textErroMessage.setText("Select team to view");
         }
     }
 

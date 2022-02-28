@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import org.openjfx.classes.*;
 import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
 
@@ -27,6 +28,8 @@ import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
  */
 public class NewsCreateController implements Initializable {
 
+    @FXML
+    private Text textErroMessage;
     @FXML
     private ListView listViewNotAddedTeams;
     @FXML
@@ -129,10 +132,10 @@ public class NewsCreateController implements Initializable {
                 textFieldNewsfeedMessagesTitle.setText("");
 
             } else {
-                //pleas select minimum 1 team to send the messages to
+               textErroMessage.setText("Selevt minimum 1 team to send the messeage to"); //pleas select minimum 1 team to send the messages to
             }
         } else {
-            //pleas fill out all fields
+            textErroMessage.setText("Please fill out all the fields");//pleas fill out all fields
         }
     }
 
