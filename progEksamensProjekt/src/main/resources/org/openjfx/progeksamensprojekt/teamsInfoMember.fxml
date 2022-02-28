@@ -55,24 +55,24 @@
                   <Button layoutX="958.0" mnemonicParsing="false" onAction="#exit" styleClass="exit-button" stylesheets="@styles.css" text="X" />
                </children>
             </Pane>
-            <Label layoutX="33.0" layoutY="171.0" text="(..teamname..)" textFill="#565454">
+            <Label fx:id="labelTeamName" layoutX="33.0" layoutY="171.0" text="(..teamname..)" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="28.0" />
                </font>
             </Label>
-            <ListView layoutX="32.0" layoutY="257.0" prefHeight="407.0" prefWidth="211.0" />
+            <ListView fx:id="listViewTeamMembers" layoutX="32.0" layoutY="257.0" prefHeight="407.0" prefWidth="211.0" />
             <Label layoutX="34.0" layoutY="231.0" text="Medlemsliste:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <ListView layoutX="289.0" layoutY="257.0" prefHeight="175.0" prefWidth="471.0" />
+            <ListView fx:id="listViewTeamsNewsfeed" layoutX="289.0" layoutY="257.0" prefHeight="175.0" prefWidth="471.0" />
             <Label layoutX="289.0" layoutY="231.0" text="Holdets nyheder:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <ListView layoutX="289.0" layoutY="487.0" prefHeight="175.0" prefWidth="471.0" />
+            <ListView fx:id="listViewTeamsEvents" layoutX="289.0" layoutY="487.0" prefHeight="175.0" prefWidth="471.0" />
             <Label layoutX="289.0" layoutY="461.0" text="Holdets begivenheder:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
