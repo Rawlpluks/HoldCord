@@ -46,14 +46,13 @@ public class TeamsInfoAdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            //---------- events city alphabetic ascending ----------
             Comparator<Event> sortEventTitelAlphabeticAscending = new Comparator<Event>() {
                 @Override
                 public int compare(Event e1, Event e2) {
                     return e1.getTitle().compareTo(e2.getTitle());
                 }
             };
-            //---------- news feed messages city alphabetic ascending ----------
+            
             Comparator<NewsFeedMessage> sortNewsFeedMessageTitelAlphabeticAscending = new Comparator<NewsFeedMessage>() {
                 @Override
                 public int compare(NewsFeedMessage nfm1, NewsFeedMessage nfm2) {
@@ -89,7 +88,6 @@ public class TeamsInfoAdminController implements Initializable {
     }
 
     private void updateTeamMembersView() {
-        //---------- users alphabetic ascending ----------
         Comparator<User> sortUserNameAlphabeticAscending = new Comparator<User>() {
             @Override
             public int compare(User u1, User u2) {
