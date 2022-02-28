@@ -13,10 +13,10 @@ import java.util.Date;
  */
 public class NewsFeedMessageComment {
     User sender;
-    Date date;
+    String date;
     String comment;
 
-    public NewsFeedMessageComment(User sender, Date date, String comment) {
+    public NewsFeedMessageComment(User sender, String date, String comment) {
         this.sender = sender;
         this.date = date;
         this.comment = comment;
@@ -30,11 +30,11 @@ public class NewsFeedMessageComment {
         this.sender = sender;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
