@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1350.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.progeksamensprojekt.EventsController">
    <children>
@@ -61,8 +62,8 @@
                   <Font name="Britannic Bold" size="28.0" />
                </font>
             </Label>
-            <Button layoutX="616.0" layoutY="442.0" mnemonicParsing="false" onAction="#cancelEvent" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Aflys begivenhed" textFill="#9b9b9b" />
-            <Button layoutX="426.0" layoutY="442.0" mnemonicParsing="false" onAction="#eventCreate" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Opret begivenhed" textFill="#9b9b9b" />
+            <Button layoutX="669.0" layoutY="443.0" mnemonicParsing="false" onAction="#cancelEvent" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Aflys begivenhed" textFill="#9b9b9b" />
+            <Button layoutX="522.0" layoutY="443.0" mnemonicParsing="false" onAction="#eventCreate" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Opret begivenhed" textFill="#9b9b9b" />
             <Label layoutX="514.0" layoutY="184.0" text="Dine begivenheder:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="28.0" />
@@ -83,7 +84,8 @@
                </columns>
             </TableView>
             <Button layoutX="189.0" layoutY="442.0" mnemonicParsing="false" onAction="#eventInfo" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Se begivenhed" textFill="#9b9b9b" />
-            <Button layoutX="778.0" layoutY="442.0" mnemonicParsing="false" onAction="#editEvent" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Rediger begivenhed" textFill="#9b9b9b" />
+            <Button layoutX="818.0" layoutY="442.0" mnemonicParsing="false" onAction="#editEvent" prefHeight="44.0" prefWidth="128.0" styleClass="login-button" stylesheets="@styles.css" text="Rediger begivenhed" textFill="#9b9b9b" />
+            <Text fx:id="textErroMessage" fill="RED" layoutX="343.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="156.0" />
          </children>
       </Pane>
    </children>

@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1350.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.progeksamensprojekt.NewsCreateController">
    <children>
@@ -67,15 +68,15 @@
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <ListView fx:id="listViewNotAddedTeams" layoutX="141.0" layoutY="483.0" prefHeight="175.0" prefWidth="338.0" />
+            <ListView fx:id="listViewNotAddedTeams" layoutX="104.0" layoutY="484.0" prefHeight="175.0" prefWidth="338.0" />
             <Label layoutX="87.0" layoutY="289.0" text="Beskrivelse:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <ListView fx:id="listViewAddedTeams" layoutX="600.0" layoutY="483.0" prefHeight="175.0" prefWidth="313.0" />
-            <Button layoutX="376.0" layoutY="679.0" mnemonicParsing="false" onAction="#teamEdit" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
-            <Button layoutX="554.0" layoutY="679.0" mnemonicParsing="false" onAction="#createNewsfeedMessages" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Del nyheden" textFill="#9b9b9b" />
+            <ListView fx:id="listViewAddedTeams" layoutX="563.0" layoutY="484.0" prefHeight="175.0" prefWidth="313.0" />
+            <Button layoutX="339.0" layoutY="680.0" mnemonicParsing="false" onAction="#teamEdit" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
+            <Button layoutX="517.0" layoutY="680.0" mnemonicParsing="false" onAction="#createNewsfeedMessages" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Del nyheden" textFill="#9b9b9b" />
             <TextField fx:id="textFieldNewsfeedMessagesTitle" layoutX="203.0" layoutY="223.0" prefHeight="38.0" prefWidth="724.0" promptText="Nyhedens titel" styleClass="login-textfield" stylesheets="@styles.css" />
             <TextArea fx:id="textAreaNewsfeedMessagesDescription" layoutX="208.0" layoutY="289.0" prefHeight="111.0" prefWidth="724.0" promptText="Beskrivelse af nyheden" />
             <Label layoutX="40.0" layoutY="454.0" text="Tilføj/fjern hold:" textFill="#565454">
@@ -83,8 +84,9 @@
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="510.0" layoutY="517.0" mnemonicParsing="false" onAction="#addTeam" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Tilføj" textFill="#9b9b9b" />
-            <Button layoutX="510.0" layoutY="586.0" mnemonicParsing="false" onAction="#removeTeam" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Fjern" textFill="#9b9b9b" />
+            <Button layoutX="473.0" layoutY="518.0" mnemonicParsing="false" onAction="#addTeam" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Tilføj" textFill="#9b9b9b" />
+            <Button layoutX="473.0" layoutY="587.0" mnemonicParsing="false" onAction="#removeTeam" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Fjern" textFill="#9b9b9b" />
+            <Text fx:id="textErroMessage" fill="RED" layoutX="432.0" layoutY="439.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="156.0" />
          </children>
       </Pane>
    </children>
