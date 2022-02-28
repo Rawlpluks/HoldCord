@@ -45,7 +45,7 @@ public class NewsfeedController implements Initializable {
             //get alle news feedmessages
             GeneralDatabbaseMethods generalDatabbaseMethods = new GeneralDatabbaseMethods();
 
-            newsfeedmesages = generalDatabbaseMethods.getNewsFeedMessages(App.getLoggedInUser().getUser_ID());
+            newsfeedmesages = generalDatabbaseMethods.getUsersNewsFeedMessages(App.getLoggedInUser().getUser_ID());
 
             displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
 
