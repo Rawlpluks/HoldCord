@@ -58,7 +58,7 @@
                   <Button layoutX="958.0" mnemonicParsing="false" onAction="#exit" styleClass="exit-button" stylesheets="@styles.css" text="X" />
                </children>
             </Pane>
-            <Label layoutX="400.0" layoutY="175.0" text="Holdoprettelse" textFill="#565454" underline="true">
+            <Label layoutX="385.0" layoutY="175.0" text="Opret/rediger hold" textFill="#565454" underline="true">
                <font>
                   <Font name="Britannic Bold" size="28.0" />
                </font>
@@ -80,8 +80,8 @@
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="339.0" layoutY="679.0" mnemonicParsing="false" onAction="#teams" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
-            <Button layoutX="517.0" layoutY="679.0" mnemonicParsing="false" onAction="#createTeam" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret hold" textFill="#9b9b9b" />
+            <Button layoutX="249.0" layoutY="679.0" mnemonicParsing="false" onAction="#teams" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
+            <Button layoutX="427.0" layoutY="679.0" mnemonicParsing="false" onAction="#createTeam" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret hold" textFill="#9b9b9b" />
             <TextField fx:id="textFieldTeamName" layoutX="116.0" layoutY="223.0" prefHeight="38.0" prefWidth="346.0" promptText="Holdets navn" styleClass="login-textfield" stylesheets="@styles.css" />
             <TextField layoutX="585.0" layoutY="223.0" prefHeight="38.0" prefWidth="346.0" promptText="Holdets forening" styleClass="login-textfield" stylesheets="@styles.css" />
             <TextArea fx:id="textAreaTeamDescription" layoutX="208.0" layoutY="289.0" prefHeight="111.0" prefWidth="724.0" promptText="Beskrivelse af holdet" />
@@ -93,6 +93,7 @@
             <Button layoutX="473.0" layoutY="517.0" mnemonicParsing="false" onAction="#addMember" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Tilføj" textFill="#9b9b9b" />
             <Button layoutX="473.0" layoutY="586.0" mnemonicParsing="false" onAction="#removeMember" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Fjern" textFill="#9b9b9b" />
             <Text fx:id="textErroMessage" fill="RED" layoutX="423.0" layoutY="439.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="156.0" />
+            <Button layoutX="605.0" layoutY="679.0" mnemonicParsing="false" onAction="#createTeam" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Slet hold" textFill="#9b9b9b" />
          </children>
       </Pane>
    </children>
