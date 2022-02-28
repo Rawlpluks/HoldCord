@@ -23,11 +23,9 @@
                </children>
             </Pane>
             <VBox fx:id="newfeed" layoutX="96.0" layoutY="120.0" prefHeight="394.0" prefWidth="1158.0" style="-fx-border-color: #FA871C;" />
-            <TextArea layoutX="246.0" layoutY="526.0" prefHeight="163.0" prefWidth="376.0" />
+            <TextArea layoutX="93.0" layoutY="526.0" prefHeight="163.0" prefWidth="769.0" />
             <TextArea layoutX="878.0" layoutY="525.0" prefHeight="118.0" prefWidth="376.0" promptText="Tilføj dine tanker" />
             <Button layoutX="988.0" layoutY="655.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="156.0" styleClass="login-button" stylesheets="@styles.css" text="Tilføj din kommentar" textFill="#6b6b6b" />
-            <Button layoutX="96.0" layoutY="585.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="134.0" styleClass="login-button" stylesheets="@styles.css" text="Tidligere kommentar" textFill="#6b6b6b" />
-            <Button layoutX="637.0" layoutY="585.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="134.0" styleClass="login-button" stylesheets="@styles.css" text="Næste kommentar" textFill="#6b6b6b" />
             <Button layoutX="8.0" layoutY="698.0" mnemonicParsing="false" onAction="#main" prefHeight="44.0" prefWidth="134.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#6b6b6b" />
          </children>
       </Pane>

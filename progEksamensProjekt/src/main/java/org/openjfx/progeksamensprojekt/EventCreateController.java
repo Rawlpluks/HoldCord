@@ -16,6 +16,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import org.openjfx.classes.*;
 
 /**
@@ -35,6 +36,8 @@ public class EventCreateController implements Initializable {
     private TextArea textAreaDescreptionOfEvent;
     @FXML
     private DatePicker datePickerDate;
+    @FXML
+    private Text textErrorMessage;
 
     /**
      * Initializes the controller class.
