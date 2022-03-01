@@ -172,7 +172,7 @@ public class GeneralDatabbaseMethods {
 
         //load team info
         while (rs.next()) {
-            teams.add(new Team(rs.getInt("team_ID"), rs.getString("name"), rs.getString("descreption"), loadUser(rs.getInt("createrOfTeam_ID"), conn), null));
+            teams.add(new Team(rs.getInt("team_ID"), rs.getString("name"), rs.getString("description"), loadUser(rs.getInt("createrOfTeam_ID"), conn), null));
         }
 
         //load team members
