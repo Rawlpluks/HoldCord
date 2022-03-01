@@ -61,9 +61,11 @@ public class TeamCreateController implements Initializable {
         try {
             Team teamToBeEdited = App.getTeam();
             //cehck if a team is being edited or if a team is being created
-            if (teamToBeEdited.equals(new Team())) {
+            if (teamToBeEdited == null){
                 notAddedMembers = gdm.getAllOtherUsers(App.getLoggedInUser().getUser_ID());
-
+                
+                System.out.println("create");
+                
                 editingTeam = false;
             } else {
                 textFieldTeamName.setText(teamToBeEdited.getName());
@@ -73,7 +75,9 @@ public class TeamCreateController implements Initializable {
                 notAddedMembers = gdm.getAllOtherUsers(App.getLoggedInUser().getUser_ID());
 
                 notAddedMembers.removeAll(addedMembers);
-
+                
+                System.out.println("edit");
+                
                 editingTeam = true;
             }
             updateListViews();
@@ -106,32 +110,32 @@ public class TeamCreateController implements Initializable {
     @FXML
     private void teams() throws IOException {
         App.setRoot("teams");
-        App.setTeam(new Team());
+        App.setTeam(null);
     }
 
     @FXML
     private void events() throws IOException {
         App.setRoot("events");
-        App.setTeam(new Team());
+        App.setTeam(null);
     }
 
     @FXML
     private void settings() throws IOException {
         App.setRoot("settings");
-        App.setTeam(new Team());
+        App.setTeam(null);
     }
 
     @FXML
     private void logout() throws IOException {
         App.setRoot("login");
-        App.setTeam(new Team());
+        App.setTeam(null);;
         App.setLoggedInUser(new User());
     }
 
     @FXML
     private void main() throws IOException {
         App.setRoot("mainScreen");
-        App.setTeam(new Team());
+        App.setTeam(null);
     }
 
     @FXML
@@ -144,22 +148,15 @@ public class TeamCreateController implements Initializable {
                 Team team = new Team(textFieldTeamName.getText(),
                             textAreaTeamDescription.getText(), App.getLoggedInUser(), addedMembers);
                 
+                System.out.println(editingTeam);
+                
                 if (editingTeam) {
                     gdm.editTeam(team);
                 } else {
                     gdm.createTeam(team);
                 }
-
-                //reset for new team
-                listViewAddedMembers.getItems().clear();
-                listViewNotAddedMembers.getItems().clear();
-
-                notAddedMembers.addAll(addedMembers);
-
-                updateListViews();
-
-                textAreaTeamDescription.setText("");
-                textFieldTeamName.setText("");
+                App.setRoot("teams");
+                App.setTeam(null);
             } else {
                 textErroMessage.setText("Vær sød at tilføje mindst 1 medlem til holdet");//pleas add atleast one member to 2 the team
             }

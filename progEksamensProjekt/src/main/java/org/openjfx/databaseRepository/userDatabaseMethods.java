@@ -40,7 +40,7 @@ public class UserDatabaseMethods {
 
             ResultSet rs = stat.executeQuery("select Username from Users WHERE Username = ('" + _username + "');");
 
-            rs.next();
+            //rs.next();
 
             databaseUsername = rs.getString("Username");
 
@@ -49,7 +49,7 @@ public class UserDatabaseMethods {
             //Skrive fejlhåndtering her
             System.out.println("\n Database error (check for matching user): " + e.getMessage() + "\n");
         }
-
+        
         if (_username.equalsIgnoreCase(databaseUsername)) {
             return true;
         }

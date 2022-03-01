@@ -51,9 +51,9 @@ public class NewsfeedController implements Initializable {
         try {
             //get alle news feedmessages
             newsfeedmesages = gdm.getUsersNewsFeedMessages(App.getLoggedInUser().getUser_ID());
-
+            
             //check if we already viewng af specefic one
-            if (App.getCurrentNewsFeedMessage().equals(new NewsFeedMessage())) {
+            if (App.getCurrentNewsFeedMessage() == null) {
                 displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
             } else {
                 for (int i = 0; i < newsfeedmesages.size(); i++){

@@ -18,11 +18,11 @@ import org.openjfx.classes.*;
 public class App extends Application {
 
     private static Scene scene;
-    private static User loggedInUser = new User();
-    private static Event event = new Event();
+    private static User loggedInUser = null;
+    private static Event event = null;
     private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy/ HH:mm:ss");
-    private static Team team = new Team();
-    private static NewsFeedMessage currentNewsFeedMessage = new NewsFeedMessage();
+    private static Team team = null;
+    private static NewsFeedMessage currentNewsFeedMessage = null;
 
     @Override
     public void start(Stage stage) throws IOException {
