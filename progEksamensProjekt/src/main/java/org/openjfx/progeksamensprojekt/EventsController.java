@@ -92,8 +92,6 @@ public class EventsController implements Initializable {
         ObservableList<Event> hostEvents = FXCollections.observableArrayList();
             
         hostEvents.addAll(gdm.getUserHostEvents(App.getLoggedInUser().getUser_ID()));
-        
-        tableViewHostingEvents.setItems(hostEvents);
     }
     
     @FXML
