@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -36,6 +37,8 @@ public class EventViewController implements Initializable {
     private ChoiceBox<ParticipantStatus> participentStatus;
     
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
+    @FXML
+    private Button buttonUpdateStatus;
 
     /**
      * Initializes the controller class.
@@ -60,6 +63,13 @@ public class EventViewController implements Initializable {
             
             participentStatus.getItems().clear();
             participentStatus.getItems().addAll(ParticipantStatus.values());
+            
+            if(event.getHost().getUser_ID() == App.getLoggedInUser().getUser_ID()) {
+                participentStatus.setVisible(false);
+                buttonUpdateStatus.setVisible(false);
+            } else {
+                //find participant
+            }
             
         } catch (Exception e) {
             System.out.println(e.getMessage());

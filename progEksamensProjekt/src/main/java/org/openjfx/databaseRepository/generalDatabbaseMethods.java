@@ -313,7 +313,7 @@ public class GeneralDatabbaseMethods {
             ResultSet rs = stat.executeQuery("SELECT MAX(event_ID) FROM events");
 
             event_ID = rs.getInt("MAX(event_ID)");
-
+            System.out.println(event_ID);
         } catch (SQLException e) {
             System.out.println("\n Database error (create event (get new event ID): " + e.getMessage() + "\n");
         }
@@ -448,9 +448,15 @@ public class GeneralDatabbaseMethods {
 
         return teamsEvents;
     }
+    //---------------------------------------------
+    //---------- Edit participant status ----------
+    //---------------------------------------------
+    public void editParticipantStatus(){
+        
+    }
 
     //--------------------------------
-    //---------- Edit event ---------- this need work, needs to not delete existing participent
+    //---------- Edit event ----------
     //--------------------------------
     public void editEvent(Event _event) throws SQLException, Exception {
         Connection conn = null;
