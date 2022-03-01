@@ -97,7 +97,7 @@ public class EventCreateController implements Initializable {
                 updateListViews();
             }
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
     }
 
@@ -124,26 +124,32 @@ public class EventCreateController implements Initializable {
     @FXML
     private void teams() throws IOException {
         App.setRoot("teams");
+        App.setEvent(new Event());
     }
 
     @FXML
     private void events() throws IOException {
         App.setRoot("events");
+        App.setEvent(new Event());
     }
 
     @FXML
     private void settings() throws IOException {
         App.setRoot("settings");
+        App.setEvent(new Event());
     }
 
     @FXML
     private void logout() throws IOException {
         App.setRoot("login");
+        App.setEvent(new Event());
+        App.setLoggedInUser(new User());
     }
 
     @FXML
     private void main() throws IOException {
         App.setRoot("primary");
+        App.setEvent(new Event());
     }
 
     @FXML

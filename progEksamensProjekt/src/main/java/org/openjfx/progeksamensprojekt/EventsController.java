@@ -61,26 +61,9 @@ public class EventsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            ObservableList<Event> invitedData = FXCollections.observableArrayList();
-            
             tableColumnTeamsInvited.setCellValueFactory(new PropertyValueFactory<Event, String>("teamNames"));
             tableColumnDateInvited.setCellValueFactory(new PropertyValueFactory<Event, String>("date"));
             tableColumnNameOfEventInvited.setCellValueFactory(new PropertyValueFactory<Event, String>("title"));
-            
-            /*ArrayList<Event> testEvents = new ArrayList<>();
-            
-            ArrayList<Team> testTeams =  new ArrayList<>();
-            
-            testTeams.add(new Team(0, "testTeam", null, null));
-            testTeams.add(new Team(0, "testTeam2", null, null));
-            
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy/ HH:mm:ss");
-            
-            testEvents.add(new Event(null, dtf.format(LocalDateTime.now()), "testEvent", null, testTeams));
-            
-            ObservableList<Event> testEventsOB = FXCollections.observableArrayList();*/
-            
-            
             
             //------
             
@@ -132,6 +115,7 @@ public class EventsController implements Initializable {
     @FXML
     private void logout () throws IOException {
         App.setRoot("login");
+        App.setLoggedInUser(new User());
     }
     @FXML
     private void main () throws IOException {
@@ -162,7 +146,7 @@ public class EventsController implements Initializable {
             
             updateTabels();
         } else  {
-            //nothing selected
+            textErrorMessage.setText("Vælg venligst en begivenhed du arrangere");//nothing selected
         }
     }
 
@@ -173,7 +157,7 @@ public class EventsController implements Initializable {
             
             App.setRoot("eventCreate");
         } else  {
-            //nothing selected
+            textErrorMessage.setText("Vælg venligst en begivenhed du arrangere");//nothing selected
         }
     }
 }

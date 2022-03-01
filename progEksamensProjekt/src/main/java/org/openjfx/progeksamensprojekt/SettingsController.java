@@ -7,8 +7,16 @@ package org.openjfx.progeksamensprojekt;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import org.openjfx.classes.User;
+import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
+import org.openjfx.databaseRepository.SecurityMethods;
+import org.openjfx.databaseRepository.UserDatabaseMethods;
+import org.w3c.dom.UserDataHandler;
 
 /**
  * FXML Controller class
@@ -17,35 +25,76 @@ import javafx.fxml.Initializable;
  */
 public class SettingsController implements Initializable {
 
+    @FXML
+    private TextField textFieldEmail;
+    @FXML
+    private TextField textFieldName;
+    @FXML
+    private TextField textFieldPassword;
+    private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        try {
+            updateUserDisplayInfo();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void updateUserDisplayInfo() {
+        User user = App.getLoggedInUser();
+
+        textFieldName.setText(user.getName());
+        textFieldEmail.setText(user.getEmail());
+        textFieldPassword.setText("Write new password here");
+    }
+
     @FXML
-    private void exit () {
+    private void exit() {
         System.exit(0);
     }
+
     @FXML
     private void teams() throws IOException {
         App.setRoot("teams");
     }
+
     @FXML
-    private void events () throws IOException {
+    private void events() throws IOException {
         App.setRoot("events");
     }
+
     @FXML
-    private void settings () throws IOException {
+    private void settings() throws IOException {
         App.setRoot("settings");
     }
+
     @FXML
-    private void logout () throws IOException {
+    private void logout() throws IOException {
         App.setRoot("login");
+        App.setLoggedInUser(new User());
     }
+
     @FXML
-    private void main () throws IOException {
+    private void main() throws IOException {
         App.setRoot("mainScreen");
+    }
+
+    @FXML
+    private void updateUserInfo(ActionEvent event) throws Exception{
+        UserDatabaseMethods udm = new UserDatabaseMethods();
+        SecurityMethods sm = new SecurityMethods();
+
+        App.getLoggedInUser().setName(textFieldName.getText());
+        App.getLoggedInUser().setEmail(textFieldEmail.getText());
+        //App.getLoggedInUser().setPassword(sm.hexString(_stringToHex));
+
+        udm.editUser(App.getLoggedInUser());
+        
+        updateUserDisplayInfo();
     }
 }

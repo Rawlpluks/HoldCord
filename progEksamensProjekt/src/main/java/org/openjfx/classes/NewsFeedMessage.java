@@ -20,6 +20,10 @@ public class NewsFeedMessage {
     private String messages;
     private ArrayList<NewsFeedMessageComment> comments = new ArrayList<>();
 
+    //for app
+    public NewsFeedMessage() {
+    }
+    
     public NewsFeedMessage(int newsFeedMessage_ID, String titel,String date, ArrayList<Team> teams, User sender, String messages, ArrayList<NewsFeedMessageComment> comments) {
         this.newsFeedMessage_ID = newsFeedMessage_ID;
         this.titel = titel;

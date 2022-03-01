@@ -22,6 +22,7 @@ public class App extends Application {
     private static Event event = new Event();
     private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy/ HH:mm:ss");
     private static Team team = new Team();
+    private static NewsFeedMessage currentNewsFeedMessage = new NewsFeedMessage();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -72,5 +73,13 @@ public class App extends Application {
 
     public static void setTeam(Team team) {
         App.team = team;
+    }
+
+    public static NewsFeedMessage getCurrentNewsFeedMessage() {
+        return currentNewsFeedMessage;
+    }
+
+    public static void setCurrentNewsFeedMessage(NewsFeedMessage currentNewsFeedMessage) {
+        App.currentNewsFeedMessage = currentNewsFeedMessage;
     }
 }

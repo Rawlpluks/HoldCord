@@ -52,14 +52,14 @@ public class TeamsInfoMemberController implements Initializable {
                     return u1.getName().compareTo(u2.getName());
                 }
             };
-            //---------- events city alphabetic ascending ----------
+            //---------- events alphabetic ascending ----------
             Comparator<Event> sortEventTitelAlphabeticAscending = new Comparator<Event>() {
                 @Override
                 public int compare(Event e1, Event e2) {
                     return e1.getTitle().compareTo(e2.getTitle());
                 }
             };
-            //---------- news feed messages city alphabetic ascending ----------
+            //---------- news feed messages alphabetic ascending ----------
             Comparator<NewsFeedMessage> sortNewsFeedMessageTitelAlphabeticAscending = new Comparator<NewsFeedMessage>() {
                 @Override
                 public int compare(NewsFeedMessage nfm1, NewsFeedMessage nfm2) {
@@ -106,21 +106,27 @@ public class TeamsInfoMemberController implements Initializable {
     @FXML
     private void teams() throws IOException {
         App.setRoot("teams");
+        App.setTeam(new Team());
     }
     @FXML
     private void events () throws IOException {
         App.setRoot("events");
+        App.setTeam(new Team());
     }
     @FXML
     private void settings () throws IOException {
         App.setRoot("settings");
+        App.setTeam(new Team());
     }
     @FXML
     private void logout () throws IOException {
         App.setRoot("login");
+        App.setTeam(new Team());
+        App.setLoggedInUser(new User());
     }
     @FXML
     private void main () throws IOException {
         App.setRoot("mainScreen");
+        App.setTeam(new Team());
     }
 }

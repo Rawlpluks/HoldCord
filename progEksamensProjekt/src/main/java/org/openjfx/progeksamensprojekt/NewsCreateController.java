@@ -97,6 +97,7 @@ public class NewsCreateController implements Initializable {
     @FXML
     private void logout() throws IOException {
         App.setRoot("login");
+        App.setLoggedInUser(new User());
     }
 
     @FXML

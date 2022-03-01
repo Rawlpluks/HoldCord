@@ -225,7 +225,7 @@ public class GeneralDatabbaseMethods {
                             + "WHERE newsFeedMessages_ID = ('" + rs.getInt("newsFeedMessages_ID") + "');");
 
                     while (rs.next()) {
-                        comments.add(new NewsFeedMessageComment(loadUser(loadComments.getInt("user_ID"), conn), Date.valueOf(loadComments.getString("date")), loadComments.getString("comment")));
+                        comments.add(new NewsFeedMessageComment(loadUser(loadComments.getInt("user_ID"), conn), loadComments.getString("date"), loadComments.getString("comment")));
                     }
                 } catch (SQLException e) {
                     System.out.println("\n Database error (load news feed meassges (get comments): " + e.getMessage() + "\n");
@@ -460,7 +460,7 @@ public class GeneralDatabbaseMethods {
 
         //update info
         String sql = "UPDATE events SET host_ID = '" + _event.getHost().getUser_ID() + "', "
-                + "date = '" + _event.getDate().toString() + "', title "
+                + "date = '" + _event.getDate() + "', title = '" + _event.getTitle() + "' "
                 + "WHERE event_ID = ('" + _event.getEvent_ID() + "')";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -953,7 +953,7 @@ public class GeneralDatabbaseMethods {
     //-----------------------------------------------
     //---------- comment news feed message ----------
     //-----------------------------------------------
-    public void commenNewsFeedMessage(NewsFeedMessageComment _comment) throws SQLException, Exception {
+    public void commentNewsFeedMessage(NewsFeedMessageComment _comment) throws SQLException, Exception {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 

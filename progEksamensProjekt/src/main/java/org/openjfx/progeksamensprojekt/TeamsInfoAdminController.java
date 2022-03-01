@@ -112,45 +112,48 @@ public class TeamsInfoAdminController implements Initializable {
     @FXML
     private void teams() throws IOException {
         App.setRoot("teams");
+        App.setTeam(new Team());
     }
 
     @FXML
     private void events() throws IOException {
         App.setRoot("events");
+        App.setTeam(new Team());
     }
 
     @FXML
     private void settings() throws IOException {
         App.setRoot("settings");
+        App.setTeam(new Team());
     }
 
     @FXML
     private void logout() throws IOException {
         App.setRoot("login");
+        App.setTeam(new Team());
+        App.setLoggedInUser(new User());
     }
 
     @FXML
     private void main() throws IOException {
         App.setRoot("mainScreen");
+        App.setTeam(new Team());
     }
 
     @FXML
     private void eventCreate() throws IOException {
         App.setRoot("eventCreate");
+        App.setTeam(new Team());
     }
 
     @FXML
     private void newsCreate() throws IOException {
         App.setRoot("newsCreate");
+        App.setTeam(new Team());
     }
 
     @FXML
-    private void removeTeamMember(ActionEvent event) {
-        int index = listViewTeamMembers.getSelectionModel().getSelectedIndex();
-        if (index >= 0) {
-            updateTeamMembersView();
-        } else {
-            //non selected
-        }
+    private void editTeam(ActionEvent event) throws Exception{
+        App.setRoot("teamCreate");
     }
 }

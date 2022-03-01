@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -35,6 +36,10 @@ public class NewsfeedController implements Initializable {
     private Label labelDateOfMessage;
     @FXML
     private TextArea textAreaMessage;
+    @FXML
+    private Button buttonDeleteNews;
+    
+    private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
 
     /**
      * Initializes the controller class.
@@ -43,22 +48,36 @@ public class NewsfeedController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             //get alle news feedmessages
-            GeneralDatabbaseMethods generalDatabbaseMethods = new GeneralDatabbaseMethods();
+            newsfeedmesages = gdm.getUsersNewsFeedMessages(App.getLoggedInUser().getUser_ID());
 
-            newsfeedmesages = generalDatabbaseMethods.getUsersNewsFeedMessages(App.getLoggedInUser().getUser_ID());
-
-            displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
-
+            //check if we already viewng af specefic one
+            if (App.getCurrentNewsFeedMessage().equals(new NewsFeedMessage())) {
+                displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
+            } else {
+                for (int i = 0; i < newsfeedmesages.size(); i++){
+                    if(newsfeedmesages.get(i).equals(App.getCurrentNewsFeedMessage())){
+                        newsFeedMessagesNumber = i;
+                        return;
+                    }
+                }
+                
+                displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
+            }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
-    
-        private void displayNewsfeedMessages(NewsFeedMessage _newsFeedMessage) throws Exception {
-        //display messages
-        //String messages = _newsFeedMessage.getMessages();
-        
+
+    private void displayNewsfeedMessages(NewsFeedMessage _newsFeedMessage) throws Exception {
+        //check if your the owner and therefor can delete the news
+        if (_newsFeedMessage.getSender().equals(App.getLoggedInUser())) {
+            buttonDeleteNews.setVisible(true);
+        } else {
+            buttonDeleteNews.setVisible(false);
+        }
+
         labelSenderName.setText(_newsFeedMessage.getSender().getName());
-        
+
         //set up teams
         String teams = "";
         for (Team team : _newsFeedMessage.getTeams()) {
@@ -69,29 +88,11 @@ public class NewsfeedController implements Initializable {
             }
         }
         labelTeamNameTo.setText(teams);
-        
+
         labelDateOfMessage.setText(_newsFeedMessage.getDate());
         textAreaMessage.setText(_newsFeedMessage.getMessages());
-
-        //display comments
-        ArrayList<NewsFeedMessageComment> comments = _newsFeedMessage.getComments();
-
-        //create new strings to comment
-        //struktur - Name sender - date - comment
-        String allComments = "";
-        for (NewsFeedMessageComment comment : comments) {
-            if (allComments.equals("")) {
-                allComments += comment.getSender().getName() + " " + comment.getDate()
-                        + "\n" + comment.getComment();
-            } else {
-                allComments += "\n\n" + comment.getSender().getName() + " " + comment.getDate()
-                        + "\n" + comment.getComment();
-            }
-        }
-    }
-
-    private void displayNewsfeedMessagesComments() {
-
+        
+        App.setCurrentNewsFeedMessage(_newsFeedMessage);
     }
 
     @FXML
@@ -117,6 +118,20 @@ public class NewsfeedController implements Initializable {
             newsFeedMessagesNumber++;
         }
 
+        displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
+    }
+
+    @FXML
+    private void deleteNewsFeedMessages(ActionEvent event) throws Exception{
+        gdm.deleteNewsFeedMessage(newsfeedmesages.get(newsFeedMessagesNumber).getNewsFeedMessage_ID());
+        
+        newsfeedmesages.remove(newsFeedMessagesNumber);
+        
+        newsFeedMessagesNumber --;
+        
+        if(newsFeedMessagesNumber < 0){
+            newsFeedMessagesNumber = 0;
+        }
         displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
     }
 }

@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.progeksamensprojekt.MainScreenController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.progeksamensprojekt.MainScreenController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
@@ -104,12 +104,12 @@
                                     <Font name="Britannic Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <TextField editable="false" layoutX="269.0" layoutY="80.0" prefHeight="25.0" prefWidth="264.0" promptText="Navn" styleClass="login-textfield" stylesheets="@styles.css" />
+                              <TextField fx:id="textFieldUserInfoName" editable="false" layoutX="269.0" layoutY="80.0" prefHeight="25.0" prefWidth="264.0" promptText="Navn" styleClass="login-textfield" stylesheets="@styles.css" />
                               <TextField editable="false" layoutX="269.0" layoutY="127.0" prefHeight="25.0" prefWidth="264.0" promptText="Alder" styleClass="login-textfield" stylesheets="@styles.css" />
-                              <TextField editable="false" layoutX="269.0" layoutY="176.0" prefHeight="25.0" prefWidth="264.0" promptText="Email" styleClass="login-textfield" stylesheets="@styles.css" />
+                              <TextField fx:id="textFieldUserInfoEmail" editable="false" layoutX="269.0" layoutY="176.0" prefHeight="25.0" prefWidth="264.0" promptText="Email" styleClass="login-textfield" stylesheets="@styles.css" />
                               <TextField layoutX="269.0" layoutY="226.0" prefHeight="25.0" prefWidth="264.0" promptText="Email" styleClass="login-textfield" stylesheets="@styles.css" />
                               <Button layoutX="347.0" layoutY="278.0" mnemonicParsing="false" onAction="#settings" styleClass="login-button" stylesheets="@styles.css" text="Gå til indstillinger" textFill="#9b9b9b" />
-                              <TableView layoutX="609.0" layoutY="66.0" prefHeight="241.0" prefWidth="403.0">
+                              <TableView fx:id="tableViewUsersEvents" layoutX="609.0" layoutY="66.0" prefHeight="241.0" prefWidth="403.0">
                                 <columns>
                                   <TableColumn prefWidth="94.5" text="Hold" />
                                   <TableColumn prefWidth="219.5" text="Begivenhedens navn" />

@@ -51,6 +51,7 @@ public class EventViewController implements Initializable {
             labelEventName.setText(event.getTitle());
             textAreaDescreption.setText(event.getDescreption());
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -62,25 +63,31 @@ public class EventViewController implements Initializable {
     @FXML
     private void teams() throws IOException {
         App.setRoot("teams");
+        App.setEvent(new Event());
     }
 
     @FXML
     private void events() throws IOException {
         App.setRoot("events");
+        App.setEvent(new Event());
     }
 
     @FXML
     private void settings() throws IOException {
         App.setRoot("settings");
+        App.setEvent(new Event());
     }
 
     @FXML
     private void logout() throws IOException {
         App.setRoot("login");
+        App.setEvent(new Event());
+        App.setLoggedInUser(new User());
     }
 
     @FXML
     private void main() throws IOException {
         App.setRoot("mainScreen");
+        App.setEvent(new Event());
     }
 }
