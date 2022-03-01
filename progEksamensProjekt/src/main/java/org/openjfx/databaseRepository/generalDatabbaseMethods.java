@@ -122,7 +122,7 @@ public class GeneralDatabbaseMethods {
                 Statement stat = conn.createStatement();
 
                 rs = stat.executeQuery("SELECT * FROM Teams WHERE team_ID IN"
-                        + "(SELECT team_ID FROM teamsAndEvnets WHERE event_ID = ('" + event.getEvent_ID() + "'));");
+                        + "(SELECT team_ID FROM teamsAndEvents WHERE event_ID = ('" + event.getEvent_ID() + "'));");
 
                 event.setTeams(loadTeams(rs, conn));
             } catch (SQLException e) {
@@ -135,7 +135,7 @@ public class GeneralDatabbaseMethods {
             try {
                 Statement stat = conn.createStatement();
 
-                rs = stat.executeQuery("SELECT * FROM participants WHERE event_ID = ('" + event.getEvent_ID() + "'));");
+                rs = stat.executeQuery("SELECT * FROM participants WHERE event_ID = ('" + event.getEvent_ID() + "');");
 
                 event.setParticipants(loadParticipants(rs, conn));
 
