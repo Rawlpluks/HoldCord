@@ -24,6 +24,7 @@ import javafx.util.Duration;
 import org.openjfx.classes.NewsFeedMessage;
 import org.openjfx.classes.User;
 import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
+import org.openjfx.databaseRepository.SecurityMethods;
 
 public class MainScreenController implements Initializable {
 
@@ -53,7 +54,8 @@ public class MainScreenController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("newsfeed.fxml"));
             newfeed.getChildren().removeAll();
             newfeed.getChildren().setAll(fxml);
-            
+                  
+
             textFieldUserInfoName.setText(App.getLoggedInUser().getName());
             textFieldUserInfoEmail.setText(App.getLoggedInUser().getEmail());
             
