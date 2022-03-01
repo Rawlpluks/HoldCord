@@ -108,8 +108,6 @@ public class Event {
                 teamNames += teams.get(i).getName();
             } else {
                 teamNames += "\n" + teams.get(i).getName();
-                System.out.println("\n" + teams.get(i).getName());
-                System.out.println(i);
             }
         }
         return teamNames;

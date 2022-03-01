@@ -181,7 +181,7 @@ public class GeneralDatabbaseMethods {
                 Statement stat = conn.createStatement();
 
                 rs = stat.executeQuery("SELECT * FROM users WHERE user_ID IN"
-                        + "(SELECT user_ID FROM userAndTeams WHERE team_ID = ('" + team.getTeam_ID() + "'));");
+                        + "(SELECT user_ID FROM usersAndTeams WHERE team_ID = ('" + team.getTeam_ID() + "'));");
 
                 team.setTeamMembers(loadUsers(rs, conn));
             } catch (SQLException e) {
@@ -273,6 +273,8 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (get alle other users (get users): " + e.getMessage() + "\n");
         }
+        
+        conn.close();
 
         return users;
     }
@@ -293,7 +295,7 @@ public class GeneralDatabbaseMethods {
 
         //insert event info
         String sql = "INSERT INTO events(host_ID, date, title, descreption) "
-                + "VALUES('" + _event.getHost().getUser_ID() + "', '" + _event.getDate().toString() + "',"
+                + "VALUES('" + _event.getHost().getUser_ID() + "', '" + _event.getDate() + "',"
                 + "'" + _event.getTitle() + "', '" + _event.getDescreption() + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -441,6 +443,8 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (get teams event (get event): " + e.getMessage() + "\n");
         }
+        
+        conn.close();
 
         return teamsEvents;
     }
@@ -575,6 +579,7 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (delete event (delete participants): " + e.getMessage() + "\n");
         }
+        conn.close();
     }
 
     //---------------------------------
@@ -655,7 +660,9 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (get team user member of (get teams): " + e.getMessage() + "\n");
         }
-
+        
+        conn.close();
+        
         return teams;
     }
 
@@ -684,7 +691,9 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (get team user creater of (get teams): " + e.getMessage() + "\n");
         }
-
+        
+        conn.close();
+        
         return teams;
     }
 
@@ -712,7 +721,7 @@ public class GeneralDatabbaseMethods {
         }
 
         //delete existing team members
-        sql = "DELETE FROM userAndTeams WHERE team_ID = ('" + _team.getTeam_ID() + "');";
+        sql = "DELETE FROM usersAndTeams WHERE team_ID = ('" + _team.getTeam_ID() + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
@@ -834,7 +843,9 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (get teams news feed meassges (get news feed messages): " + e.getMessage() + "\n");
         }
-
+        
+        conn.close();
+        
         return teamNewsFeedMessages;
     }
 
