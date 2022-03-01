@@ -71,7 +71,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1164.0" prefWidth="1329.0">
                      <children>
-                        <VBox fx:id="newfeed" layoutX="104.0" layoutY="166.0" prefHeight="394.0" prefWidth="1158.0" style="-fx-border-color: #FA871C;" />
+                        <VBox fx:id="newfeed" layoutX="104.0" layoutY="148.0" prefHeight="436.0" prefWidth="1158.0" style="-fx-border-color: #FA871C;" />
                         <Line endX="1088.421875" layoutX="165.0" layoutY="641.0" startX="-67.078125" stroke="#c3710d" strokeWidth="2.0" />
                         <Label layoutX="166.0" layoutY="34.0" text="Velkommen tilbage" textFill="#565454">
                            <font>
@@ -119,7 +119,7 @@
                               <Button layoutX="1031.0" layoutY="162.0" mnemonicParsing="false" onAction="#events" styleClass="login-button" stylesheets="@styles.css" text="Åben begivenhed" textFill="#9b9b9b" />
                            </children>
                         </Pane>
-                        <Label layoutX="521.0" layoutY="95.0" text="Dit newsfeed" textFill="#fa871c" underline="true">
+                        <Label layoutX="521.0" layoutY="77.0" text="Dit newsfeed" textFill="#fa871c" underline="true">
                            <font>
                               <Font name="Britannic Bold" size="51.0" />
                            </font>
