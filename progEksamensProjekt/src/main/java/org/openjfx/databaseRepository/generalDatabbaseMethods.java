@@ -150,7 +150,7 @@ public class GeneralDatabbaseMethods {
     //---------------------------------------
     //---------- load participants ----------
     //---------------------------------------
-    public ArrayList<Participant> loadParticipants(ResultSet rs, Connection conn) throws SQLException, Exception {
+    private ArrayList<Participant> loadParticipants(ResultSet rs, Connection conn) throws SQLException, Exception {
         ArrayList<Participant> participants = new ArrayList<>();
 
         try {
@@ -836,7 +836,7 @@ public class GeneralDatabbaseMethods {
             Statement stat = conn.createStatement();
 
             ResultSet rs = stat.executeQuery("SELECT * FROM newsFeedMessages WHERE newsFeedMessages_ID IN "
-                    + "(SELECT newsFeedMessages_ID FROM newsFeedMessagesAndTeams WHERE team_ID = ('" + _team_ID + "');");
+                    + "(SELECT newsFeedMessages_ID FROM newsFeedMessagesAndTeams WHERE team_ID = ('" + _team_ID + "'));");
 
             teamNewsFeedMessages = loadNewsFeedMessages(rs, conn);
 

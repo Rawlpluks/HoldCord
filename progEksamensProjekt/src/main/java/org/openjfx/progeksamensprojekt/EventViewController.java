@@ -7,12 +7,15 @@ package org.openjfx.progeksamensprojekt;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import org.openjfx.classes.*;
+import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
 
 /**
  * FXML Controller class
@@ -29,6 +32,10 @@ public class EventViewController implements Initializable {
     private ListView<String> listViewAssignedTeams;
     @FXML
     private TextArea textAreaDescreption;
+    @FXML
+    private ChoiceBox<ParticipantStatus> participentStatus;
+    
+    private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
 
     /**
      * Initializes the controller class.
@@ -50,6 +57,10 @@ public class EventViewController implements Initializable {
             
             labelEventName.setText(event.getTitle());
             textAreaDescreption.setText(event.getDescreption());
+            
+            participentStatus.getItems().clear();
+            participentStatus.getItems().addAll(ParticipantStatus.values());
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -89,5 +100,12 @@ public class EventViewController implements Initializable {
     private void main() throws IOException {
         App.setRoot("mainScreen");
         App.setEvent(new Event());
+    }
+
+    @FXML
+    private void updateStatus(ActionEvent event) {
+        ParticipantStatus status = participentStatus.getSelectionModel().getSelectedItem();
+        
+        //gdm.
     }
 }
