@@ -42,8 +42,28 @@ public class CommentsController implements Initializable {
         App.setRoot("mainScreen");
     }
     @FXML
-    private void exit (){
+    private void exit() {
         System.exit(0);
+    }
+
+    @FXML
+    private void teams() throws IOException {
+        App.setRoot("teams");
+    }
+
+    @FXML
+    private void events() throws IOException {
+        App.setRoot("events");
+    }
+
+    @FXML
+    private void settings() throws IOException {
+        App.setRoot("settings");
+    }
+
+    @FXML
+    private void logout() throws IOException {
+        App.setRoot("login");
     }
     
 }

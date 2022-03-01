@@ -78,10 +78,11 @@
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="416.0" layoutY="678.0" mnemonicParsing="false" onAction="#teams" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
+            <Button layoutX="357.0" layoutY="678.0" mnemonicParsing="false" onAction="#teams" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
             <Button layoutX="817.0" layoutY="321.0" mnemonicParsing="false" onAction="#newsCreate" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret ny nyhed" textFill="#9b9b9b" />
             <Button layoutX="817.0" layoutY="551.0" mnemonicParsing="false" onAction="#eventCreate" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret ny begivenhed" textFill="#9b9b9b" />
             <Button layoutX="63.0" layoutY="678.0" mnemonicParsing="false" onAction="#removeTeamMember" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Fjern medlem" textFill="#9b9b9b" />
+            <Button layoutX="520.0" layoutY="678.0" mnemonicParsing="false" onAction="#eventCreate" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Rediger hold" textFill="#9b9b9b" />
          </children>
       </Pane>
    </children>
