@@ -52,7 +52,7 @@ public class TeamsInfoAdminController implements Initializable {
                     return e1.getTitle().compareTo(e2.getTitle());
                 }
             };
-            
+
             Comparator<NewsFeedMessage> sortNewsFeedMessageTitelAlphabeticAscending = new Comparator<NewsFeedMessage>() {
                 @Override
                 public int compare(NewsFeedMessage nfm1, NewsFeedMessage nfm2) {
@@ -63,9 +63,9 @@ public class TeamsInfoAdminController implements Initializable {
             labelTeamName.setText(loadeTeam.getName());
 
             listViewTeamsEvents.getItems().clear();
-            
+
             updateTeamMembersView();
-            
+
             teamsEvents = gdm.getTeamsEvents(loadeTeam.getTeam_ID());
             Collections.sort(teamsEvents, sortEventTitelAlphabeticAscending);
 
@@ -94,12 +94,12 @@ public class TeamsInfoAdminController implements Initializable {
                 return u1.getName().compareTo(u2.getName());
             }
         };
-        
+
         listViewTeamMembers.getItems().clear();
-        
+
         Collections.sort(loadeTeam.getTeamMembers(), sortUserNameAlphabeticAscending);
-        
-        for (User user : loadeTeam.getTeamMembers()){
+
+        for (User user : loadeTeam.getTeamMembers()) {
             listViewTeamMembers.getItems().add(user.getName());
         }
     }
@@ -150,10 +150,5 @@ public class TeamsInfoAdminController implements Initializable {
     private void newsCreate() throws IOException {
         App.setRoot("newsCreate");
         App.setTeam(new Team());
-    }
-
-    @FXML
-    private void editTeam(ActionEvent event) throws Exception{
-        App.setRoot("teamCreate");
     }
 }
