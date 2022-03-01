@@ -112,43 +112,43 @@ public class TeamsInfoAdminController implements Initializable {
     @FXML
     private void teams() throws IOException {
         App.setRoot("teams");
-        App.setTeam(new Team());
+        App.setTeam(null);
     }
 
     @FXML
     private void events() throws IOException {
         App.setRoot("events");
-        App.setTeam(new Team());
+        App.setTeam(null);
     }
 
     @FXML
     private void settings() throws IOException {
         App.setRoot("settings");
-        App.setTeam(new Team());
+        App.setTeam(null);
     }
 
     @FXML
     private void logout() throws IOException {
         App.setRoot("login");
-        App.setTeam(new Team());
+        App.setTeam(null);
         App.setLoggedInUser(new User());
     }
 
     @FXML
     private void main() throws IOException {
         App.setRoot("mainScreen");
-        App.setTeam(new Team());
+        App.setTeam(null);
     }
 
     @FXML
     private void eventCreate() throws IOException {
         App.setRoot("eventCreate");
-        App.setTeam(new Team());
+        App.setTeam(null);
     }
 
     @FXML
     private void newsCreate() throws IOException {
         App.setRoot("newsCreate");
-        App.setTeam(new Team());
+        App.setTeam(null);
     }
 }

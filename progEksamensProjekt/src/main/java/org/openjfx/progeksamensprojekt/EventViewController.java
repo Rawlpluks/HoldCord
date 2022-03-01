@@ -35,10 +35,12 @@ public class EventViewController implements Initializable {
     private TextArea textAreaDescreption;
     @FXML
     private ChoiceBox<ParticipantStatus> participentStatus;
-    
+
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
     @FXML
     private Button buttonUpdateStatus;
+
+    private Participant participant = new Participant();
 
     /**
      * Initializes the controller class.
@@ -46,31 +48,34 @@ public class EventViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            Event event =  App.getEvent();
-            
+            Event event = App.getEvent();
+
             listViewAssignedTeams.getItems().clear();
             for (Team team : event.getTeams()) {
                 listViewAssignedTeams.getItems().add(team.getName());
             }
-            
+
             listViewParticipants.getItems().clear();
-            for(Participant participant : event.getParticipants()){
+            for (Participant participant : event.getParticipants()) {
                 listViewParticipants.getItems().add(participant.getParticipant().getName());
             }
-            
+
             labelEventName.setText(event.getTitle());
             textAreaDescreption.setText(event.getDescreption());
-            
+
             participentStatus.getItems().clear();
             participentStatus.getItems().addAll(ParticipantStatus.values());
-            
-            if(event.getHost().getUser_ID() == App.getLoggedInUser().getUser_ID()) {
+
+            //check if host of event
+            if (event.getHost().getUser_ID() == App.getLoggedInUser().getUser_ID()) {
                 participentStatus.setVisible(false);
                 buttonUpdateStatus.setVisible(false);
             } else {
                 //find participant
+
+                participentStatus.getSelectionModel().select(participant.getStatus());
             }
-            
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -84,38 +89,40 @@ public class EventViewController implements Initializable {
     @FXML
     private void teams() throws IOException {
         App.setRoot("teams");
-        App.setEvent(new Event());
+        App.setEvent(null);
     }
 
     @FXML
     private void events() throws IOException {
         App.setRoot("events");
-        App.setEvent(new Event());
+        App.setEvent(null);
     }
 
     @FXML
     private void settings() throws IOException {
         App.setRoot("settings");
-        App.setEvent(new Event());
+        App.setEvent(null);
     }
 
     @FXML
     private void logout() throws IOException {
         App.setRoot("login");
         App.setEvent(new Event());
-        App.setLoggedInUser(new User());
+        App.setEvent(null);
     }
 
     @FXML
     private void main() throws IOException {
         App.setRoot("mainScreen");
-        App.setEvent(new Event());
+        App.setEvent(null);
     }
 
     @FXML
-    private void updateStatus(ActionEvent event) {
-        ParticipantStatus status = participentStatus.getSelectionModel().getSelectedItem();
-        
-        //gdm.
+    private void updateStatus(ActionEvent event) throws Exception {
+        participant.setStatus(participentStatus.getSelectionModel().getSelectedItem());
+
+        gdm.editParticipantStatus(participant);
+
+        participentStatus.getSelectionModel().select(participant.getStatus());
     }
 }

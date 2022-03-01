@@ -451,8 +451,26 @@ public class GeneralDatabbaseMethods {
     //---------------------------------------------
     //---------- Edit participant status ----------
     //---------------------------------------------
-    public void editParticipantStatus(){
+    public void editParticipantStatus(Participant _participant) throws SQLException, Exception{
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (edit participant status (connection): " + e.getMessage() + "\n");
+        }
         
+        String sql = "UPDATE participants SET participantStatus = '" + _participant.getStatus().toString() + "'"
+                + "WHERE participant_ID = ('" + _participant.getParticipant_ID() + "')";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (edit participant status (update status): " + e.getMessage() + "\n");
+        }
+        
+        conn.close();
     }
 
     //--------------------------------
