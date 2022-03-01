@@ -70,7 +70,7 @@ public class NewsfeedController implements Initializable {
         }
         labelTeamNameTo.setText(teams);
         
-        labelDateOfMessage.setText(_newsFeedMessage.getDate().toString());
+        labelDateOfMessage.setText(_newsFeedMessage.getDate());
         textAreaMessage.setText(_newsFeedMessage.getMessages());
 
         //display comments
@@ -81,10 +81,10 @@ public class NewsfeedController implements Initializable {
         String allComments = "";
         for (NewsFeedMessageComment comment : comments) {
             if (allComments.equals("")) {
-                allComments += comment.getSender().getName() + " " + comment.getDate().toString()
+                allComments += comment.getSender().getName() + " " + comment.getDate()
                         + "\n" + comment.getComment();
             } else {
-                allComments += "\n\n" + comment.getSender().getName() + " " + comment.getDate().toString()
+                allComments += "\n\n" + comment.getSender().getName() + " " + comment.getDate()
                         + "\n" + comment.getComment();
             }
         }
