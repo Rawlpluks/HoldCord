@@ -94,6 +94,23 @@ public class EventsController implements Initializable {
         hostEvents.addAll(gdm.getUserHostEvents(App.getLoggedInUser().getUser_ID()));
         
         tableViewHostingEvents.setItems(hostEvents);
+        
+        ArrayList<Event> testEvents = new ArrayList<>();
+
+            ArrayList<Team> testTeams =  new ArrayList<>();
+
+            testTeams.add(new Team(0, "testTeam", "", null, null));
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy/ HH:mm:ss");
+
+            testEvents.add(new Event(null, dtf.format(LocalDateTime.now()), "testEvent", null, testTeams));
+
+            ObservableList<Event> testEventsOB = FXCollections.observableArrayList();
+
+            testEventsOB.addAll(testEvents);
+
+          //  tableViewInvitedEvents.setItems(testEventsOB);
+           // tableViewHostingEvents.setItems(testEventsOB);
     }
     
     @FXML

@@ -131,6 +131,7 @@ public class NewsCreateController implements Initializable {
 
                 textAreaNewsfeedMessagesDescription.setText("");
                 textFieldNewsfeedMessagesTitle.setText("");
+                App.setRoot("mainScreen");
 
             } else {
                textErroMessage.setText("Vær sød at vælge minimum 1 hold at sende beskeden til"); //pleas select minimum 1 team to send the messages to
