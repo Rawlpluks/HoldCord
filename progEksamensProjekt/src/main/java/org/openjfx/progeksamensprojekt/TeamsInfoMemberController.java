@@ -129,4 +129,15 @@ public class TeamsInfoMemberController implements Initializable {
         App.setRoot("mainScreen");
         App.setTeam(new Team());
     }
+    @FXML
+    private void eventCreate() throws IOException {
+        App.setRoot("eventCreate");
+        App.setTeam(new Team());
+    }
+
+    @FXML
+    private void newsCreate() throws IOException {
+        App.setRoot("newsCreate");
+        App.setTeam(new Team());
+    }
 }
