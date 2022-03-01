@@ -133,10 +133,10 @@ public class NewsCreateController implements Initializable {
                 textFieldNewsfeedMessagesTitle.setText("");
 
             } else {
-               textErroMessage.setText("Selevt minimum 1 team to send the messeage to"); //pleas select minimum 1 team to send the messages to
+               textErroMessage.setText("Vær sød at vælge minimum 1 hold at sende beskeden til"); //pleas select minimum 1 team to send the messages to
             }
         } else {
-            textErroMessage.setText("Please fill out all the fields");//pleas fill out all fields
+            textErroMessage.setText("Vær sød at udfylde alle felterne");//pleas fill out all fields
         }
     }
 

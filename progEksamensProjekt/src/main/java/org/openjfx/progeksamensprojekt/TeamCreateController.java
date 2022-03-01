@@ -17,9 +17,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import org.openjfx.classes.Team;
 import org.openjfx.classes.User;
 import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
+
 
 /**
  * FXML Controller class
@@ -36,6 +38,8 @@ public class TeamCreateController implements Initializable {
     private ListView listViewNotAddedMembers;
     @FXML
     private ListView listViewAddedMembers;
+    @FXML
+    private Text textErroMessage;
 
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
     private ArrayList<User> addedMembers = new ArrayList<>();
@@ -157,10 +161,10 @@ public class TeamCreateController implements Initializable {
                 textAreaTeamDescription.setText("");
                 textFieldTeamName.setText("");
             } else {
-                //pleas add atleast one member to 2 the team
+                textErroMessage.setText("Vær sød at tilføje mindst 1 medlem til holdet");//pleas add atleast one member to 2 the team
             }
         } else {
-            //fill all fields
+            textErroMessage.setText("Udfyld alle felterne");//fill all fields
         }
     }
 

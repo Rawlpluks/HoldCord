@@ -44,7 +44,7 @@ public class EventCreateController implements Initializable {
     @FXML
     private DatePicker datePickerDate;
     @FXML
-    private Text textErrorMessage;
+    private Text textErroMessage;
 
     private boolean edittingEvent;
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
@@ -225,13 +225,13 @@ public class EventCreateController implements Initializable {
                     App.setRoot("events");
                     
                 } else {
-                    //invite at least one team
+                   textErroMessage.setText("Inviter mindst et hold"); 
                 }
             } else {
-                //pick a valid date
+                textErroMessage.setText("Vælg en gyldig dato");
             }
         } else {
-            //fill alle fields
+            textErroMessage.setText("Udfyld alle felter");
         }
     }
 }

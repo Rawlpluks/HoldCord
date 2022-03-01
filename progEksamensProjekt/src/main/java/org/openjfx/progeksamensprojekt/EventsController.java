@@ -131,7 +131,7 @@ public class EventsController implements Initializable {
             
             App.setRoot("eventView");
         } else {
-           textErrorMessage.setText("Nothing selected"); //nothing selected
+           textErrorMessage.setText("Intet valgt"); //nothing selected
         }
     }
     @FXML
@@ -146,7 +146,7 @@ public class EventsController implements Initializable {
             
             updateTabels();
         } else  {
-            textErrorMessage.setText("Vælg venligst en begivenhed du arrangere");//nothing selected
+            textErrorMessage.setText("Vælg venligst en begivenhed du arrangere");
         }
     }
 
@@ -157,7 +157,7 @@ public class EventsController implements Initializable {
             
             App.setRoot("eventCreate");
         } else  {
-            textErrorMessage.setText("Vælg venligst en begivenhed du arrangere");//nothing selected
+            textErrorMessage.setText("Vælg venligst en begivenhed du arrangere");
         }
     }
 }
