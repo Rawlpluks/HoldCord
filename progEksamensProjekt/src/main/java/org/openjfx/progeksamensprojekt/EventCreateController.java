@@ -66,7 +66,7 @@ public class EventCreateController implements Initializable {
         try {
 
             Event eventToBeEdited = App.getEvent();
-            teamsNotAdded = gdm.getTeamsUserCreaterOf(App.getLoggedInUser().getUser_ID());
+            teamsNotAdded = gdm.getTeamsUserMemberOf(App.getLoggedInUser().getUser_ID());
             teamsNotAdded.addAll(gdm.getTeamsUserCreaterOf(App.getLoggedInUser().getUser_ID()));
 
             //if editing an event load the info and dispaly it
