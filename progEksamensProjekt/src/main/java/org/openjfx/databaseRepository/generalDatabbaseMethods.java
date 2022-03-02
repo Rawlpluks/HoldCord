@@ -297,7 +297,9 @@ public class GeneralDatabbaseMethods {
         String sql = "INSERT INTO events(host_ID, date, title, descreption) "
                 + "VALUES('" + _event.getHost().getUser_ID() + "', '" + _event.getDate() + "',"
                 + "'" + _event.getTitle() + "', '" + _event.getDescreption() + "');";
-
+        
+        System.out.println("\n" + "sql: " + sql + "\n");
+        
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -322,7 +324,7 @@ public class GeneralDatabbaseMethods {
         ArrayList<Participant> eventsParticipants = new ArrayList<>();
         for (Team team : _event.getTeams()) {
             sql = "INSERT INTO teamsAndEvents(team_ID, event_ID) "
-                    + "VALUES('" + team.getTeam_ID() + "', '" + _event.getEvent_ID() + "');";
+                    + "VALUES('" + team.getTeam_ID() + "', '" + event_ID + "');";
 
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.executeUpdate();
@@ -818,18 +820,32 @@ public class GeneralDatabbaseMethods {
         //insert info
         String sql = "INSERT INTO newsFeedMessages(sender_ID, titel, date, messages) "
                 + "VALUES('" + _NewsFeedMessage.getSender().getUser_ID() + "','" + _NewsFeedMessage.getTitel() + "',"
-                + "'" + _NewsFeedMessage.getDate().toString() + "', '" + _NewsFeedMessage.getMessages() + "');";
+                + "'" + _NewsFeedMessage.getDate() + "', '" + _NewsFeedMessage.getMessages() + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("\n Database error (create news feed meassge (insert info): " + e.getMessage() + "\n");
         }
+        
+        //get newsFeedMessages_ID
+        int newsFeedMessages_ID = 0;
+        try {
+            Statement stat = conn.createStatement();
+            
+            ResultSet rs = stat.executeQuery("SELECT MAX(C) FROM newsFeedMessages;");
+            
+            newsFeedMessages_ID = rs.getInt("MAX(newsFeedMessages_ID)");
+            
+        } catch (SQLException e) {
+            System.out.println("\n Database error (create news feed meassge (get new newsFeedMessages_ID): " + e.getMessage() + "\n");
+        }
+        
 
         //assign to teams
         for (Team team : _NewsFeedMessage.getTeams()) {
             sql = "INSERT INTO newsFeedMessagesAndTeams(newsFeedMessages_ID, team_ID)"
-                    + "VALUES('" + _NewsFeedMessage.getNewsFeedMessage_ID() + "', '" + team.getTeam_ID() + "');";
+                    + "VALUES('" + newsFeedMessages_ID + "', '" + team.getTeam_ID() + "');";
 
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.executeUpdate();
