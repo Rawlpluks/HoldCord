@@ -194,6 +194,7 @@ public class GeneralDatabbaseMethods {
 
     private ArrayList<NewsFeedMessage> loadNewsFeedMessages(ResultSet rs, Connection conn) throws SQLException, Exception {
         ArrayList<NewsFeedMessage> newsFeedMessages = new ArrayList<>();
+        
         try {
             Statement stat = conn.createStatement();
 
@@ -207,24 +208,24 @@ public class GeneralDatabbaseMethods {
                 }
 
                 //get teams
-                ArrayList<Team> teams = new ArrayList<>();
+                
+                /*ArrayList<Team> teams = new ArrayList<>();
                 try {
                     ResultSet loadTeams = stat.executeQuery("SELECT * FROM teams WHERE team_ID IN"
                             + "(SELECT team_ID FROM newsFeedMessagesAndTeams WHERE"
-                            + "newsFeedMessages_ID = ('" + rs.getInt("newsFeedMessages_ID") + "')) );");
-
+                            + "newsFeedMessages_ID = ('" + test + "'));");
                     teams = loadTeams(loadTeams, conn);
                 } catch (SQLException e) {
                     System.out.println("\n Database error (load news feed meassges (get teams): " + e.getMessage() + "\n");
-                }
+                }*/
 
                 //get comments
                 ArrayList<NewsFeedMessageComment> comments = new ArrayList<>();
                 try {
-                    ResultSet loadComments = stat.executeQuery("SELECT FROM * newsFeedMessagesComments"
+                    ResultSet loadComments = stat.executeQuery("SELECT * FROM newsFeedMessagesComments "
                             + "WHERE newsFeedMessages_ID = ('" + rs.getInt("newsFeedMessages_ID") + "');");
 
-                    while (rs.next()) {
+                    while (loadComments.next()) {
                         comments.add(new NewsFeedMessageComment(loadUser(loadComments.getInt("user_ID"), conn), loadComments.getString("date"), loadComments.getString("comment")));
                     }
                 } catch (SQLException e) {
@@ -232,11 +233,28 @@ public class GeneralDatabbaseMethods {
                 }
 
                 //set info
-                newsFeedMessages.add(new NewsFeedMessage(rs.getInt("newsFeedMessages_ID"), rs.getString("titel"), rs.getString("date"), teams, sender, rs.getString("messages"), comments));
+                newsFeedMessages.add(new NewsFeedMessage(rs.getInt("newsFeedMessages_ID"), rs.getString("titel"), rs.getString("date"), null, sender, rs.getString("messages"), comments));
             }
         } catch (SQLException e) {
             System.out.println("\n Database error (load news feed meassges (run trough result set): " + e.getMessage() + "\n");
         }
+        
+        //load teams
+        for(NewsFeedMessage nfm : newsFeedMessages) {
+            ArrayList<Team> teams = new ArrayList<>();
+            try {
+                Statement stat = conn.createStatement();
+                
+                ResultSet loadTeams = stat.executeQuery("SELECT * FROM teams WHERE team_ID IN"
+                            + "(SELECT team_ID FROM newsFeedMessagesAndTeams WHERE "
+                            + "newsFeedMessages_ID = ('" + nfm.getNewsFeedMessage_ID() + "'));");
+                    teams = loadTeams(loadTeams, conn);
+            } catch (SQLException e) {
+                System.out.println("test of load teams: " + e.getMessage());
+            }
+            nfm.setTeams(teams);
+        }
+        
 
         //reverse so the newst news is first
         Collections.reverse(newsFeedMessages);
@@ -833,7 +851,7 @@ public class GeneralDatabbaseMethods {
         try {
             Statement stat = conn.createStatement();
             
-            ResultSet rs = stat.executeQuery("SELECT MAX(C) FROM newsFeedMessages;");
+            ResultSet rs = stat.executeQuery("SELECT MAX(newsFeedMessages_ID) FROM newsFeedMessages;");
             
             newsFeedMessages_ID = rs.getInt("MAX(newsFeedMessages_ID)");
             
@@ -841,6 +859,7 @@ public class GeneralDatabbaseMethods {
             System.out.println("\n Database error (create news feed meassge (get new newsFeedMessages_ID): " + e.getMessage() + "\n");
         }
         
+        System.out.println(newsFeedMessages_ID);
 
         //assign to teams
         for (Team team : _NewsFeedMessage.getTeams()) {

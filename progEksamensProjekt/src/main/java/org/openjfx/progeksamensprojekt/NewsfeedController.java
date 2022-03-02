@@ -86,7 +86,7 @@ public class NewsfeedController implements Initializable {
             if (teams.equals("")) {
                 teams += team.getName();
             } else {
-                teams += ", " + team.getName();
+                teams += "\n" + team.getName();
             }
         }
         labelTeamNameTo.setText(teams);
