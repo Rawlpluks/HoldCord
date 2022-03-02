@@ -92,8 +92,27 @@ public class EventsController implements Initializable {
         ObservableList<Event> hostEvents = FXCollections.observableArrayList();
             
         hostEvents.addAll(gdm.getUserHostEvents(App.getLoggedInUser().getUser_ID()));
+
         
         tableViewHostingEvents.setItems(hostEvents);
+        
+        ArrayList<Event> testEvents = new ArrayList<>();
+
+            ArrayList<Team> testTeams =  new ArrayList<>();
+
+            testTeams.add(new Team(0, "testTeam", "", null, null));
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy/ HH:mm:ss");
+
+            testEvents.add(new Event(null, dtf.format(LocalDateTime.now()), "testEvent", null, testTeams));
+
+            ObservableList<Event> testEventsOB = FXCollections.observableArrayList();
+
+            testEventsOB.addAll(testEvents);
+
+          //  tableViewInvitedEvents.setItems(testEventsOB);
+           // tableViewHostingEvents.setItems(testEventsOB);
+
     }
     
     @FXML
@@ -131,7 +150,7 @@ public class EventsController implements Initializable {
             
             App.setRoot("eventView");
         } else {
-           textErrorMessage.setText("Nothing selected"); //nothing selected
+           textErrorMessage.setText("Intet valgt"); //nothing selected
         }
     }
     @FXML
@@ -146,7 +165,7 @@ public class EventsController implements Initializable {
             
             updateTabels();
         } else  {
-            textErrorMessage.setText("Vælg venligst en begivenhed du arrangere");//nothing selected
+            textErrorMessage.setText("Vælg venligst en begivenhed du arrangere");
         }
     }
 
@@ -157,7 +176,7 @@ public class EventsController implements Initializable {
             
             App.setRoot("eventCreate");
         } else  {
-            textErrorMessage.setText("Vælg venligst en begivenhed du arrangere");//nothing selected
+            textErrorMessage.setText("Vælg venligst en begivenhed du arrangere");
         }
     }
 }

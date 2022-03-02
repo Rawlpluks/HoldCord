@@ -86,8 +86,8 @@
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <ChoiceBox layoutX="615.0" layoutY="200.0" prefWidth="150.0" />
-            <Button layoutX="785.0" layoutY="188.0" mnemonicParsing="false" onAction="#events" prefHeight="48.0" prefWidth="120.0" styleClass="login-button" stylesheets="@styles.css" text="Updater din status" textFill="#9b9b9b" />
+            <ChoiceBox fx:id="participentStatus" layoutX="615.0" layoutY="200.0" prefWidth="150.0" />
+            <Button fx:id="buttonUpdateStatus" layoutX="785.0" layoutY="188.0" mnemonicParsing="false" onAction="#updateStatus" prefHeight="48.0" prefWidth="120.0" styleClass="login-button" stylesheets="@styles.css" text="Updater din status" textFill="#9b9b9b" />
          </children>
       </Pane>
    </children>

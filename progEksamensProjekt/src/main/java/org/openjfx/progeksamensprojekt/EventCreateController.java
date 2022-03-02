@@ -44,7 +44,7 @@ public class EventCreateController implements Initializable {
     @FXML
     private DatePicker datePickerDate;
     @FXML
-    private Text textErrorMessage;
+    private Text textErroMessage;
 
     private boolean edittingEvent;
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
@@ -66,11 +66,11 @@ public class EventCreateController implements Initializable {
         try {
 
             Event eventToBeEdited = App.getEvent();
-            teamsNotAdded = gdm.getTeamsUserCreaterOf(App.getLoggedInUser().getUser_ID());
+            teamsNotAdded = gdm.getTeamsUserMemberOf(App.getLoggedInUser().getUser_ID());
             teamsNotAdded.addAll(gdm.getTeamsUserCreaterOf(App.getLoggedInUser().getUser_ID()));
 
             //if editing an event load the info and dispaly it
-            if (!eventToBeEdited.equals(new Event())) {
+            if (eventToBeEdited != null) {
                 edittingEvent = true;
 
                 teamsAdded.addAll(eventToBeEdited.getTeams());
@@ -124,32 +124,32 @@ public class EventCreateController implements Initializable {
     @FXML
     private void teams() throws IOException {
         App.setRoot("teams");
-        App.setEvent(new Event());
+        App.setEvent(null);
     }
 
     @FXML
     private void events() throws IOException {
         App.setRoot("events");
-        App.setEvent(new Event());
+        App.setEvent(null);
     }
 
     @FXML
     private void settings() throws IOException {
         App.setRoot("settings");
-        App.setEvent(new Event());
+        App.setEvent(null);
     }
 
     @FXML
     private void logout() throws IOException {
         App.setRoot("login");
-        App.setEvent(new Event());
+        App.setEvent(null);
         App.setLoggedInUser(new User());
     }
 
     @FXML
     private void main() throws IOException {
         App.setRoot("primary");
-        App.setEvent(new Event());
+        App.setEvent(null);
     }
 
     @FXML
@@ -223,15 +223,16 @@ public class EventCreateController implements Initializable {
                     edittingEvent = false;
                     
                     App.setRoot("events");
+                    App.setEvent(null);
                     
                 } else {
-                    //invite at least one team
+                   textErroMessage.setText("Inviter mindst et hold"); 
                 }
             } else {
-                //pick a valid date
+                textErroMessage.setText("Vælg en gyldig dato");
             }
         } else {
-            //fill alle fields
+            textErroMessage.setText("Udfyld alle felter");
         }
     }
 }

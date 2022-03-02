@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import org.openjfx.classes.NewsFeedMessageComment;
 import org.openjfx.classes.User;
 import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
@@ -35,6 +36,8 @@ public class CommentsController implements Initializable {
     private TextArea textAreaCommentsDisplay;
     @FXML
     private TextArea textAreaComment;
+    @FXML
+    private Text textErroMessage;
 
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
 
@@ -91,7 +94,7 @@ public class CommentsController implements Initializable {
 
             updateComments();
         } else {
-            //pleas write at least one character in your comment
+            textErroMessage.setText("Vær sød at skrive mindst 1 tegn i din commentar");
         }
     }
 

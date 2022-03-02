@@ -95,7 +95,6 @@
             <DatePicker fx:id="datePickerDate" layoutX="671.0" layoutY="231.0" />
             <Button layoutX="248.0" layoutY="678.0" mnemonicParsing="false" onAction="#events" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
             <Text fx:id="textErroMessage" fill="RED" layoutX="432.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="156.0" />
-            <Text fx:id="textErroMessage1" fill="RED" layoutX="418.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="156.0" />
          </children>
       </Pane>
    </children>

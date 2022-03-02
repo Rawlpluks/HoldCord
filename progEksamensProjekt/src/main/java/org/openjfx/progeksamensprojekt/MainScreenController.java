@@ -24,6 +24,7 @@ import javafx.util.Duration;
 import org.openjfx.classes.NewsFeedMessage;
 import org.openjfx.classes.User;
 import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
+import org.openjfx.databaseRepository.SecurityMethods;
 
 public class MainScreenController implements Initializable {
 
@@ -53,7 +54,8 @@ public class MainScreenController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("newsfeed.fxml"));
             newfeed.getChildren().removeAll();
             newfeed.getChildren().setAll(fxml);
-            
+                  
+
             textFieldUserInfoName.setText(App.getLoggedInUser().getName());
             textFieldUserInfoEmail.setText(App.getLoggedInUser().getEmail());
             
@@ -69,7 +71,7 @@ public class MainScreenController implements Initializable {
             usersvents.addAll(gdm.getUserHostEvents(App.getLoggedInUser().getUser_ID()));
 
             tableViewUsersEvents.setItems(usersvents);
-
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -83,32 +85,32 @@ public class MainScreenController implements Initializable {
     @FXML
     private void teams() throws IOException {
         App.setRoot("teams");
-        App.setCurrentNewsFeedMessage(new NewsFeedMessage());
+        App.setCurrentNewsFeedMessage(null);
     }
 
     @FXML
     private void events() throws IOException {
         App.setRoot("events");
-        App.setCurrentNewsFeedMessage(new NewsFeedMessage());
+        App.setCurrentNewsFeedMessage(null);
     }
 
     @FXML
     private void settings() throws IOException {
         App.setRoot("settings");
-        App.setCurrentNewsFeedMessage(new NewsFeedMessage());
+        App.setCurrentNewsFeedMessage(null);
     }
 
     @FXML
     private void logout() throws IOException {
         App.setRoot("login");
-        App.setCurrentNewsFeedMessage(new NewsFeedMessage());
+        App.setCurrentNewsFeedMessage(null);
         App.setLoggedInUser(new User());
     }
 
     @FXML
     private void main() throws IOException {
         App.setRoot("mainScreen");
-        App.setCurrentNewsFeedMessage(new NewsFeedMessage());
+        App.setCurrentNewsFeedMessage(null);
     }
 
     @FXML

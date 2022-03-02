@@ -114,7 +114,7 @@ public class TeamsController implements Initializable {
                 App.setRoot("teamsInfoMember");
             }
         } else {
-            textErroMessage.setText("Select team to view");
+            textErroMessage.setText("Vælg holdet at se"); //Select team to view
         }
     }
 

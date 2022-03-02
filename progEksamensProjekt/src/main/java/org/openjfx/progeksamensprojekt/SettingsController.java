@@ -50,7 +50,7 @@ public class SettingsController implements Initializable {
 
         textFieldName.setText(user.getName());
         textFieldEmail.setText(user.getEmail());
-        textFieldPassword.setText("Write new password here");
+        textFieldPassword.setText("Skriv dit nye kodeord her");
     }
 
     @FXML
