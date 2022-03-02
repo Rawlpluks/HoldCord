@@ -1033,7 +1033,7 @@ public class GeneralDatabbaseMethods {
             System.out.println("\n Database error (delete news feed meassges (connection): " + e.getMessage() + "\n");
         }
 
-        String sql = "INSERT INTO newsFeedMessagesComments(sender_ID, date) "
+        String sql = "INSERT INTO newsFeedMessagesComments(sender_ID, date, comment) "
                 + "VALUES('" + _comment.getSender().getUser_ID() + "', '" + _comment.getDate().toString() + "',"
                 + "'" + _comment.getComment() + "');";
 
