@@ -206,41 +206,42 @@ public class GeneralDatabbaseMethods {
                 } catch (SQLException e) {
                     System.out.println("\n Database error (load news feed meassges (get sender): " + e.getMessage() + "\n");
                 }
+                
+                int newsFeedMessages_ID = rs.getInt("newsFeedMessages_ID");
 
                 //get teams
-                
-                /*ArrayList<Team> teams = new ArrayList<>();
+                ArrayList<Team> teams = new ArrayList<>();
                 try {
                     ResultSet loadTeams = stat.executeQuery("SELECT * FROM teams WHERE team_ID IN"
-                            + "(SELECT team_ID FROM newsFeedMessagesAndTeams WHERE"
-                            + "newsFeedMessages_ID = ('" + test + "'));");
+                            + "(SELECT team_ID FROM newsFeedMessagesAndTeams WHERE "
+                            + "newsFeedMessages_ID = ('" + newsFeedMessages_ID + "'));");
                     teams = loadTeams(loadTeams, conn);
                 } catch (SQLException e) {
                     System.out.println("\n Database error (load news feed meassges (get teams): " + e.getMessage() + "\n");
-                }*/
+                }
 
                 //get comments
                 ArrayList<NewsFeedMessageComment> comments = new ArrayList<>();
                 try {
                     ResultSet loadComments = stat.executeQuery("SELECT * FROM newsFeedMessagesComments "
-                            + "WHERE newsFeedMessages_ID = ('" + rs.getInt("newsFeedMessages_ID") + "');");
+                            + "WHERE newsFeedMessages_ID = ('" + newsFeedMessages_ID + "');");
 
                     while (loadComments.next()) {
-                        comments.add(new NewsFeedMessageComment(loadUser(loadComments.getInt("user_ID"), conn), loadComments.getString("date"), loadComments.getString("comment")));
+                        comments.add(new NewsFeedMessageComment(newsFeedMessages_ID, loadUser(loadComments.getInt("user_ID"), conn), loadComments.getString("date"), loadComments.getString("comment")));
                     }
                 } catch (SQLException e) {
                     System.out.println("\n Database error (load news feed meassges (get comments): " + e.getMessage() + "\n");
                 }
 
                 //set info
-                newsFeedMessages.add(new NewsFeedMessage(rs.getInt("newsFeedMessages_ID"), rs.getString("titel"), rs.getString("date"), null, sender, rs.getString("messages"), comments));
+                newsFeedMessages.add(new NewsFeedMessage(newsFeedMessages_ID, rs.getString("titel"), rs.getString("date"), teams, sender, rs.getString("messages"), comments));
             }
         } catch (SQLException e) {
             System.out.println("\n Database error (load news feed meassges (run trough result set): " + e.getMessage() + "\n");
         }
         
         //load teams
-        for(NewsFeedMessage nfm : newsFeedMessages) {
+        /*for(NewsFeedMessage nfm : newsFeedMessages) {
             ArrayList<Team> teams = new ArrayList<>();
             try {
                 Statement stat = conn.createStatement();
@@ -253,7 +254,7 @@ public class GeneralDatabbaseMethods {
                 System.out.println("test of load teams: " + e.getMessage());
             }
             nfm.setTeams(teams);
-        }
+        }*/
         
 
         //reverse so the newst news is first
@@ -1033,9 +1034,9 @@ public class GeneralDatabbaseMethods {
             System.out.println("\n Database error (delete news feed meassges (connection): " + e.getMessage() + "\n");
         }
 
-        String sql = "INSERT INTO newsFeedMessagesComments(sender_ID, date, comment) "
-                + "VALUES('" + _comment.getSender().getUser_ID() + "', '" + _comment.getDate().toString() + "',"
-                + "'" + _comment.getComment() + "');";
+        String sql = "INSERT INTO newsFeedMessagesComments(newsFeedMessages_ID, sender_ID, date, comment) "
+                + "VALUES('" + _comment.getNewsFeedMessages_ID() + "','" + _comment.getSender().getUser_ID() + "',"
+                + "'" + _comment.getDate() + "','" + _comment.getComment() + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();

@@ -89,8 +89,8 @@ public class CommentsController implements Initializable {
     @FXML
     private void commentPost(ActionEvent event) throws Exception {
         if (!textAreaComment.getText().isBlank()) {
-            gdm.commentNewsFeedMessage(new NewsFeedMessageComment(App.getLoggedInUser(),
-                    App.getDtf().format(LocalDateTime.now()), textAreaComment.getText()));
+            gdm.commentNewsFeedMessage(new NewsFeedMessageComment(App.getCurrentNewsFeedMessage().getNewsFeedMessage_ID(),
+                    App.getLoggedInUser(), App.getDtf().format(LocalDateTime.now()), textAreaComment.getText()));
 
             updateComments();
         } else {
