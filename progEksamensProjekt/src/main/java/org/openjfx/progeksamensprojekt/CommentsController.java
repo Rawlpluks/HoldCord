@@ -60,7 +60,7 @@ public class CommentsController implements Initializable {
     private void updateComments() {
 
         ArrayList<NewsFeedMessageComment> comments = App.getCurrentNewsFeedMessage().getComments();
-
+        
         //struktur - Name sender - date -(new line)- comment
         String allCommentsFormated = "";
         for (NewsFeedMessageComment comment : comments) {
@@ -89,10 +89,13 @@ public class CommentsController implements Initializable {
     @FXML
     private void commentPost(ActionEvent event) throws Exception {
         if (!textAreaComment.getText().isBlank()) {
-            gdm.commentNewsFeedMessage(new NewsFeedMessageComment(App.getCurrentNewsFeedMessage().getNewsFeedMessage_ID(),
-                    App.getLoggedInUser(), App.getDtf().format(LocalDateTime.now()), textAreaComment.getText()));
             
-            System.out.println("THIS A TEST");
+            NewsFeedMessageComment comment = new NewsFeedMessageComment(App.getCurrentNewsFeedMessage().getNewsFeedMessage_ID(),
+                    App.getLoggedInUser(), App.getDtf().format(LocalDateTime.now()), textAreaComment.getText());
+            
+            gdm.commentNewsFeedMessage(comment);
+            
+            App.getCurrentNewsFeedMessage().getComments().add(comment);
             
             updateComments();
         } else {
