@@ -72,6 +72,11 @@ public class EventViewController implements Initializable {
                 buttonUpdateStatus.setVisible(false);
             } else {
                 //find participant
+                for(Participant p : event.getParticipants()) {
+                    if(p.getParticipant().getUser_ID() == App.getLoggedInUser().getUser_ID()) {
+                        participant = p;
+                    }
+                }
 
                 participentStatus.getSelectionModel().select(participant.getStatus());
             }
