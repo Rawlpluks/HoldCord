@@ -184,9 +184,9 @@ public class UserDatabaseMethods {
         return loggedInUser;
     }
     
-    //----------------------------------------
-    //---------- get logged in user ----------
-    //----------------------------------------
+    //-------------------------------
+    //---------- edit user ----------
+    //-------------------------------
     public void editUser(User _user) throws SQLException, Exception{
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
