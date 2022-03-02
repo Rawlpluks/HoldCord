@@ -84,7 +84,7 @@
                   <Font name="Britannic Bold" size="17.0" />
                </font>
             </Label>
-            <TextField layoutX="411.0" layoutY="337.0" prefHeight="27.0" prefWidth="233.0" styleClass="login-textfield" stylesheets="@styles.css" />
+            <TextField fx:id="textFieldUsername" layoutX="411.0" layoutY="337.0" prefHeight="27.0" prefWidth="233.0" styleClass="login-textfield" stylesheets="@styles.css" />
          </children>
       </Pane>
    </children>

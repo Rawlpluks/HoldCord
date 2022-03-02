@@ -32,6 +32,8 @@ public class SettingsController implements Initializable {
     @FXML
     private TextField textFieldPassword;
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
+    @FXML
+    private TextField textFieldUsername;
 
     /**
      * Initializes the controller class.
@@ -51,6 +53,7 @@ public class SettingsController implements Initializable {
         textFieldName.setText(user.getName());
         textFieldEmail.setText(user.getEmail());
         textFieldPassword.setText("Skriv dit nye kodeord her");
+        textFieldUsername.setText(user.getUsername());
     }
 
     @FXML
@@ -91,7 +94,8 @@ public class SettingsController implements Initializable {
 
         App.getLoggedInUser().setName(textFieldName.getText());
         App.getLoggedInUser().setEmail(textFieldEmail.getText());
-        //App.getLoggedInUser().setPassword(sm.hexString(_stringToHex));
+        App.getLoggedInUser().setUsername(textFieldUsername.getText());
+        App.getLoggedInUser().setPassword(sm.hexString(textFieldPassword.getText()));
 
         udm.editUser(App.getLoggedInUser());
         
