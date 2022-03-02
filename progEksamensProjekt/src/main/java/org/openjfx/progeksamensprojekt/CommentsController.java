@@ -91,7 +91,9 @@ public class CommentsController implements Initializable {
         if (!textAreaComment.getText().isBlank()) {
             gdm.commentNewsFeedMessage(new NewsFeedMessageComment(App.getCurrentNewsFeedMessage().getNewsFeedMessage_ID(),
                     App.getLoggedInUser(), App.getDtf().format(LocalDateTime.now()), textAreaComment.getText()));
-
+            
+            System.out.println("THIS A TEST");
+            
             updateComments();
         } else {
             textErroMessage.setText("Vær sød at skrive mindst 1 tegn i din commentar");

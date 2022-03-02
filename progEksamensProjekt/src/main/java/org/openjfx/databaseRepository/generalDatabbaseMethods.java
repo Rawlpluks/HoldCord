@@ -227,7 +227,7 @@ public class GeneralDatabbaseMethods {
                             + "WHERE newsFeedMessages_ID = ('" + newsFeedMessages_ID + "');");
 
                     while (loadComments.next()) {
-                        comments.add(new NewsFeedMessageComment(newsFeedMessages_ID, loadUser(loadComments.getInt("user_ID"), conn), loadComments.getString("date"), loadComments.getString("comment")));
+                        comments.add(new NewsFeedMessageComment(newsFeedMessages_ID, loadUser(loadComments.getInt("sender_ID"), conn), loadComments.getString("date"), loadComments.getString("comment")));
                     }
                 } catch (SQLException e) {
                     System.out.println("\n Database error (load news feed meassges (get comments): " + e.getMessage() + "\n");
