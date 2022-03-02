@@ -46,6 +46,9 @@ public class MainScreenController implements Initializable {
     private TableColumn tableColumnNameOfEventUsersEvents;
     @FXML
     private TableColumn tableColumnDateUsersEvents;
+    @FXML
+    private Label nameHeaderTextField;
+    
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
 
     @Override
@@ -58,6 +61,7 @@ public class MainScreenController implements Initializable {
 
             textFieldUserInfoName.setText(App.getLoggedInUser().getName());
             textFieldUserInfoEmail.setText(App.getLoggedInUser().getEmail());
+            nameHeaderTextField.setText(App.getLoggedInUser().getName());
             
             //set event table view
             tableColumnTeamsUsersEvents.setCellValueFactory(new PropertyValueFactory<Event, String>("teamNames"));
