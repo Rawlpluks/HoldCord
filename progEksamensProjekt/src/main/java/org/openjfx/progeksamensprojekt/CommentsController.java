@@ -97,6 +97,8 @@ public class CommentsController implements Initializable {
             
             App.getCurrentNewsFeedMessage().getComments().add(comment);
             
+            textAreaComment.setText("");
+            
             updateComments();
         } else {
             textErroMessage.setText("Vær sød at skrive mindst 1 tegn i din commentar");

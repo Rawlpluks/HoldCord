@@ -107,7 +107,7 @@ public class TeamsController implements Initializable {
         if (index >= 0) {
             //check if admin
             App.setTeam(teams.get(index));
-            if (teams.get(index).getCreaterOfTeam().equals(App.getLoggedInUser())) {
+            if (teams.get(index).getCreaterOfTeam().getUser_ID() == App.getLoggedInUser().getUser_ID()) {
                 App.setRoot("teamsInfoAdmin");
             } else {
                 //send to member view

@@ -39,8 +39,7 @@ public class NewsfeedController implements Initializable {
     private TextArea textAreaMessage;
     @FXML
     private Button buttonDeleteNews;
-    
-    
+
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
 
     /**
@@ -51,18 +50,18 @@ public class NewsfeedController implements Initializable {
         try {
             //get alle news feedmessages
             newsfeedmesages = gdm.getUsersNewsFeedMessages(App.getLoggedInUser().getUser_ID());
-            
+
             //check if we already viewng af specefic one
             if (App.getCurrentNewsFeedMessage() == null) {
                 displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
             } else {
-                for (int i = 0; i < newsfeedmesages.size(); i++){
-                    if(newsfeedmesages.get(i).equals(App.getCurrentNewsFeedMessage())){
+                for (int i = 0; i < newsfeedmesages.size(); i++) {
+                    if (newsfeedmesages.get(i).equals(App.getCurrentNewsFeedMessage())) {
                         newsFeedMessagesNumber = i;
                         return;
                     }
                 }
-                
+
                 displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
             }
         } catch (Exception e) {
@@ -72,7 +71,7 @@ public class NewsfeedController implements Initializable {
 
     private void displayNewsfeedMessages(NewsFeedMessage _newsFeedMessage) throws Exception {
         //check if your the owner and therefor can delete the news
-        if (_newsFeedMessage.getSender().equals(App.getLoggedInUser())) {
+        if (_newsFeedMessage.getSender().getUser_ID() == App.getLoggedInUser().getUser_ID()) {
             buttonDeleteNews.setVisible(true);
         } else {
             buttonDeleteNews.setVisible(false);
@@ -93,18 +92,16 @@ public class NewsfeedController implements Initializable {
 
         labelDateOfMessage.setText(_newsFeedMessage.getDate());
         textAreaMessage.setText(_newsFeedMessage.getMessages());
-        
+
         App.setCurrentNewsFeedMessage(_newsFeedMessage);
     }
 
     @FXML
     private void prevNewsfeedMessages(ActionEvent event) throws Exception {
+        newsFeedMessagesNumber--;
+
         if (newsFeedMessagesNumber < 0) {
             newsFeedMessagesNumber = newsfeedmesages.size() - 1;
-        } else if (newsFeedMessagesNumber > newsfeedmesages.size() - 1) {
-            newsFeedMessagesNumber = 0;
-        } else {
-            newsFeedMessagesNumber--;
         }
 
         displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
@@ -112,26 +109,24 @@ public class NewsfeedController implements Initializable {
 
     @FXML
     private void nextNewsfeedMessages(ActionEvent event) throws Exception {
-        if (newsFeedMessagesNumber < 0) {
-            newsFeedMessagesNumber = newsfeedmesages.size() - 1;
-        } else if (newsFeedMessagesNumber > newsfeedmesages.size() - 1) {
+        newsFeedMessagesNumber++;
+
+        if (newsFeedMessagesNumber > newsfeedmesages.size() - 1) {
             newsFeedMessagesNumber = 0;
-        } else {
-            newsFeedMessagesNumber++;
         }
 
         displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
     }
 
     @FXML
-    private void deleteNewsFeedMessages(ActionEvent event) throws Exception{
+    private void deleteNewsFeedMessages(ActionEvent event) throws Exception {
         gdm.deleteNewsFeedMessage(newsfeedmesages.get(newsFeedMessagesNumber).getNewsFeedMessage_ID());
-        
+
         newsfeedmesages.remove(newsFeedMessagesNumber);
-        
-        newsFeedMessagesNumber --;
-        
-        if(newsFeedMessagesNumber < 0){
+
+        newsFeedMessagesNumber--;
+
+        if (newsFeedMessagesNumber < 0) {
             newsFeedMessagesNumber = 0;
         }
         displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
