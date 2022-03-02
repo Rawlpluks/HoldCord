@@ -33,8 +33,6 @@ public class MainScreenController implements Initializable {
     private Parent fxml;
 
     @FXML
-    private Label userName;
-    @FXML
     private TextField textFieldUserInfoName;
     @FXML
     private TextField textFieldUserInfoEmail;
@@ -47,6 +45,8 @@ public class MainScreenController implements Initializable {
     @FXML
     private TableColumn tableColumnDateUsersEvents;
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
+    @FXML
+    private Label labelUserName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -58,6 +58,7 @@ public class MainScreenController implements Initializable {
 
             textFieldUserInfoName.setText(App.getLoggedInUser().getName());
             textFieldUserInfoEmail.setText(App.getLoggedInUser().getEmail());
+            labelUserName.setText(App.getLoggedInUser().getName());
             
             //set event table view
             tableColumnTeamsUsersEvents.setCellValueFactory(new PropertyValueFactory<Event, String>("teamNames"));
