@@ -93,33 +93,33 @@ public class EventViewController implements Initializable {
 
     @FXML
     private void teams() throws IOException {
-        App.setRoot("teams");
         App.setEvent(null);
+        App.setRoot("teams");
     }
 
     @FXML
     private void events() throws IOException {
-        App.setRoot("events");
         App.setEvent(null);
+        App.setRoot("events");
     }
 
     @FXML
     private void settings() throws IOException {
-        App.setRoot("settings");
         App.setEvent(null);
+        App.setRoot("settings");
     }
 
     @FXML
     private void logout() throws IOException {
-        App.setRoot("login");
-        App.setEvent(new Event());
+        App.setLoggedInUser(null);
         App.setEvent(null);
+        App.setRoot("login");
     }
 
     @FXML
     private void main() throws IOException {
-        App.setRoot("mainScreen");
         App.setEvent(null);
+        App.setRoot("mainScreen");
     }
 
     @FXML

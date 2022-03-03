@@ -74,7 +74,17 @@ public class EventCreateController implements Initializable {
                 edittingEvent = true;
 
                 teamsAdded.addAll(eventToBeEdited.getTeams());
-                teamsNotAdded.removeAll(teamsAdded);
+                //teamsNotAdded.removeAll(teamsAdded);
+                //teamsNotAdded.removeAll(eventToBeEdited.getTeams());
+
+                for (Team teamAdded : teamsAdded) {
+                    for (int i = 0; i < teamsNotAdded.size(); i++) {
+                        if (teamAdded.getTeam_ID() == teamsNotAdded.get(i).getTeam_ID()) {
+                            teamsNotAdded.remove(i);
+                            i--;
+                        }
+                    }
+                }
 
                 updateListViews();
 
@@ -123,33 +133,33 @@ public class EventCreateController implements Initializable {
 
     @FXML
     private void teams() throws IOException {
-        App.setRoot("teams");
         App.setEvent(null);
+        App.setRoot("teams");
     }
 
     @FXML
     private void events() throws IOException {
-        App.setRoot("events");
         App.setEvent(null);
+        App.setRoot("events");
     }
 
     @FXML
     private void settings() throws IOException {
-        App.setRoot("settings");
         App.setEvent(null);
+        App.setRoot("settings");
     }
 
     @FXML
     private void logout() throws IOException {
-        App.setRoot("login");
         App.setEvent(null);
-        App.setLoggedInUser(new User());
+        App.setLoggedInUser(null);
+        App.setRoot("login");
     }
 
     @FXML
     private void main() throws IOException {
-        App.setRoot("primary");
         App.setEvent(null);
+        App.setRoot("primary");
     }
 
     @FXML
@@ -210,23 +220,23 @@ public class EventCreateController implements Initializable {
                     String[] selectedDate = datePickerDate.getValue().toString().split("-");
 
                     String date = selectedDate[2] + "/" + selectedDate[1] + "/" + selectedDate[0];
-
+                    
+                    Event ourEvent = new Event(App.getLoggedInUser(),
+                                date, textFieldNameOfEvent.getText(),
+                                textAreaDescreptionOfEvent.getText(), teamsAdded);
+                    
                     if (edittingEvent) {
-                        gdm.editEvent(new Event(App.getLoggedInUser(),
-                                date, textFieldNameOfEvent.getText(),
-                                textAreaDescreptionOfEvent.getText(), teamsAdded));
+                        gdm.editEvent(ourEvent);
                     } else {
-                        gdm.createEvent(new Event(App.getLoggedInUser(),
-                                date, textFieldNameOfEvent.getText(),
-                                textAreaDescreptionOfEvent.getText(), teamsAdded));
+                        gdm.createEvent(ourEvent);
                     }
                     edittingEvent = false;
-                    
+
                     App.setRoot("events");
                     App.setEvent(null);
-                    
+
                 } else {
-                   textErroMessage.setText("Inviter mindst et hold"); 
+                    textErroMessage.setText("Inviter mindst et hold");
                 }
             } else {
                 textErroMessage.setText("Vælg en gyldig dato");

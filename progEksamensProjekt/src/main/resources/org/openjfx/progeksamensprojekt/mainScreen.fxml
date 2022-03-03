@@ -78,7 +78,7 @@
                               <Font name="Britannic Bold" size="28.0" />
                            </font>
                         </Label>
-                        <Label fx:id="nameHeaderTextField" layoutX="407.0" layoutY="34.0" text="(..)" textFill="#565454">
+                        <Label fx:id="labelName" layoutX="407.0" layoutY="34.0" text="(..)" textFill="#565454">
                            <font>
                               <Font name="Britannic Bold" size="28.0" />
                            </font>
@@ -122,7 +122,7 @@
                               <Font name="Britannic Bold" size="51.0" />
                            </font>
                         </Label>
-                        <Button layoutX="598.0" layoutY="597.0" mnemonicParsing="false" onAction="#comments" styleClass="login-button" stylesheets="@styles.css" text="Se mere om nyheden" textFill="#9b9b9b" />
+                        <Button layoutX="590.0" layoutY="597.0" mnemonicParsing="false" onAction="#comments" styleClass="login-button" stylesheets="@styles.css" text="Se nyhehedens kommentare" textFill="#9b9b9b" />
                      </children>
                   </AnchorPane>
               </content>

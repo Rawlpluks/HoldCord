@@ -33,8 +33,6 @@ public class MainScreenController implements Initializable {
     private Parent fxml;
 
     @FXML
-    private Label userName;
-    @FXML
     private TextField textFieldUserInfoName;
     @FXML
     private TextField textFieldUserInfoEmail;
@@ -46,10 +44,9 @@ public class MainScreenController implements Initializable {
     private TableColumn tableColumnNameOfEventUsersEvents;
     @FXML
     private TableColumn tableColumnDateUsersEvents;
-    @FXML
-    private Label nameHeaderTextField;
-    
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
+    @FXML
+    private Label labelName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -61,7 +58,7 @@ public class MainScreenController implements Initializable {
 
             textFieldUserInfoName.setText(App.getLoggedInUser().getName());
             textFieldUserInfoEmail.setText(App.getLoggedInUser().getEmail());
-            nameHeaderTextField.setText(App.getLoggedInUser().getName());
+            labelName.setText(" " + App.getLoggedInUser().getName());
             
             //set event table view
             tableColumnTeamsUsersEvents.setCellValueFactory(new PropertyValueFactory<Event, String>("teamNames"));
@@ -88,33 +85,33 @@ public class MainScreenController implements Initializable {
 
     @FXML
     private void teams() throws IOException {
-        App.setRoot("teams");
         App.setCurrentNewsFeedMessage(null);
+        App.setRoot("teams");
     }
 
     @FXML
     private void events() throws IOException {
-        App.setRoot("events");
         App.setCurrentNewsFeedMessage(null);
+        App.setRoot("events");
     }
 
     @FXML
     private void settings() throws IOException {
-        App.setRoot("settings");
         App.setCurrentNewsFeedMessage(null);
+        App.setRoot("settings");
     }
 
     @FXML
     private void logout() throws IOException {
-        App.setRoot("login");
         App.setCurrentNewsFeedMessage(null);
-        App.setLoggedInUser(new User());
+        App.setLoggedInUser(null);
+        App.setRoot("login");
     }
 
     @FXML
     private void main() throws IOException {
-        App.setRoot("mainScreen");
         App.setCurrentNewsFeedMessage(null);
+        App.setRoot("mainScreen");
     }
 
     @FXML

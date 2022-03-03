@@ -18,7 +18,8 @@ public class User {
     private String name;
     private String email;
     private ArrayList<Integer> team_IDs = new ArrayList<>();
-
+    
+    //load user
     public User(int user_ID, String username, String password, String name, String email, ArrayList<Integer> team_IDs) {
         this.user_ID = user_ID;
         this.username = username;

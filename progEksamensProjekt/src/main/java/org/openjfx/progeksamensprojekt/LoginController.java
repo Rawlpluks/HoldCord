@@ -54,7 +54,6 @@ public class LoginController implements Initializable {
 
                 App.setLoggedInUser(userDatabasemethods.getoggedInUser(textFieldUsername.getText()));
                 App.setRoot("mainScreen");
-                //System.out.println("logged in");
 
             } else {
                 textErrorMessage.setText("Enten findes brugeren ikke, ellers matcher kodeordet ikke");

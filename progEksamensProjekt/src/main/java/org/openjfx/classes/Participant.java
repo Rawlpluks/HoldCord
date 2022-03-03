@@ -13,7 +13,7 @@ public class Participant {
     private int participant_ID;
     private User participant;
     private ParticipantStatus status;
-
+    
     public Participant() {
     }
     

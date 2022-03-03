@@ -192,9 +192,12 @@ public class GeneralDatabbaseMethods {
         return teams;
     }
 
+    //---------------------------------------------
+    //---------- load news feed messages ----------
+    //---------------------------------------------
     private ArrayList<NewsFeedMessage> loadNewsFeedMessages(ResultSet rs, Connection conn) throws SQLException, Exception {
         ArrayList<NewsFeedMessage> newsFeedMessages = new ArrayList<>();
-        
+
         try {
             Statement stat = conn.createStatement();
 
@@ -206,7 +209,7 @@ public class GeneralDatabbaseMethods {
                 } catch (SQLException e) {
                     System.out.println("\n Database error (load news feed meassges (get sender): " + e.getMessage() + "\n");
                 }
-                
+
                 int newsFeedMessages_ID = rs.getInt("newsFeedMessages_ID");
 
                 //get teams
@@ -239,25 +242,8 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (load news feed meassges (run trough result set): " + e.getMessage() + "\n");
         }
-        
-        //load teams
-        /*for(NewsFeedMessage nfm : newsFeedMessages) {
-            ArrayList<Team> teams = new ArrayList<>();
-            try {
-                Statement stat = conn.createStatement();
-                
-                ResultSet loadTeams = stat.executeQuery("SELECT * FROM teams WHERE team_ID IN"
-                            + "(SELECT team_ID FROM newsFeedMessagesAndTeams WHERE "
-                            + "newsFeedMessages_ID = ('" + nfm.getNewsFeedMessage_ID() + "'));");
-                    teams = loadTeams(loadTeams, conn);
-            } catch (SQLException e) {
-                System.out.println("test of load teams: " + e.getMessage());
-            }
-            nfm.setTeams(teams);
-        }*/
-        
 
-        //reverse so the newst news is first
+        //reverse order so the newst news is first
         Collections.reverse(newsFeedMessages);
 
         return newsFeedMessages;
@@ -292,7 +278,7 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (get alle other users (get users): " + e.getMessage() + "\n");
         }
-        
+
         conn.close();
 
         return users;
@@ -316,9 +302,9 @@ public class GeneralDatabbaseMethods {
         String sql = "INSERT INTO events(host_ID, date, title, descreption) "
                 + "VALUES('" + _event.getHost().getUser_ID() + "', '" + _event.getDate() + "',"
                 + "'" + _event.getTitle() + "', '" + _event.getDescreption() + "');";
-        
+
         System.out.println("\n" + "sql: " + sql + "\n");
-        
+
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -464,15 +450,16 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (get teams event (get event): " + e.getMessage() + "\n");
         }
-        
+
         conn.close();
 
         return teamsEvents;
     }
+
     //---------------------------------------------
     //---------- Edit participant status ----------
     //---------------------------------------------
-    public void editParticipantStatus(Participant _participant) throws SQLException, Exception{
+    public void editParticipantStatus(Participant _participant) throws SQLException, Exception {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
@@ -481,7 +468,7 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (edit participant status (connection): " + e.getMessage() + "\n");
         }
-        
+
         String sql = "UPDATE participants SET participantStatus = '" + _participant.getStatus().toString() + "'"
                 + "WHERE participant_ID = ('" + _participant.getParticipant_ID() + "')";
 
@@ -490,7 +477,7 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (edit participant status (update status): " + e.getMessage() + "\n");
         }
-        
+
         conn.close();
     }
 
@@ -545,7 +532,7 @@ public class GeneralDatabbaseMethods {
         //delte participants who isent invited anymore
         for (Participant participant : participantsToRemove) {
             sql = "DELETE FROM participants WHERE participant_ID = ('" + participant.getParticipant_ID() + "');";
-            
+
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.executeUpdate();
             } catch (SQLException e) {
@@ -569,27 +556,6 @@ public class GeneralDatabbaseMethods {
                 System.out.println("\n Database error (edit event (insert new participants): " + e.getMessage() + "\n");
             }
         }
-        //------------------------------------------
-        /*sql = "DELETE FROM participants WHERE event_ID = ('" + _event.getEvent_ID() + "');";
-
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("\n Database error (edit event (delete existing participants): " + e.getMessage() + "\n");
-        }
-
-        //insert new participants
-        for (Participant participant : _event.getParticipants()) {
-            sql = "INSERT INTO participants(event_ID, user_ID, participantStatus) "
-                    + "VALUES('" + _event.getEvent_ID() + "', '" + participant.getParticipant().getUser_ID() + "', "
-                    + "'" + participant.getStatus().toString() + "');";
-
-            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                System.out.println("\n Database error (edit event (insert new participants): " + e.getMessage() + "\n");
-            }
-        }*/
 
         conn.close();
     }
@@ -705,9 +671,9 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (get team user member of (get teams): " + e.getMessage() + "\n");
         }
-        
+
         conn.close();
-        
+
         return teams;
     }
 
@@ -736,9 +702,9 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (get team user creater of (get teams): " + e.getMessage() + "\n");
         }
-        
+
         conn.close();
-        
+
         return teams;
     }
 
@@ -788,7 +754,7 @@ public class GeneralDatabbaseMethods {
 
         conn.close();
     }
-    
+
     //---------------------------------
     //---------- Delete team ----------
     //---------------------------------
@@ -846,20 +812,20 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (create news feed meassge (insert info): " + e.getMessage() + "\n");
         }
-        
+
         //get newsFeedMessages_ID
         int newsFeedMessages_ID = 0;
         try {
             Statement stat = conn.createStatement();
-            
+
             ResultSet rs = stat.executeQuery("SELECT MAX(newsFeedMessages_ID) FROM newsFeedMessages;");
-            
+
             newsFeedMessages_ID = rs.getInt("MAX(newsFeedMessages_ID)");
-            
+
         } catch (SQLException e) {
             System.out.println("\n Database error (create news feed meassge (get new newsFeedMessages_ID): " + e.getMessage() + "\n");
         }
-        
+
         System.out.println(newsFeedMessages_ID);
 
         //assign to teams
@@ -903,9 +869,9 @@ public class GeneralDatabbaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (get teams news feed meassges (get news feed messages): " + e.getMessage() + "\n");
         }
-        
+
         conn.close();
-        
+
         return teamNewsFeedMessages;
     }
 
@@ -934,39 +900,6 @@ public class GeneralDatabbaseMethods {
                     + "(SELECT team_ID FROM usersAndTeams WHERE user_ID = ('" + _user_ID + "')));");
 
             newsFeedMessages = loadNewsFeedMessages(rs, conn);
-            /*while (rs.next()) {
-                //get sender
-                User sender = loadUser(rs.getInt("sender_ID"), conn);
-
-                //get teams
-                ArrayList<Team> teams = new ArrayList<>();
-                try {
-                    ResultSet loadTeams = stat.executeQuery("SELECT * FROM teams WHERE team_ID IN"
-                            + "(SELECT team_ID FROM newsFeedMessagesAndTeams WHERE"
-                            + "newsFeedMessages_ID = ('" + rs.getInt("newsFeedMessages_ID") + "')) );");
-
-                    teams = loadTeams(loadTeams, conn);
-                } catch (SQLException e) {
-                    System.out.println("\n Database error (get users news feed meassges (get teams): " + e.getMessage() + "\n");
-                }
-
-                //get comments
-                ArrayList<NewsFeedMessageComment> comments = new ArrayList<>();
-                try {
-                    ResultSet loadComments = stat.executeQuery("SELECT FROM * newsFeedMessagesComments"
-                            + "WHERE newsFeedMessages_ID = ('" + rs.getInt("newsFeedMessages_ID") + "');");
-
-                    while (rs.next()) {
-                        comments.add(new NewsFeedMessageComment(loadUser(loadComments.getInt("user_ID"), conn), Date.valueOf(loadComments.getString("date")), loadComments.getString("comment")));
-                    }
-                } catch (SQLException e) {
-                    System.out.println("\n Database error (get users news feed meassges (get comments): " + e.getMessage() + "\n");
-                }
-
-                //set info
-                newsFeedMessages.add(new NewsFeedMessage(rs.getInt("newsFeedMessages_ID"), rs.getString("titel"), rs.getString("date"), teams, sender, rs.getString("messages"), comments));
-            }*/
-
         } catch (SQLException e) {
             System.out.println("\n Database error (get users news feed meassges (get messages): " + e.getMessage() + "\n");
         }
@@ -1045,8 +978,4 @@ public class GeneralDatabbaseMethods {
         }
         conn.close();
     }
-
-    //-------------------------------------------------------
-    //-------------------- to come, maby --------------------
-    //-------------------------------------------------------
 }

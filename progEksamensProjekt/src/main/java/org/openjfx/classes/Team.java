@@ -12,12 +12,13 @@ import java.util.*;
  * @author chris
  */
 public class Team {
+
     private int team_ID;
     private String name;
     private String description;
     private User createrOfTeam;
     private ArrayList<User> teamMembers = new ArrayList<>();
-    
+
     //create
     public Team(String name, String description, User createrOfTeam, ArrayList<User> teamMembers) {
         this.name = name;
@@ -25,7 +26,7 @@ public class Team {
         this.createrOfTeam = createrOfTeam;
         this.teamMembers = teamMembers;
     }
-    
+
     //load
     public Team(int team_ID, String name, String descreption, User createrOfTeam, ArrayList<User> teamMembers) {
         this.team_ID = team_ID;
@@ -34,11 +35,9 @@ public class Team {
         this.createrOfTeam = createrOfTeam;
         this.teamMembers = teamMembers;
     }
-    
-    //app
+
     public Team() {
     }
-    
 
     public int getTeam_ID() {
         return team_ID;
@@ -67,7 +66,7 @@ public class Team {
     public void setCreaterOfTeam(User createrOfTeam) {
         this.createrOfTeam = createrOfTeam;
     }
-    
+
     public ArrayList<User> getTeamMembers() {
         return teamMembers;
     }

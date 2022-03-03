@@ -43,7 +43,6 @@ public class Event {
         this.teams = teams;
     }
     
-    //app
     public Event() {
     }
 

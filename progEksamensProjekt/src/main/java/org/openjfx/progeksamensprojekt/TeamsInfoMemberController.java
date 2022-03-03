@@ -24,7 +24,7 @@ import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
  * @author Clara Maj
  */
 public class TeamsInfoMemberController implements Initializable {
-    
+
     @FXML
     private ListView listViewTeamMembers;
     @FXML
@@ -33,46 +33,45 @@ public class TeamsInfoMemberController implements Initializable {
     private ListView listViewTeamsEvents;
     @FXML
     private Label labelTeamName;
-    
+
     private Team loadeTeam = App.getTeam();
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
     private ArrayList<Event> teamsEvents = new ArrayList<>();
     private ArrayList<NewsFeedMessage> teamsNewsFeedMessages = new ArrayList<>();
-    
+
+    Comparator<User> sortUserNameAlphabeticAscending = new Comparator<User>() {
+        @Override
+        public int compare(User u1, User u2) {
+            return u1.getName().compareTo(u2.getName());
+        }
+    };
+
+    Comparator<Event> sortEventTitelAlphabeticAscending = new Comparator<Event>() {
+        @Override
+        public int compare(Event e1, Event e2) {
+            return e1.getTitle().compareTo(e2.getTitle());
+        }
+    };
+
+    Comparator<NewsFeedMessage> sortNewsFeedMessageTitelAlphabeticAscending = new Comparator<NewsFeedMessage>() {
+        @Override
+        public int compare(NewsFeedMessage nfm1, NewsFeedMessage nfm2) {
+            return nfm1.getTitel().compareTo(nfm2.getTitel());
+        }
+    };
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            //---------- users alphabetic ascending ----------
-            Comparator<User> sortUserNameAlphabeticAscending = new Comparator<User>() {
-                @Override
-                public int compare(User u1, User u2) {
-                    return u1.getName().compareTo(u2.getName());
-                }
-            };
-            //---------- events alphabetic ascending ----------
-            Comparator<Event> sortEventTitelAlphabeticAscending = new Comparator<Event>() {
-                @Override
-                public int compare(Event e1, Event e2) {
-                    return e1.getTitle().compareTo(e2.getTitle());
-                }
-            };
-            //---------- news feed messages alphabetic ascending ----------
-            Comparator<NewsFeedMessage> sortNewsFeedMessageTitelAlphabeticAscending = new Comparator<NewsFeedMessage>() {
-                @Override
-                public int compare(NewsFeedMessage nfm1, NewsFeedMessage nfm2) {
-                    return nfm1.getTitel().compareTo(nfm2.getTitel());
-                }
-            };
-
             labelTeamName.setText(loadeTeam.getName());
 
             listViewTeamMembers.getItems().clear();
-            
+
             Collections.sort(loadeTeam.getTeamMembers(), sortUserNameAlphabeticAscending);
-            
+
             for (User user : loadeTeam.getTeamMembers()) {
                 listViewTeamMembers.getItems().add(user.getName());
             }
@@ -81,7 +80,7 @@ public class TeamsInfoMemberController implements Initializable {
 
             teamsEvents = gdm.getTeamsEvents(loadeTeam.getTeam_ID());
             Collections.sort(teamsEvents, sortEventTitelAlphabeticAscending);
-            
+
             for (Event event : teamsEvents) {
                 listViewTeamsEvents.getItems().add(event.getTitle());
             }
@@ -90,7 +89,7 @@ public class TeamsInfoMemberController implements Initializable {
 
             teamsNewsFeedMessages = gdm.getTeamsNewsFeedMessages(loadeTeam.getTeam_ID());
             Collections.sort(teamsNewsFeedMessages, sortNewsFeedMessageTitelAlphabeticAscending);
-            
+
             for (NewsFeedMessage newsFeedMessage : teamsNewsFeedMessages) {
                 listViewTeamsNewsfeed.getItems().add(newsFeedMessage.getTitel());
             }
@@ -98,46 +97,53 @@ public class TeamsInfoMemberController implements Initializable {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }    
-     @FXML
-    private void exit () {
+    }
+
+    @FXML
+    private void exit() {
         System.exit(0);
     }
+
     @FXML
     private void teams() throws IOException {
+        App.setTeam(null);
         App.setRoot("teams");
-        App.setTeam(null);
     }
+
     @FXML
-    private void events () throws IOException {
+    private void events() throws IOException {
+        App.setTeam(null);
         App.setRoot("events");
-        App.setTeam(null);
     }
+
     @FXML
-    private void settings () throws IOException {
+    private void settings() throws IOException {
+        App.setTeam(null);
         App.setRoot("settings");
-        App.setTeam(null);
     }
+
     @FXML
-    private void logout () throws IOException {
+    private void logout() throws IOException {
+        App.setTeam(null);
+        App.setLoggedInUser(null);
         App.setRoot("login");
-        App.setTeam(null);
-        App.setLoggedInUser(new User());
     }
+
     @FXML
-    private void main () throws IOException {
-        App.setRoot("mainScreen");
+    private void main() throws IOException {
         App.setTeam(null);
+        App.setRoot("mainScreen");
     }
+
     @FXML
     private void eventCreate() throws IOException {
-        App.setRoot("eventCreate");
         App.setTeam(null);
+        App.setRoot("eventCreate");
     }
 
     @FXML
     private void newsCreate() throws IOException {
-        App.setRoot("newsCreate");
         App.setTeam(null);
+        App.setRoot("newsCreate");
     }
 }

@@ -27,12 +27,12 @@
                   <DropShadow radius="4.75" width="0.0" />
                </effect>
             </Pane>
-            <TextField fx:id="textFieldUsername" layoutX="64.0" layoutY="327.0" prefHeight="38.0" prefWidth="396.0" promptText="Brugernavn" styleClass="login-textfield" stylesheets="@styles.css" text="Admin1">
+            <TextField fx:id="textFieldUsername" layoutX="64.0" layoutY="327.0" prefHeight="38.0" prefWidth="396.0" promptText="Brugernavn" styleClass="login-textfield" stylesheets="@styles.css">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordFieldPassword" layoutX="64.0" layoutY="408.0" prefHeight="38.0" prefWidth="396.0" promptText="Kodeord" styleClass="login-textfield" stylesheets="@styles.css" text="Admin!12345">
+            <PasswordField fx:id="passwordFieldPassword" layoutX="64.0" layoutY="408.0" prefHeight="38.0" prefWidth="396.0" promptText="Kodeord" styleClass="login-textfield" stylesheets="@styles.css">
                <font>
                   <Font size="16.0" />
                </font>
