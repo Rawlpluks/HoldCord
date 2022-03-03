@@ -85,33 +85,33 @@ public class MainScreenController implements Initializable {
 
     @FXML
     private void teams() throws IOException {
-        App.setRoot("teams");
         App.setCurrentNewsFeedMessage(null);
+        App.setRoot("teams");
     }
 
     @FXML
     private void events() throws IOException {
-        App.setRoot("events");
         App.setCurrentNewsFeedMessage(null);
+        App.setRoot("events");
     }
 
     @FXML
     private void settings() throws IOException {
-        App.setRoot("settings");
         App.setCurrentNewsFeedMessage(null);
+        App.setRoot("settings");
     }
 
     @FXML
     private void logout() throws IOException {
-        App.setRoot("login");
         App.setCurrentNewsFeedMessage(null);
-        App.setLoggedInUser(new User());
+        App.setLoggedInUser(null);
+        App.setRoot("login");
     }
 
     @FXML
     private void main() throws IOException {
-        App.setRoot("mainScreen");
         App.setCurrentNewsFeedMessage(null);
+        App.setRoot("mainScreen");
     }
 
     @FXML

@@ -70,33 +70,33 @@ public class TeamsController implements Initializable {
 
     @FXML
     private void teams() throws IOException {
-        App.setRoot("teams");
-        App.setTeam(new Team());
+        App.setTeam(null);
+        App.setRoot("teams");       
     }
 
     @FXML
     private void events() throws IOException {
+        App.setTeam(null);
         App.setRoot("events");
-        App.setTeam(new Team());
     }
 
     @FXML
     private void settings() throws IOException {
+        App.setTeam(null);
         App.setRoot("settings");
-        App.setTeam(new Team());
     }
 
     @FXML
     private void logout() throws IOException {
+        App.setTeam(null);
+        App.setLoggedInUser(null);
         App.setRoot("login");
-        App.setTeam(new Team());
-        App.setLoggedInUser(new User());
     }
 
     @FXML
     private void main() throws IOException {
+        App.setTeam(null);
         App.setRoot("mainScreen");
-        App.setTeam(new Team());
     }
 
     @FXML
@@ -120,7 +120,7 @@ public class TeamsController implements Initializable {
 
     @FXML
     private void teamCreate() throws IOException {
+        App.setTeam(null);
         App.setRoot("teamCreate");
-        App.setTeam(new Team());
     }
 }

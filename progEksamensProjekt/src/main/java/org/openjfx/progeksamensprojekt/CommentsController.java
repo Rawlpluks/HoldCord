@@ -61,7 +61,7 @@ public class CommentsController implements Initializable {
 
         ArrayList<NewsFeedMessageComment> comments = App.getCurrentNewsFeedMessage().getComments();
         
-        //struktur - Name sender - date -(new line)- comment
+        //struktur - Name sender - date - (new line) - comment
         String allCommentsFormated = "";
         for (NewsFeedMessageComment comment : comments) {
             if (allCommentsFormated.equals("")) {
@@ -101,7 +101,7 @@ public class CommentsController implements Initializable {
             
             updateComments();
         } else {
-            textErroMessage.setText("Vær sød at skrive mindst 1 tegn i din commentar");
+            textErroMessage.setText("Vær sød at skrive mindst 1 tegn i din kommentar");
         }
     }
 
@@ -123,7 +123,7 @@ public class CommentsController implements Initializable {
     @FXML
     private void logout() throws IOException {
         App.setRoot("login");
-        App.setLoggedInUser(new User());
+        App.setLoggedInUser(null);
     }
 
 }

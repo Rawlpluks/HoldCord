@@ -40,26 +40,33 @@ public class TeamsInfoAdminController implements Initializable {
     private ArrayList<Event> teamsEvents = new ArrayList<>();
     private ArrayList<NewsFeedMessage> teamsNewsFeedMessages = new ArrayList<>();
 
+    Comparator<Event> sortEventTitelAlphabeticAscending = new Comparator<Event>() {
+        @Override
+        public int compare(Event e1, Event e2) {
+            return e1.getTitle().compareTo(e2.getTitle());
+        }
+    };
+
+    Comparator<NewsFeedMessage> sortNewsFeedMessageTitelAlphabeticAscending = new Comparator<NewsFeedMessage>() {
+        @Override
+        public int compare(NewsFeedMessage nfm1, NewsFeedMessage nfm2) {
+            return nfm1.getTitel().compareTo(nfm2.getTitel());
+        }
+    };
+
+    Comparator<User> sortUserNameAlphabeticAscending = new Comparator<User>() {
+        @Override
+        public int compare(User u1, User u2) {
+            return u1.getName().compareTo(u2.getName());
+        }
+    };
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            Comparator<Event> sortEventTitelAlphabeticAscending = new Comparator<Event>() {
-                @Override
-                public int compare(Event e1, Event e2) {
-                    return e1.getTitle().compareTo(e2.getTitle());
-                }
-            };
-
-            Comparator<NewsFeedMessage> sortNewsFeedMessageTitelAlphabeticAscending = new Comparator<NewsFeedMessage>() {
-                @Override
-                public int compare(NewsFeedMessage nfm1, NewsFeedMessage nfm2) {
-                    return nfm1.getTitel().compareTo(nfm2.getTitel());
-                }
-            };
-
             labelTeamName.setText(loadeTeam.getName());
 
             listViewTeamsEvents.getItems().clear();
@@ -88,13 +95,6 @@ public class TeamsInfoAdminController implements Initializable {
     }
 
     private void updateTeamMembersView() {
-        Comparator<User> sortUserNameAlphabeticAscending = new Comparator<User>() {
-            @Override
-            public int compare(User u1, User u2) {
-                return u1.getName().compareTo(u2.getName());
-            }
-        };
-
         listViewTeamMembers.getItems().clear();
 
         Collections.sort(loadeTeam.getTeamMembers(), sortUserNameAlphabeticAscending);
@@ -111,44 +111,45 @@ public class TeamsInfoAdminController implements Initializable {
 
     @FXML
     private void teams() throws IOException {
-        App.setRoot("teams");
         App.setTeam(null);
+        App.setRoot("teams");
     }
 
     @FXML
     private void events() throws IOException {
-        App.setRoot("events");
         App.setTeam(null);
+        App.setRoot("events");
     }
 
     @FXML
     private void settings() throws IOException {
-        App.setRoot("settings");
         App.setTeam(null);
+        App.setRoot("settings");
     }
 
     @FXML
     private void logout() throws IOException {
-        App.setRoot("login");
         App.setTeam(null);
-        App.setLoggedInUser(new User());
+        App.setLoggedInUser(null);
+        App.setRoot("login");
     }
 
     @FXML
     private void main() throws IOException {
-        App.setRoot("mainScreen");
         App.setTeam(null);
+        App.setRoot("mainScreen");
+
     }
 
     @FXML
     private void eventCreate() throws IOException {
-        App.setRoot("eventCreate");
         App.setTeam(null);
+        App.setRoot("eventCreate");
     }
 
     @FXML
     private void newsCreate() throws IOException {
-        App.setRoot("newsCreate");
         App.setTeam(null);
+        App.setRoot("newsCreate");
     }
 }

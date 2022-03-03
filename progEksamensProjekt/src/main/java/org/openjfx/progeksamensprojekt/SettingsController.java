@@ -78,8 +78,8 @@ public class SettingsController implements Initializable {
 
     @FXML
     private void logout() throws IOException {
+        App.setLoggedInUser(null);
         App.setRoot("login");
-        App.setLoggedInUser(new User());
     }
 
     @FXML

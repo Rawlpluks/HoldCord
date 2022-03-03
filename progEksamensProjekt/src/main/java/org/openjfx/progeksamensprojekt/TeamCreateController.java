@@ -109,33 +109,33 @@ public class TeamCreateController implements Initializable {
 
     @FXML
     private void teams() throws IOException {
-        App.setRoot("teams");
         App.setTeam(null);
+        App.setRoot("teams");
     }
 
     @FXML
     private void events() throws IOException {
-        App.setRoot("events");
         App.setTeam(null);
+        App.setRoot("events");
     }
 
     @FXML
     private void settings() throws IOException {
-        App.setRoot("settings");
         App.setTeam(null);
+        App.setRoot("settings");
     }
 
     @FXML
     private void logout() throws IOException {
-        App.setRoot("login");
         App.setTeam(null);;
-        App.setLoggedInUser(new User());
+        App.setLoggedInUser(null);
+        App.setRoot("login");
     }
 
     @FXML
     private void main() throws IOException {
-        App.setRoot("mainScreen");
         App.setTeam(null);
+        App.setRoot("mainScreen");
     }
 
     @FXML
@@ -155,8 +155,9 @@ public class TeamCreateController implements Initializable {
                 } else {
                     gdm.createTeam(team);
                 }
-                App.setRoot("teams");
+                
                 App.setTeam(null);
+                App.setRoot("teams");
             } else {
                 textErroMessage.setText("Vær sød at tilføje mindst 1 medlem til holdet");//pleas add atleast one member to 2 the team
             }

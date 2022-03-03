@@ -106,10 +106,8 @@ public class NewsfeedController implements Initializable {
 
     @FXML
     private void prevNewsfeedMessages(ActionEvent event) throws Exception {
-        newsFeedMessagesNumber--;
-
-        if (newsFeedMessagesNumber < 0) {
-            newsFeedMessagesNumber = newsfeedmesages.size() - 1;
+        if (newsFeedMessagesNumber > 0) {
+            newsFeedMessagesNumber--;
         }
 
         displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
@@ -117,10 +115,8 @@ public class NewsfeedController implements Initializable {
 
     @FXML
     private void nextNewsfeedMessages(ActionEvent event) throws Exception {
-        newsFeedMessagesNumber++;
-
-        if (newsFeedMessagesNumber > newsfeedmesages.size() - 1) {
-            newsFeedMessagesNumber = 0;
+        if (newsFeedMessagesNumber < newsfeedmesages.size() - 1) {
+            newsFeedMessagesNumber++;
         }
 
         displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
@@ -137,6 +133,17 @@ public class NewsfeedController implements Initializable {
         if (newsFeedMessagesNumber < 0) {
             newsFeedMessagesNumber = 0;
         }
+
+        //check if there are any mesages left, and if not reset to standart
+        if (newsfeedmesages.size() <= 0) {
+            labelSenderName.setText("");
+            labelTeamNameTo.setText("");
+            labelDateOfMessage.setText("");
+            buttonDeleteNews.setVisible(false);
+            textFieldTitelOfMessages.setText("");
+            textAreaMessage.setText("");
+        }
+
         displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
     }
 }

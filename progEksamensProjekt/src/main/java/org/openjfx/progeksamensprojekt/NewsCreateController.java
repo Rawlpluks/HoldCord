@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,6 +44,13 @@ public class NewsCreateController implements Initializable {
     private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
     private ArrayList<Team> addedTeams = new ArrayList<>();
     private ArrayList<Team> notAddedTeams = new ArrayList<>();
+    
+    Comparator<Team> sortTeamNameAlphabeticAscending = new Comparator<Team>() {
+        @Override
+        public int compare(Team t1, Team t2) {
+            return t1.getName().compareTo(t2.getName());
+        }
+    };
 
     /**
      * Initializes the controller class.
@@ -61,9 +70,8 @@ public class NewsCreateController implements Initializable {
         listViewNotAddedTeams.getItems().clear();
         listViewAddedTeams.getItems().clear();
         
-        //--------------
-        //sort alpabetic
-        //--------------
+        Collections.sort(addedTeams, sortTeamNameAlphabeticAscending);
+        Collections.sort(notAddedTeams, sortTeamNameAlphabeticAscending);
         
         for (Team team : notAddedTeams) {
             listViewNotAddedTeams.getItems().add(team.getName());
@@ -96,8 +104,8 @@ public class NewsCreateController implements Initializable {
 
     @FXML
     private void logout() throws IOException {
+        App.setLoggedInUser(null);
         App.setRoot("login");
-        App.setLoggedInUser(new User());
     }
 
     @FXML
@@ -120,17 +128,7 @@ public class NewsCreateController implements Initializable {
                 gdm.createNewsFeedMssage(new NewsFeedMessage(textFieldNewsfeedMessagesTitle.getText(),
                         App.getDtf().format(LocalDateTime.now()), addedTeams, App.getLoggedInUser(),
                         textAreaNewsfeedMessagesDescription.getText(), null));
-
-                //reset for new messages
-                listViewAddedTeams.getItems().clear();
-                listViewNotAddedTeams.getItems().clear();
-
-                notAddedTeams.addAll(addedTeams);
                 
-                updateListViews();
-
-                textAreaNewsfeedMessagesDescription.setText("");
-                textFieldNewsfeedMessagesTitle.setText("");
                 App.setRoot("mainScreen");
 
             } else {

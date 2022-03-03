@@ -95,24 +95,6 @@ public class EventsController implements Initializable {
 
         
         tableViewHostingEvents.setItems(hostEvents);
-        
-        ArrayList<Event> testEvents = new ArrayList<>();
-
-            ArrayList<Team> testTeams =  new ArrayList<>();
-
-            testTeams.add(new Team(0, "testTeam", "", null, null));
-
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy/ HH:mm:ss");
-
-            testEvents.add(new Event(null, dtf.format(LocalDateTime.now()), "testEvent", null, testTeams));
-
-            ObservableList<Event> testEventsOB = FXCollections.observableArrayList();
-
-            testEventsOB.addAll(testEvents);
-
-          //  tableViewInvitedEvents.setItems(testEventsOB);
-           // tableViewHostingEvents.setItems(testEventsOB);
-
     }
     
     @FXML
@@ -133,8 +115,8 @@ public class EventsController implements Initializable {
     }
     @FXML
     private void logout () throws IOException {
+        App.setLoggedInUser(null);
         App.setRoot("login");
-        App.setLoggedInUser(new User());
     }
     @FXML
     private void main () throws IOException {

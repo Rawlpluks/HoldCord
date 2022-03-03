@@ -27,11 +27,9 @@ public class UserDatabaseMethods {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
-        //Skab forbindelse til databasen...
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
             System.out.println("\n Database error (check for matching user): " + e.getMessage() + "\n");
         }
 
@@ -40,13 +38,10 @@ public class UserDatabaseMethods {
 
             ResultSet rs = stat.executeQuery("select Username from Users WHERE Username = ('" + _username + "');");
 
-            //rs.next();
-
             databaseUsername = rs.getString("Username");
 
             rs.close();
         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
             System.out.println("\n Database error (check for matching user): " + e.getMessage() + "\n");
         }
         
@@ -67,11 +62,9 @@ public class UserDatabaseMethods {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
-        //Skab forbindelse til databasen...
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
             System.out.println("\n Database error (check for matching password): " + e.getMessage() + "\n");
         }
 
@@ -86,7 +79,6 @@ public class UserDatabaseMethods {
 
             rs.close();
         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
             System.out.println("\n Database error (check for matching password): " + e.getMessage() + "\n");
         }
 
@@ -107,11 +99,9 @@ public class UserDatabaseMethods {
 
         _newUser.setUsername(_newUser.getUsername().toLowerCase());
 
-        //Skab forbindelse til databasen...
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
-            //Skriver fejlhåndtering her
             System.out.println("\n Database error (create user): " + e.getMessage() + "\n");
         }
 
@@ -136,11 +126,9 @@ public class UserDatabaseMethods {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
-        //Skab forbindelse til databasen...
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
             System.out.println("\n Database error (get logged ind user): " + e.getMessage() + "\n");
         }
         
@@ -156,7 +144,6 @@ public class UserDatabaseMethods {
 
             rs.close();
         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
             System.out.println("\n Database error (get logged ind user (info): " + e.getMessage() + "\n");
         }
         
@@ -191,11 +178,9 @@ public class UserDatabaseMethods {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
-        //Skab forbindelse til databasen...
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
             System.out.println("\n Database error (get logged ind user): " + e.getMessage() + "\n");
         }
         
