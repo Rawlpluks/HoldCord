@@ -74,8 +74,18 @@ public class EventCreateController implements Initializable {
                 edittingEvent = true;
 
                 teamsAdded.addAll(eventToBeEdited.getTeams());
-                teamsNotAdded.removeAll(teamsAdded);
+                //teamsNotAdded.removeAll(teamsAdded);
+                //teamsNotAdded.removeAll(eventToBeEdited.getTeams());
 
+                for(Team teamAdded : teamsAdded){
+                    for(int i = 0; i < teamsNotAdded.size(); i++) {
+                        if(teamAdded.getTeam_ID() == teamsNotAdded.get(i).getTeam_ID()){
+                            teamsNotAdded.remove(i);
+                            i--;
+                        }
+                    }
+                }
+                
                 updateListViews();
 
                 textFieldNameOfEvent.setText(eventToBeEdited.getTitle());

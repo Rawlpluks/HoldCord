@@ -51,6 +51,13 @@ public class NewsfeedController implements Initializable {
             //get alle news feedmessages
             newsfeedmesages = gdm.getUsersNewsFeedMessages(App.getLoggedInUser().getUser_ID());
 
+            if (newsfeedmesages.size() <= 0) {
+                labelSenderName.setText("");
+                labelTeamNameTo.setText("");
+                labelDateOfMessage.setText("");
+                buttonDeleteNews.setVisible(false);
+            }
+
             //check if we already viewng af specefic one
             if (App.getCurrentNewsFeedMessage() == null) {
                 displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
@@ -90,6 +97,7 @@ public class NewsfeedController implements Initializable {
         }
         labelTeamNameTo.setText(teams);
 
+        textFieldTitelOfMessages.setText(_newsFeedMessage.getTitel());
         labelDateOfMessage.setText(_newsFeedMessage.getDate());
         textAreaMessage.setText(_newsFeedMessage.getMessages());
 

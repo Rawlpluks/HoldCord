@@ -191,7 +191,10 @@ public class GeneralDatabbaseMethods {
 
         return teams;
     }
-
+    
+    //---------------------------------------------
+    //---------- load news feed messages ----------
+    //---------------------------------------------
     private ArrayList<NewsFeedMessage> loadNewsFeedMessages(ResultSet rs, Connection conn) throws SQLException, Exception {
         ArrayList<NewsFeedMessage> newsFeedMessages = new ArrayList<>();
         
