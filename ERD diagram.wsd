@@ -28,8 +28,8 @@ table(participants){
 
 table(newsFeedMessages){
     PK newsFeedMessages_ID
-    FK team_ID
     FK sender_ID
+    String title
     String date
     String messages
 }
@@ -45,7 +45,8 @@ table(newsFeedMessagesComments){
 table(teams){
     PK team_ID
     FK createrOfTeamID  
-    String teamName
+    String name
+    String description
 }
 
 '-----------------------------------

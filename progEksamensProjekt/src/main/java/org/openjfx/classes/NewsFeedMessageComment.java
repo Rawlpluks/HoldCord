@@ -12,14 +12,20 @@ import java.util.Date;
  * @author chris
  */
 public class NewsFeedMessageComment {
+    int newsFeedMessages_ID;
     User sender;
-    Date date;
+    String date;
     String comment;
-
-    public NewsFeedMessageComment(User sender, Date date, String comment) {
+    
+    public NewsFeedMessageComment(int newsFeedMessages_ID, User sender, String date, String comment) {
+        this.newsFeedMessages_ID = newsFeedMessages_ID;
         this.sender = sender;
         this.date = date;
         this.comment = comment;
+    }
+
+    public int getNewsFeedMessages_ID() {
+        return newsFeedMessages_ID;
     }
 
     public User getSender() {
@@ -30,11 +36,11 @@ public class NewsFeedMessageComment {
         this.sender = sender;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

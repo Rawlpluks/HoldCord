@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import org.openjfx.classes.*;
 import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
 
@@ -46,6 +47,8 @@ public class EventsController implements Initializable {
     private TableColumn tableColumnNameOfEventHost;
     @FXML
     private TableColumn tableColumnDateHost;
+    @FXML
+    private Text textErrorMessage;
     
     private ArrayList<Event> invitedEvents = new ArrayList<>();
     private ArrayList<Event> hostedEvents = new ArrayList<>();
@@ -58,26 +61,9 @@ public class EventsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            ObservableList<Event> invitedData = FXCollections.observableArrayList();
-            
             tableColumnTeamsInvited.setCellValueFactory(new PropertyValueFactory<Event, String>("teamNames"));
             tableColumnDateInvited.setCellValueFactory(new PropertyValueFactory<Event, String>("date"));
             tableColumnNameOfEventInvited.setCellValueFactory(new PropertyValueFactory<Event, String>("title"));
-            
-            /*ArrayList<Event> testEvents = new ArrayList<>();
-            
-            ArrayList<Team> testTeams =  new ArrayList<>();
-            
-            testTeams.add(new Team(0, "testTeam", null, null));
-            testTeams.add(new Team(0, "testTeam2", null, null));
-            
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy/ HH:mm:ss");
-            
-            testEvents.add(new Event(null, dtf.format(LocalDateTime.now()), "testEvent", null, testTeams));
-            
-            ObservableList<Event> testEventsOB = FXCollections.observableArrayList();*/
-            
-            
             
             //------
             
@@ -106,6 +92,7 @@ public class EventsController implements Initializable {
         ObservableList<Event> hostEvents = FXCollections.observableArrayList();
             
         hostEvents.addAll(gdm.getUserHostEvents(App.getLoggedInUser().getUser_ID()));
+
         
         tableViewHostingEvents.setItems(hostEvents);
     }
@@ -128,6 +115,7 @@ public class EventsController implements Initializable {
     }
     @FXML
     private void logout () throws IOException {
+        App.setLoggedInUser(null);
         App.setRoot("login");
     }
     @FXML
@@ -144,7 +132,7 @@ public class EventsController implements Initializable {
             
             App.setRoot("eventView");
         } else {
-            //nothing selected
+           textErrorMessage.setText("Intet valgt"); //nothing selected
         }
     }
     @FXML
@@ -159,7 +147,7 @@ public class EventsController implements Initializable {
             
             updateTabels();
         } else  {
-            //nothing selected
+            textErrorMessage.setText("Vælg venligst en begivenhed du arrangere");
         }
     }
 
@@ -170,7 +158,7 @@ public class EventsController implements Initializable {
             
             App.setRoot("eventCreate");
         } else  {
-            //nothing selected
+            textErrorMessage.setText("Vælg venligst en begivenhed du arrangere");
         }
     }
 }

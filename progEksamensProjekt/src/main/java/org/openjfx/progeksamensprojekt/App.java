@@ -18,9 +18,11 @@ import org.openjfx.classes.*;
 public class App extends Application {
 
     private static Scene scene;
-    private static User loggedInUser = new User();
-    private static Event event = new Event();
+    private static User loggedInUser = null;
+    private static Event event = null;
     private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy/ HH:mm:ss");
+    private static Team team = null;
+    private static NewsFeedMessage currentNewsFeedMessage = null;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -63,5 +65,21 @@ public class App extends Application {
 
     public static DateTimeFormatter getDtf() {
         return dtf;
+    }
+
+    public static Team getTeam() {
+        return team;
+    }
+
+    public static void setTeam(Team team) {
+        App.team = team;
+    }
+
+    public static NewsFeedMessage getCurrentNewsFeedMessage() {
+        return currentNewsFeedMessage;
+    }
+
+    public static void setCurrentNewsFeedMessage(NewsFeedMessage currentNewsFeedMessage) {
+        App.currentNewsFeedMessage = currentNewsFeedMessage;
     }
 }

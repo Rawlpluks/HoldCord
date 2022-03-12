@@ -55,30 +55,32 @@
                   <Button layoutX="958.0" mnemonicParsing="false" onAction="#exit" styleClass="exit-button" stylesheets="@styles.css" text="X" />
                </children>
             </Pane>
-            <Label layoutX="33.0" layoutY="171.0" text="(..teamname..)" textFill="#565454">
+            <Label fx:id="labelTeamName" layoutX="33.0" layoutY="171.0" text="(..teamname..)" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="28.0" />
                </font>
             </Label>
-            <ListView layoutX="32.0" layoutY="257.0" prefHeight="407.0" prefWidth="211.0" />
+            <ListView fx:id="listViewTeamMembers" layoutX="32.0" layoutY="257.0" prefHeight="407.0" prefWidth="211.0" />
             <Label layoutX="34.0" layoutY="231.0" text="Medlemsliste:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <ListView layoutX="393.0" layoutY="257.0" prefHeight="175.0" prefWidth="512.0" />
-            <Label layoutX="393.0" layoutY="231.0" text="Holdets nyheder:" textFill="#565454">
+            <ListView fx:id="listViewTeamsNewsfeed" layoutX="289.0" layoutY="257.0" prefHeight="175.0" prefWidth="471.0" />
+            <Label layoutX="289.0" layoutY="231.0" text="Holdets nyheder:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <ListView layoutX="393.0" layoutY="487.0" prefHeight="175.0" prefWidth="512.0" />
-            <Label layoutX="393.0" layoutY="461.0" text="Holdets begivenheder:" textFill="#565454">
+            <ListView fx:id="listViewTeamsEvents" layoutX="289.0" layoutY="487.0" prefHeight="175.0" prefWidth="471.0" />
+            <Label layoutX="289.0" layoutY="461.0" text="Holdets begivenheder:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
             <Button layoutX="416.0" layoutY="678.0" mnemonicParsing="false" onAction="#teams" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
+            <Button layoutX="796.0" layoutY="551.0" mnemonicParsing="false" onAction="#eventCreate" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret ny begivenhed" textFill="#9b9b9b" />
+            <Button layoutX="796.0" layoutY="321.0" mnemonicParsing="false" onAction="#newsCreate" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret ny nyhed" textFill="#9b9b9b" />
          </children>
       </Pane>
    </children>

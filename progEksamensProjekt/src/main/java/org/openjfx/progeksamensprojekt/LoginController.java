@@ -54,13 +54,12 @@ public class LoginController implements Initializable {
 
                 App.setLoggedInUser(userDatabasemethods.getoggedInUser(textFieldUsername.getText()));
                 App.setRoot("mainScreen");
-                //System.out.println("logged in");
 
             } else {
-                textErrorMessage.setText("user dosen't exist or password dont match");
+                textErrorMessage.setText("Enten findes brugeren ikke, ellers matcher kodeordet ikke");
             }
         } else {
-            textErrorMessage.setText("user dosen't exist or password dont match");
+            textErrorMessage.setText("Enten findes brugeren ikke, ellers matcher kodeordet ikke");
         }
     }
 

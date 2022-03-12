@@ -10,18 +10,20 @@ class User{
 
 class Event{
     int event_ID
-    int host_ID
-    Date date
+    User host
+    String date
     String title
     String description
     ArrayList<participant> participants
     Arraylist<Teams> teams
+
+    String getTeamNames()
 }
 
 class participant{
     int participant_ID
     User participant
-    ParticipantStatus participantStatus
+    ParticipantStatus status
 }
 
 enum ParticipantStatus{
@@ -33,8 +35,9 @@ enum ParticipantStatus{
 
 class NewsFeedMessage{
     int NewsFeedMessage_ID
-    Date date
-    Team team
+    String title
+    String date
+    ArrayList<Team> teams
     User sender
     String messages
     ArrayList<NewsFeedMessageComment>
@@ -42,15 +45,18 @@ class NewsFeedMessage{
 
 class NewsFeedMessageComment{
     User sender
-    Date date
+    String date
     String comment
 }
 
 class Team{
     int team_ID
-    String teamName
+    String name
+    String description
     User createrOfTeam
     ArrayList<User> teamMembers
 }
+
+Event "many" *-- "many" Team
 
 @enduml

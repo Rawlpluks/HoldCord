@@ -10,9 +10,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import org.openjfx.databaseRepository.GeneralDatabbaseMethods;
 import org.openjfx.classes.*;
 
@@ -35,6 +37,10 @@ public class NewsfeedController implements Initializable {
     private Label labelDateOfMessage;
     @FXML
     private TextArea textAreaMessage;
+    @FXML
+    private Button buttonDeleteNews;
+
+    private GeneralDatabbaseMethods gdm = new GeneralDatabbaseMethods();
 
     /**
      * Initializes the controller class.
@@ -43,64 +49,64 @@ public class NewsfeedController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             //get alle news feedmessages
-            GeneralDatabbaseMethods generalDatabbaseMethods = new GeneralDatabbaseMethods();
+            newsfeedmesages = gdm.getUsersNewsFeedMessages(App.getLoggedInUser().getUser_ID());
 
-            newsfeedmesages = generalDatabbaseMethods.getNewsFeedMessages(App.getLoggedInUser().getUser_ID());
+            if (newsfeedmesages.size() <= 0) {
+                labelSenderName.setText("");
+                labelTeamNameTo.setText("");
+                labelDateOfMessage.setText("");
+                buttonDeleteNews.setVisible(false);
+            }
 
-            displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
+            //check if we already viewng af specefic one
+            if (App.getCurrentNewsFeedMessage() == null) {
+                displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
+            } else {
+                for (int i = 0; i < newsfeedmesages.size(); i++) {
+                    if (newsfeedmesages.get(i).equals(App.getCurrentNewsFeedMessage())) {
+                        newsFeedMessagesNumber = i;
+                        return;
+                    }
+                }
 
+                displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
+            }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
-    
-        private void displayNewsfeedMessages(NewsFeedMessage _newsFeedMessage) throws Exception {
-        //display messages
-        //String messages = _newsFeedMessage.getMessages();
-        
+
+    private void displayNewsfeedMessages(NewsFeedMessage _newsFeedMessage) throws Exception {
+        //check if your the owner and therefor can delete the news
+        if (_newsFeedMessage.getSender().getUser_ID() == App.getLoggedInUser().getUser_ID()) {
+            buttonDeleteNews.setVisible(true);
+        } else {
+            buttonDeleteNews.setVisible(false);
+        }
+
         labelSenderName.setText(_newsFeedMessage.getSender().getName());
-        
+
         //set up teams
         String teams = "";
         for (Team team : _newsFeedMessage.getTeams()) {
             if (teams.equals("")) {
                 teams += team.getName();
             } else {
-                teams += ", " + team.getName();
+                teams += "\n" + team.getName();
             }
         }
         labelTeamNameTo.setText(teams);
-        
-        labelDateOfMessage.setText(_newsFeedMessage.getDate().toString());
+
+        textFieldTitelOfMessages.setText(_newsFeedMessage.getTitel());
+        labelDateOfMessage.setText(_newsFeedMessage.getDate());
         textAreaMessage.setText(_newsFeedMessage.getMessages());
 
-        //display comments
-        ArrayList<NewsFeedMessageComment> comments = _newsFeedMessage.getComments();
-
-        //create new strings to comment
-        //struktur - Name sender - date - comment
-        String allComments = "";
-        for (NewsFeedMessageComment comment : comments) {
-            if (allComments.equals("")) {
-                allComments += comment.getSender().getName() + " " + comment.getDate().toString()
-                        + "\n" + comment.getComment();
-            } else {
-                allComments += "\n\n" + comment.getSender().getName() + " " + comment.getDate().toString()
-                        + "\n" + comment.getComment();
-            }
-        }
-    }
-
-    private void displayNewsfeedMessagesComments() {
-
+        App.setCurrentNewsFeedMessage(_newsFeedMessage);
     }
 
     @FXML
     private void prevNewsfeedMessages(ActionEvent event) throws Exception {
-        if (newsFeedMessagesNumber < 0) {
-            newsFeedMessagesNumber = newsfeedmesages.size() - 1;
-        } else if (newsFeedMessagesNumber > newsfeedmesages.size() - 1) {
-            newsFeedMessagesNumber = 0;
-        } else {
+        if (newsFeedMessagesNumber > 0) {
             newsFeedMessagesNumber--;
         }
 
@@ -109,12 +115,33 @@ public class NewsfeedController implements Initializable {
 
     @FXML
     private void nextNewsfeedMessages(ActionEvent event) throws Exception {
-        if (newsFeedMessagesNumber < 0) {
-            newsFeedMessagesNumber = newsfeedmesages.size() - 1;
-        } else if (newsFeedMessagesNumber > newsfeedmesages.size() - 1) {
-            newsFeedMessagesNumber = 0;
-        } else {
+        if (newsFeedMessagesNumber < newsfeedmesages.size() - 1) {
             newsFeedMessagesNumber++;
+        }
+
+        displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));
+    }
+
+    @FXML
+    private void deleteNewsFeedMessages(ActionEvent event) throws Exception {
+        gdm.deleteNewsFeedMessage(newsfeedmesages.get(newsFeedMessagesNumber).getNewsFeedMessage_ID());
+
+        newsfeedmesages.remove(newsFeedMessagesNumber);
+
+        newsFeedMessagesNumber--;
+
+        if (newsFeedMessagesNumber < 0) {
+            newsFeedMessagesNumber = 0;
+        }
+
+        //check if there are any mesages left, and if not reset to standart
+        if (newsfeedmesages.size() <= 0) {
+            labelSenderName.setText("");
+            labelTeamNameTo.setText("");
+            labelDateOfMessage.setText("");
+            buttonDeleteNews.setVisible(false);
+            textFieldTitelOfMessages.setText("");
+            textAreaMessage.setText("");
         }
 
         displayNewsfeedMessages(newsfeedmesages.get(newsFeedMessagesNumber));

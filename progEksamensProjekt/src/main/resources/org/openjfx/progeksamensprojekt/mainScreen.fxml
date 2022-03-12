@@ -71,14 +71,14 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1164.0" prefWidth="1329.0">
                      <children>
-                        <VBox fx:id="newfeed" layoutX="104.0" layoutY="166.0" prefHeight="394.0" prefWidth="1158.0" style="-fx-border-color: #FA871C;" />
-                        <Line endX="1088.421875" layoutX="165.0" layoutY="631.0" startX="-67.078125" stroke="#c3710d" strokeWidth="2.0" />
+                        <VBox fx:id="newfeed" layoutX="104.0" layoutY="148.0" prefHeight="436.0" prefWidth="1158.0" style="-fx-border-color: #FA871C;" />
+                        <Line endX="1088.421875" layoutX="165.0" layoutY="641.0" startX="-67.078125" stroke="#c3710d" strokeWidth="2.0" />
                         <Label layoutX="166.0" layoutY="34.0" text="Velkommen tilbage" textFill="#565454">
                            <font>
                               <Font name="Britannic Bold" size="28.0" />
                            </font>
                         </Label>
-                        <Label fx:id="userName" layoutX="407.0" layoutY="34.0" text="(..)" textFill="#565454">
+                        <Label fx:id="labelName" layoutX="407.0" layoutY="34.0" text="(..)" textFill="#565454">
                            <font>
                               <Font name="Britannic Bold" size="28.0" />
                            </font>
@@ -104,27 +104,25 @@
                                     <Font name="Britannic Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <TextField editable="false" layoutX="269.0" layoutY="80.0" prefHeight="25.0" prefWidth="264.0" promptText="Navn" styleClass="login-textfield" stylesheets="@styles.css" />
-                              <TextField editable="false" layoutX="269.0" layoutY="127.0" prefHeight="25.0" prefWidth="264.0" promptText="Alder" styleClass="login-textfield" stylesheets="@styles.css" />
-                              <TextField editable="false" layoutX="269.0" layoutY="176.0" prefHeight="25.0" prefWidth="264.0" promptText="Email" styleClass="login-textfield" stylesheets="@styles.css" />
-                              <TextField layoutX="269.0" layoutY="226.0" prefHeight="25.0" prefWidth="264.0" promptText="Email" styleClass="login-textfield" stylesheets="@styles.css" />
+                              <TextField fx:id="textFieldUserInfoName" editable="false" layoutX="269.0" layoutY="80.0" prefHeight="25.0" prefWidth="264.0" promptText="Navn" styleClass="login-textfield" stylesheets="@styles.css" />
+                              <TextField fx:id="textFieldUserInfoEmail" editable="false" layoutX="269.0" layoutY="176.0" prefHeight="25.0" prefWidth="264.0" promptText="Email" styleClass="login-textfield" stylesheets="@styles.css" />
                               <Button layoutX="347.0" layoutY="278.0" mnemonicParsing="false" onAction="#settings" styleClass="login-button" stylesheets="@styles.css" text="Gå til indstillinger" textFill="#9b9b9b" />
-                              <TableView layoutX="609.0" layoutY="66.0" prefHeight="241.0" prefWidth="403.0">
+                              <TableView fx:id="tableViewUsersEvents" layoutX="609.0" layoutY="66.0" prefHeight="241.0" prefWidth="403.0">
                                 <columns>
-                                  <TableColumn prefWidth="94.5" text="Hold" />
-                                  <TableColumn prefWidth="219.5" text="Begivenhedens navn" />
-                                    <TableColumn prefWidth="96.0" text="Dato" />
+                                  <TableColumn fx:id="tableColumnTeamsUsersEvents" prefWidth="94.5" text="Hold" />
+                                  <TableColumn fx:id="tableColumnNameOfEventUsersEvents" prefWidth="219.5" text="Begivenhedens navn" />
+                                    <TableColumn fx:id="tableColumnDateUsersEvents" prefWidth="96.0" text="Dato" />
                                 </columns>
                               </TableView>
                               <Button layoutX="1031.0" layoutY="162.0" mnemonicParsing="false" onAction="#events" styleClass="login-button" stylesheets="@styles.css" text="Åben begivenhed" textFill="#9b9b9b" />
                            </children>
                         </Pane>
-                        <Label layoutX="521.0" layoutY="95.0" text="Dit newsfeed" textFill="#fa871c" underline="true">
+                        <Label layoutX="521.0" layoutY="77.0" text="Dit newsfeed" textFill="#fa871c" underline="true">
                            <font>
                               <Font name="Britannic Bold" size="51.0" />
                            </font>
                         </Label>
-                        <Button layoutX="598.0" layoutY="587.0" mnemonicParsing="false" onAction="#comments" styleClass="login-button" stylesheets="@styles.css" text="Se mere om nyheden" textFill="#9b9b9b" />
+                        <Button layoutX="590.0" layoutY="597.0" mnemonicParsing="false" onAction="#comments" styleClass="login-button" stylesheets="@styles.css" text="Se nyhehedens kommentare" textFill="#9b9b9b" />
                      </children>
                   </AnchorPane>
               </content>

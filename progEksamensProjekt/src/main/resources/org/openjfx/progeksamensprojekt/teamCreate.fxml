@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1350.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.progeksamensprojekt.TeamCreateController">
    <children>
@@ -57,40 +58,36 @@
                   <Button layoutX="958.0" mnemonicParsing="false" onAction="#exit" styleClass="exit-button" stylesheets="@styles.css" text="X" />
                </children>
             </Pane>
-            <Label layoutX="400.0" layoutY="175.0" text="Holdoprettelse" textFill="#565454" underline="true">
+            <Label layoutX="385.0" layoutY="175.0" text="Opret/rediger hold" textFill="#565454" underline="true">
                <font>
                   <Font name="Britannic Bold" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="57.0" layoutY="231.0" text="Navn:" textFill="#565454">
+            <Label layoutX="145.0" layoutY="231.0" text="Navn:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <ListView layoutX="141.0" layoutY="483.0" prefHeight="175.0" prefWidth="338.0" />
+            <ListView fx:id="listViewNotAddedMembers" layoutX="104.0" layoutY="483.0" prefHeight="175.0" prefWidth="338.0" />
             <Label layoutX="87.0" layoutY="289.0" text="Beskrivelse:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <ListView layoutX="600.0" layoutY="483.0" prefHeight="175.0" prefWidth="313.0" />
-            <Label layoutX="495.0" layoutY="231.0" text="Forening:" textFill="#565454">
-               <font>
-                  <Font name="Britannic Bold" size="20.0" />
-               </font>
-            </Label>
-            <Button layoutX="376.0" layoutY="679.0" mnemonicParsing="false" onAction="#teams" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
-            <Button layoutX="554.0" layoutY="679.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret hold" textFill="#9b9b9b" />
-            <TextField layoutX="116.0" layoutY="223.0" prefHeight="38.0" prefWidth="346.0" promptText="Holdets navn" styleClass="login-textfield" stylesheets="@styles.css" />
-            <TextField layoutX="585.0" layoutY="223.0" prefHeight="38.0" prefWidth="346.0" promptText="Holdets forening" styleClass="login-textfield" stylesheets="@styles.css" />
-            <TextArea layoutX="208.0" layoutY="289.0" prefHeight="111.0" prefWidth="724.0" promptText="Beskrivelse af holdet" />
+            <ListView fx:id="listViewAddedMembers" layoutX="563.0" layoutY="483.0" prefHeight="175.0" prefWidth="313.0" />
+            <Button layoutX="249.0" layoutY="679.0" mnemonicParsing="false" onAction="#teams" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Tilbage til oversigten" textFill="#9b9b9b" />
+            <Button layoutX="427.0" layoutY="679.0" mnemonicParsing="false" onAction="#createTeam" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Opret hold" textFill="#9b9b9b" />
+            <TextField fx:id="textFieldTeamName" layoutX="204.0" layoutY="223.0" prefHeight="38.0" prefWidth="724.0" promptText="Holdets navn" styleClass="login-textfield" stylesheets="@styles.css" />
+            <TextArea fx:id="textAreaTeamDescription" layoutX="208.0" layoutY="289.0" prefHeight="111.0" prefWidth="724.0" promptText="Beskrivelse af holdet" />
             <Label layoutX="40.0" layoutY="454.0" text="Tilføj/fjern medlemmer:" textFill="#565454">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="510.0" layoutY="517.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Tilføj" textFill="#9b9b9b" />
-            <Button layoutX="510.0" layoutY="586.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Fjern" textFill="#9b9b9b" />
+            <Button layoutX="473.0" layoutY="517.0" mnemonicParsing="false" onAction="#addMember" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Tilføj" textFill="#9b9b9b" />
+            <Button layoutX="473.0" layoutY="586.0" mnemonicParsing="false" onAction="#removeMember" prefHeight="38.0" prefWidth="56.0" styleClass="login-button" stylesheets="@styles.css" text="Fjern" textFill="#9b9b9b" />
+            <Text fx:id="textErroMessage" fill="RED" layoutX="423.0" layoutY="439.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="156.0" />
+            <Button layoutX="605.0" layoutY="679.0" mnemonicParsing="false" onAction="#createTeam" prefHeight="48.0" prefWidth="149.0" styleClass="login-button" stylesheets="@styles.css" text="Slet hold" textFill="#9b9b9b" />
          </children>
       </Pane>
    </children>

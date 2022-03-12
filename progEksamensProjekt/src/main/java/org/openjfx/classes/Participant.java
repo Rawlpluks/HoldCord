@@ -13,7 +13,10 @@ public class Participant {
     private int participant_ID;
     private User participant;
     private ParticipantStatus status;
-
+    
+    public Participant() {
+    }
+    
     public Participant(int participant_ID, User participant, ParticipantStatus status) {
         this.participant_ID = participant_ID;
         this.participant = participant;

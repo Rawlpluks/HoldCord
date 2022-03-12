@@ -92,23 +92,23 @@ public class SignupController implements Initializable {
                                 App.setLoggedInUser(userDatabasemethods.getoggedInUser(textFieldUsername.getText()));
                                 App.setRoot("mainScreen");
                             } else {
-                                textErroMessage.setText("Password meets requirements, but donsen't match");
+                                textErroMessage.setText("Kodeordet møder kravene, men matcher ikke"); //Password meets requirements, but donsen't match
                             }
                         } else {
-                            textErroMessage.setText("Password is missing a uppercase character");
+                            textErroMessage.setText("Kodeordet mangler et stort bogstav"); //Password is missing a uppercase character
                         }
                     } else {
-                        textErroMessage.setText("Password is missing a special character");
+                        textErroMessage.setText("Kodeordet mangler et specialtegn "); //Password is missing a special character
                     }
                 } else {
-                    textErroMessage.setText("Password needs to be at least 8 characters long");
+                    textErroMessage.setText("Kodeordet skal være minimum 8 tegn langt"); //Password needs to be at least 8 characters long"
 
                 }
             } else {
-                textErroMessage.setText("User already exist");
+                textErroMessage.setText("Brugeren findes allerede"); //User already exist
             }
         } else {
-            textErroMessage.setText("All fields need to be filled");
+            textErroMessage.setText("Alle felterne skal være udfyldt"); //All fields need to be filled
         }
 
     }

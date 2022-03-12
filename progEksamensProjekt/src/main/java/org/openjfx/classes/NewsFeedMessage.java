@@ -19,7 +19,8 @@ public class NewsFeedMessage {
     private User sender;
     private String messages;
     private ArrayList<NewsFeedMessageComment> comments = new ArrayList<>();
-
+    
+    //hent
     public NewsFeedMessage(int newsFeedMessage_ID, String titel,String date, ArrayList<Team> teams, User sender, String messages, ArrayList<NewsFeedMessageComment> comments) {
         this.newsFeedMessage_ID = newsFeedMessage_ID;
         this.titel = titel;
@@ -30,6 +31,7 @@ public class NewsFeedMessage {
         this.comments = comments;
     }
     
+    //opret
     public NewsFeedMessage(String titel, String date, ArrayList<Team> teams, User sender, String messages, ArrayList<NewsFeedMessageComment> comments) {
         this.titel = titel;
         this.date = date;

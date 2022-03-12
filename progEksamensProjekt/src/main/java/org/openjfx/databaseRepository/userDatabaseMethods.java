@@ -27,11 +27,9 @@ public class UserDatabaseMethods {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
-        //Skab forbindelse til databasen...
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
             System.out.println("\n Database error (check for matching user): " + e.getMessage() + "\n");
         }
 
@@ -40,16 +38,13 @@ public class UserDatabaseMethods {
 
             ResultSet rs = stat.executeQuery("select Username from Users WHERE Username = ('" + _username + "');");
 
-            rs.next();
-
             databaseUsername = rs.getString("Username");
 
             rs.close();
         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
             System.out.println("\n Database error (check for matching user): " + e.getMessage() + "\n");
         }
-
+        
         if (_username.equalsIgnoreCase(databaseUsername)) {
             return true;
         }
@@ -67,11 +62,9 @@ public class UserDatabaseMethods {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
-        //Skab forbindelse til databasen...
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
             System.out.println("\n Database error (check for matching password): " + e.getMessage() + "\n");
         }
 
@@ -86,7 +79,6 @@ public class UserDatabaseMethods {
 
             rs.close();
         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
             System.out.println("\n Database error (check for matching password): " + e.getMessage() + "\n");
         }
 
@@ -107,11 +99,9 @@ public class UserDatabaseMethods {
 
         _newUser.setUsername(_newUser.getUsername().toLowerCase());
 
-        //Skab forbindelse til databasen...
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
-            //Skriver fejlhåndtering her
             System.out.println("\n Database error (create user): " + e.getMessage() + "\n");
         }
 
@@ -136,11 +126,9 @@ public class UserDatabaseMethods {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
-        //Skab forbindelse til databasen...
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
             System.out.println("\n Database error (get logged ind user): " + e.getMessage() + "\n");
         }
         
@@ -156,7 +144,6 @@ public class UserDatabaseMethods {
 
             rs.close();
         } catch (SQLException e) {
-            //Skrive fejlhåndtering her
             System.out.println("\n Database error (get logged ind user (info): " + e.getMessage() + "\n");
         }
         
@@ -182,5 +169,30 @@ public class UserDatabaseMethods {
         conn.close();
 
         return loggedInUser;
+    }
+    
+    //-------------------------------
+    //---------- edit user ----------
+    //-------------------------------
+    public void editUser(User _user) throws SQLException, Exception{
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (get logged ind user): " + e.getMessage() + "\n");
+        }
+        
+        String sql = "UPDATE Users SET username = '"+ _user.getUsername() +"', name = '" + _user.getName() + "',"
+                + "email = '" + _user.getEmail() + "', password = '" + _user.getPassword() + "' "
+                + "WHERE user_ID = ('" + _user.getUser_ID() + "')";
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (edit event (insert info): " + e.getMessage() + "\n");
+        }
+        conn.close();
     }
 }
